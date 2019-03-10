@@ -1,17 +1,14 @@
 const OPTIONS = require("./options")
 const Kahoot = require("../lib").default
-const Helpers = Kahoot.Helpers.default
+const Helpers = Kahoot.Helpers
 
-const client = new Kahoot.Client.default(OPTIONS.pin, `@idiidk-${Math.floor(Math.random() * 1000)}`)
+const client = new Kahoot.Client(OPTIONS.pin, `@idiidk-${Math.floor(Math.random() * 1000)}`)
 
 client.emitter.on("player", (m) => {
   console.log(m)
 })
 
 describe("Client", function () {
-  let player
-  let ghost
-
   describe("#initialize", function () {
     it("should initialize a session succesfully", function () {
       return client.initialize();

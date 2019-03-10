@@ -20,12 +20,14 @@ export default class Client extends Player {
   /**
    * @param {Number} pin The game pin
    * @param {String} name Name of the main player
+   * @param {String} proxy Optional cors proxy url for the browser
    */
-  constructor(pin, name) {
+  constructor(pin, name, proxy = "") {
     super(null, Helpers.randomCid(), pin)
 
     this.pin = pin
     this.name = name
+    this.proxy = proxy
     this.emitter = emitter
     this.cometd = null
     this.twoFactor = null
@@ -72,7 +74,7 @@ export default class Client extends Player {
    * @return {Promise<Object>} Returns object containing session information
    */
   checkSession() {
-    return axios.get(`https://www.kahoot.it/reserve/session/${this.pin}/?${Helpers.getTime()}`)
+    return axios.get(`${this.proxy}https://www.kahoot.it/reserve/session/${this.pin}/?${Helpers.getTime()}`)
       .then((res) => {
         const sessionInfo = res.data
         const headers = res.headers

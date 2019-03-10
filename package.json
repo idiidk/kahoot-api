@@ -1,13 +1,14 @@
 {
   "name": "kahoot-api",
-  "version": "0.1.1",
+  "version": "0.2.1",
   "description": "An API for the Kahoot quiz service.",
   "main": "index.js",
   "scripts": {
     "build": "babel src -d lib",
     "prepublish": "npm run docs && babel src -d lib",
     "test": "npm run build && mocha",
-    "docs": "esdoc -c esdoc.json"
+    "docs": "esdoc -c esdoc.json",
+    "bundle": "parcel build --global Kahoot src/index.js"
   },
   "repository": "https://github.com/idiidk/kahoot-api",
   "author": "idiidk",
@@ -26,6 +27,7 @@
     "@babel/preset-env": "^7.3.4",
     "esdoc": "^1.1.0",
     "esdoc-standard-plugin": "^1.0.0",
-    "mocha": "^6.0.2"
+    "mocha": "^6.0.2",
+    "parcel-bundler": "^1.12.0"
   }
 }

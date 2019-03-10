@@ -31,7 +31,9 @@
     
   <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/client.js~Client.html">Client</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/helpers.js~Helpers.html">Helpers</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/index.js~Kahoot.html">Kahoot</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/player.js~Player.html">Player</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-kahoot">kahoot</a></span></span></li>
 </ul>
 </div>
 </nav>
@@ -97,7 +99,7 @@ Also initializes the socket communication.</p>
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/client.js~Client.html#instance-constructor-constructor">constructor</a></span></span><span class="code" data-ice="signature">(pin: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a></span>, name: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></span>)</span>
+          <span class="code" data-ice="name"><span><a href="class/src/client.js~Client.html#instance-constructor-constructor">constructor</a></span></span><span class="code" data-ice="signature">(pin: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a></span>, name: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></span>, proxy: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></span>)</span>
         </p>
       </div>
       <div>
@@ -217,6 +219,34 @@ Also initializes the socket communication.</p>
           
           
           <span class="code" data-ice="name"><span><a href="class/src/client.js~Client.html#instance-member-pin">pin</a></span></span><span class="code" data-ice="signature">: <span>*</span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+          
+          
+          
+          <span class="code" data-ice="name"><span><a href="class/src/client.js~Client.html#instance-member-proxy">proxy</a></span></span><span class="code" data-ice="signature">: <span>*</span></span>
         </p>
       </div>
       <div>
@@ -721,11 +751,11 @@ Also initializes the socket communication.</p>
     
     
     
-    <span class="code" data-ice="name">constructor</span><span class="code" data-ice="signature">(pin: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a></span>, name: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></span>)</span>
+    <span class="code" data-ice="name">constructor</span><span class="code" data-ice="signature">(pin: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a></span>, name: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></span>, proxy: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></span>)</span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/client.js.html#lineNumber24">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/client.js.html#lineNumber25">source</a></span></span>
     </span>
   </h3>
 
@@ -756,6 +786,13 @@ Also initializes the socket communication.</p>
       <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></span></td>
       <td data-ice="appendix"></td>
       <td data-ice="description"><p>Name of the main player</p>
+</td>
+    </tr>
+<tr data-ice="property" data-depth="0">
+      <td data-ice="name" class="code" data-depth="0">proxy</td>
+      <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>Optional cors proxy url for the browser</p>
 </td>
     </tr>
 </tbody>
@@ -795,7 +832,7 @@ Also initializes the socket communication.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/client.js.html#lineNumber30">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/client.js.html#lineNumber32">source</a></span></span>
     </span>
   </h3>
 
@@ -838,7 +875,7 @@ Also initializes the socket communication.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/client.js.html#lineNumber29">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/client.js.html#lineNumber31">source</a></span></span>
     </span>
   </h3>
 
@@ -881,7 +918,7 @@ Also initializes the socket communication.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/client.js.html#lineNumber28">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/client.js.html#lineNumber29">source</a></span></span>
     </span>
   </h3>
 
@@ -924,7 +961,7 @@ Also initializes the socket communication.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/client.js.html#lineNumber27">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/client.js.html#lineNumber28">source</a></span></span>
     </span>
   </h3>
 
@@ -934,6 +971,49 @@ Also initializes the socket communication.</p>
   
 
   <div data-ice="override"><h4>Override:</h4><span><a href="class/src/player.js~Player.html#instance-member-pin">Player#pin</a></span></div>
+
+  <div data-ice="properties">
+</div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-member-proxy">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    
+    <span class="code" data-ice="name">proxy</span><span class="code" data-ice="signature">: <span>*</span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/src/client.js.html#lineNumber30">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  
+
+  
 
   <div data-ice="properties">
 </div>
@@ -967,7 +1047,7 @@ Also initializes the socket communication.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/client.js.html#lineNumber31">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/client.js.html#lineNumber33">source</a></span></span>
     </span>
   </h3>
 
@@ -1013,7 +1093,7 @@ Also initializes the socket communication.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/client.js.html#lineNumber129">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/client.js.html#lineNumber131">source</a></span></span>
     </span>
   </h3>
 
@@ -1101,7 +1181,7 @@ Also initializes the socket communication.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/client.js.html#lineNumber74">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/client.js.html#lineNumber76">source</a></span></span>
     </span>
   </h3>
 
@@ -1158,7 +1238,7 @@ Also initializes the socket communication.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/client.js.html#lineNumber50">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/client.js.html#lineNumber52">source</a></span></span>
     </span>
   </h3>
 
@@ -1231,7 +1311,7 @@ Also initializes the socket communication.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/client.js.html#lineNumber100">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/client.js.html#lineNumber102">source</a></span></span>
     </span>
   </h3>
 
@@ -1289,7 +1369,7 @@ Automatically bruteforces 2FA</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/client.js.html#lineNumber39">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/client.js.html#lineNumber41">source</a></span></span>
     </span>
   </h3>
 

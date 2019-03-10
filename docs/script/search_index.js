@@ -12,10 +12,22 @@ window.esdocSearchIndex = [
     "class"
   ],
   [
+    "kahoot-api/src/index.js~kahoot",
+    "class/src/index.js~Kahoot.html",
+    "<span>Kahoot</span> <span class=\"search-result-import-path\">kahoot-api/src/index.js</span>",
+    "class"
+  ],
+  [
     "kahoot-api/src/player.js~player",
     "class/src/player.js~Player.html",
     "<span>Player</span> <span class=\"search-result-import-path\">kahoot-api/src/player.js</span>",
     "class"
+  ],
+  [
+    "kahoot-api/src/index.js~kahoot",
+    "variable/index.html#static-variable-kahoot",
+    "<span>kahoot</span> <span class=\"search-result-import-path\">kahoot-api/src/index.js</span>",
+    "variable"
   ],
   [
     "src/.external-ecmascript.js~array",
@@ -366,6 +378,12 @@ window.esdocSearchIndex = [
     "member"
   ],
   [
+    "src/client.js~client#proxy",
+    "class/src/client.js~Client.html#instance-member-proxy",
+    "src/client.js~Client#proxy",
+    "member"
+  ],
+  [
     "src/client.js~client#twofactor",
     "class/src/client.js~Client.html#instance-member-twoFactor",
     "src/client.js~Client#twoFactor",
@@ -418,6 +436,24 @@ window.esdocSearchIndex = [
     "file/src/index.js.html",
     "src/index.js",
     "file"
+  ],
+  [
+    "src/index.js~kahoot#client",
+    "class/src/index.js~Kahoot.html#instance-member-Client",
+    "src/index.js~Kahoot#Client",
+    "member"
+  ],
+  [
+    "src/index.js~kahoot#helpers",
+    "class/src/index.js~Kahoot.html#instance-member-Helpers",
+    "src/index.js~Kahoot#Helpers",
+    "member"
+  ],
+  [
+    "src/index.js~kahoot#constructor",
+    "class/src/index.js~Kahoot.html#instance-constructor-constructor",
+    "src/index.js~Kahoot#constructor",
+    "method"
   ],
   [
     "src/player.js",

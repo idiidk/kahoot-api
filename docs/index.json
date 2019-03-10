@@ -567,7 +567,7 @@
     "__docId__": 48,
     "kind": "file",
     "name": "src/client.js",
-    "content": "import axios from \"axios\"\nimport emitter from \"tiny-emitter/instance\"\nimport cometd from \"cometd\"\nimport cometdAdapter from \"cometd-nodejs-client\"\n\nimport Helpers from \"./helpers\"\nimport Player from \"./player\"\n\nif (typeof window === \"undefined\") {\n  cometdAdapter.adapt()\n}\n\n/**\n * Client class, used as controller for players.\n * Also initializes the socket communication.\n *\n * @class Client\n */\nexport default class Client extends Player {\n  /**\n   * @param {Number} pin The game pin\n   * @param {String} name Name of the main player\n   */\n  constructor(pin, name) {\n    super(null, Helpers.randomCid(), pin)\n\n    this.pin = pin\n    this.name = name\n    this.emitter = emitter\n    this.cometd = null\n    this.twoFactor = null\n  }\n\n  /**\n   * Checks session and initializes communication, must be called first!\n   * \n   * @return {Promise<Object>} Returns CometD client\n   */\n  initialize() {\n    return this.checkSession()\n      .then(this.createSocket)\n      .then(e => this.cometd = e)\n  }\n\n  /**\n   * Initializes CometD client\n   * \n   * @return {Promise<Object>} Returns CometD client\n   */\n  createSocket(parsed) {\n    const socket = new cometd.CometD()\n    socket.configure({\n      url: `https://kahoot.it/cometd/${parsed.pin}/${parsed.session}`\n    })\n    socket.websocketEnabled = true\n\n    return new Promise((resolve, reject) => {\n      socket.handshake((h) => {\n        if (!h.successful) return reject(Error(\"session failed decoding\"))\n        socket.subscribe(\"/service/controller\", m => emitter.emit(\"controller\", m))\n        socket.subscribe(\"/service/player\", m => emitter.emit(\"player\", m))\n        socket.subscribe(\"/service/status\", m => emitter.emit(\"status\", m))\n\n        resolve(socket)\n      })\n    })\n  }\n\n  /**\n   * Checks existance of pin\n   * \n   * @return {Promise<Object>} Returns object containing session information\n   */\n  checkSession() {\n    return axios.get(`https://www.kahoot.it/reserve/session/${this.pin}/?${Helpers.getTime()}`)\n      .then((res) => {\n        const sessionInfo = res.data\n        const headers = res.headers\n        const rawSession = headers[\"x-kahoot-session-token\"]\n        const solvedChallenge = Helpers.solveChallenge(sessionInfo.challenge)\n        const twoFactor = sessionInfo.twoFactorAuth\n        const session = Helpers.shiftBits(rawSession, solvedChallenge)\n\n        this.twoFactor = twoFactor\n\n        return {\n          pin: this.pin,\n          twoFactor: twoFactor,\n          session: session\n        }\n      })\n  }\n\n  /**\n   * Adds main player to the game, this is normally called after initialize to get other functions working.\n   * Automatically bruteforces 2FA\n   * \n   * @return {Promise<>} Returns when complete\n   */\n  doLogin() {\n    this.sendPacket(\n        \"/service/controller\", {\n          gameid: this.pin,\n          host: \"kahoot.it\",\n          name: this.name,\n          type: \"login\"\n        })\n      .then(() => {\n        return new Promise((resolve, _) => {\n          if (this.twoFactor) {\n            setTimeout(() => {\n              this.bruteForceTwoFactor()\n              resolve()\n            }, 350)\n          }\n        })\n      })\n  }\n\n  /**\n   * Adds a player to the game\n   * \n   * @param {String} name The name of the player\n   * @param {String} cid The unique id of the player, helper function randomCid can be used for this\n   * @param {Boolean} isGhost Makes player ghost or normal\n   * \n   * @return {Player} Returns object containing session information\n   */\n  addPlayer(name, cid, isGhost) {\n    this.sendPacket(`/controller/${this.pin}`, {\n      type: \"joined\",\n      cid: cid,\n      image: \"@idiidk\",\n      name: name,\n      isGhost: isGhost,\n      completedTwoFactorAuth: 1\n    })\n\n    return new Player(this.cometd, cid, this.pin);\n  }\n}",
+    "content": "import axios from \"axios\"\nimport emitter from \"tiny-emitter/instance\"\nimport cometd from \"cometd\"\nimport cometdAdapter from \"cometd-nodejs-client\"\n\nimport Helpers from \"./helpers\"\nimport Player from \"./player\"\n\nif (typeof window === \"undefined\") {\n  cometdAdapter.adapt()\n}\n\n/**\n * Client class, used as controller for players.\n * Also initializes the socket communication.\n *\n * @class Client\n */\nexport default class Client extends Player {\n  /**\n   * @param {Number} pin The game pin\n   * @param {String} name Name of the main player\n   * @param {String} proxy Optional cors proxy url for the browser\n   */\n  constructor(pin, name, proxy = \"\") {\n    super(null, Helpers.randomCid(), pin)\n\n    this.pin = pin\n    this.name = name\n    this.proxy = proxy\n    this.emitter = emitter\n    this.cometd = null\n    this.twoFactor = null\n  }\n\n  /**\n   * Checks session and initializes communication, must be called first!\n   * \n   * @return {Promise<Object>} Returns CometD client\n   */\n  initialize() {\n    return this.checkSession()\n      .then(this.createSocket)\n      .then(e => this.cometd = e)\n  }\n\n  /**\n   * Initializes CometD client\n   * \n   * @return {Promise<Object>} Returns CometD client\n   */\n  createSocket(parsed) {\n    const socket = new cometd.CometD()\n    socket.configure({\n      url: `https://kahoot.it/cometd/${parsed.pin}/${parsed.session}`\n    })\n    socket.websocketEnabled = true\n\n    return new Promise((resolve, reject) => {\n      socket.handshake((h) => {\n        if (!h.successful) return reject(Error(\"session failed decoding\"))\n        socket.subscribe(\"/service/controller\", m => emitter.emit(\"controller\", m))\n        socket.subscribe(\"/service/player\", m => emitter.emit(\"player\", m))\n        socket.subscribe(\"/service/status\", m => emitter.emit(\"status\", m))\n\n        resolve(socket)\n      })\n    })\n  }\n\n  /**\n   * Checks existance of pin\n   * \n   * @return {Promise<Object>} Returns object containing session information\n   */\n  checkSession() {\n    return axios.get(`${this.proxy}https://www.kahoot.it/reserve/session/${this.pin}/?${Helpers.getTime()}`)\n      .then((res) => {\n        const sessionInfo = res.data\n        const headers = res.headers\n        const rawSession = headers[\"x-kahoot-session-token\"]\n        const solvedChallenge = Helpers.solveChallenge(sessionInfo.challenge)\n        const twoFactor = sessionInfo.twoFactorAuth\n        const session = Helpers.shiftBits(rawSession, solvedChallenge)\n\n        this.twoFactor = twoFactor\n\n        return {\n          pin: this.pin,\n          twoFactor: twoFactor,\n          session: session\n        }\n      })\n  }\n\n  /**\n   * Adds main player to the game, this is normally called after initialize to get other functions working.\n   * Automatically bruteforces 2FA\n   * \n   * @return {Promise<>} Returns when complete\n   */\n  doLogin() {\n    this.sendPacket(\n        \"/service/controller\", {\n          gameid: this.pin,\n          host: \"kahoot.it\",\n          name: this.name,\n          type: \"login\"\n        })\n      .then(() => {\n        return new Promise((resolve, _) => {\n          if (this.twoFactor) {\n            setTimeout(() => {\n              this.bruteForceTwoFactor()\n              resolve()\n            }, 350)\n          }\n        })\n      })\n  }\n\n  /**\n   * Adds a player to the game\n   * \n   * @param {String} name The name of the player\n   * @param {String} cid The unique id of the player, helper function randomCid can be used for this\n   * @param {Boolean} isGhost Makes player ghost or normal\n   * \n   * @return {Player} Returns object containing session information\n   */\n  addPlayer(name, cid, isGhost) {\n    this.sendPacket(`/controller/${this.pin}`, {\n      type: \"joined\",\n      cid: cid,\n      image: \"@idiidk\",\n      name: name,\n      isGhost: isGhost,\n      completedTwoFactorAuth: 1\n    })\n\n    return new Player(this.cometd, cid, this.pin);\n  }\n}",
     "static": true,
     "longname": "/home/idiidk/Documents/Node_Project/kahoot-api/src/client.js",
     "access": "public",
@@ -609,7 +609,7 @@
     "longname": "src/client.js~Client#constructor",
     "access": "public",
     "description": "",
-    "lineNumber": 24,
+    "lineNumber": 25,
     "params": [
       {
         "nullable": null,
@@ -630,6 +630,16 @@
         "optional": false,
         "name": "name",
         "description": "Name of the main player"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "String"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "proxy",
+        "description": "Optional cors proxy url for the browser"
       }
     ]
   },
@@ -642,7 +652,7 @@
     "longname": "src/client.js~Client#pin",
     "access": "public",
     "description": null,
-    "lineNumber": 27,
+    "lineNumber": 28,
     "undocument": true,
     "type": {
       "types": [
@@ -659,7 +669,7 @@
     "longname": "src/client.js~Client#name",
     "access": "public",
     "description": null,
-    "lineNumber": 28,
+    "lineNumber": 29,
     "undocument": true,
     "type": {
       "types": [
@@ -670,27 +680,10 @@
   {
     "__docId__": 53,
     "kind": "member",
-    "name": "emitter",
+    "name": "proxy",
     "memberof": "src/client.js~Client",
     "static": false,
-    "longname": "src/client.js~Client#emitter",
-    "access": "public",
-    "description": null,
-    "lineNumber": 29,
-    "undocument": true,
-    "type": {
-      "types": [
-        "*"
-      ]
-    }
-  },
-  {
-    "__docId__": 54,
-    "kind": "member",
-    "name": "cometd",
-    "memberof": "src/client.js~Client",
-    "static": false,
-    "longname": "src/client.js~Client#cometd",
+    "longname": "src/client.js~Client#proxy",
     "access": "public",
     "description": null,
     "lineNumber": 30,
@@ -702,12 +695,12 @@
     }
   },
   {
-    "__docId__": 55,
+    "__docId__": 54,
     "kind": "member",
-    "name": "twoFactor",
+    "name": "emitter",
     "memberof": "src/client.js~Client",
     "static": false,
-    "longname": "src/client.js~Client#twoFactor",
+    "longname": "src/client.js~Client#emitter",
     "access": "public",
     "description": null,
     "lineNumber": 31,
@@ -719,7 +712,41 @@
     }
   },
   {
+    "__docId__": 55,
+    "kind": "member",
+    "name": "cometd",
+    "memberof": "src/client.js~Client",
+    "static": false,
+    "longname": "src/client.js~Client#cometd",
+    "access": "public",
+    "description": null,
+    "lineNumber": 32,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
     "__docId__": 56,
+    "kind": "member",
+    "name": "twoFactor",
+    "memberof": "src/client.js~Client",
+    "static": false,
+    "longname": "src/client.js~Client#twoFactor",
+    "access": "public",
+    "description": null,
+    "lineNumber": 33,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 57,
     "kind": "method",
     "name": "initialize",
     "memberof": "src/client.js~Client",
@@ -729,7 +756,7 @@
     "longname": "src/client.js~Client#initialize",
     "access": "public",
     "description": "Checks session and initializes communication, must be called first!",
-    "lineNumber": 39,
+    "lineNumber": 41,
     "return": {
       "nullable": null,
       "types": [
@@ -741,7 +768,7 @@
     "params": []
   },
   {
-    "__docId__": 57,
+    "__docId__": 58,
     "kind": "method",
     "name": "createSocket",
     "memberof": "src/client.js~Client",
@@ -751,7 +778,7 @@
     "longname": "src/client.js~Client#createSocket",
     "access": "public",
     "description": "Initializes CometD client",
-    "lineNumber": 50,
+    "lineNumber": 52,
     "return": {
       "nullable": null,
       "types": [
@@ -770,7 +797,7 @@
     ]
   },
   {
-    "__docId__": 58,
+    "__docId__": 59,
     "kind": "method",
     "name": "checkSession",
     "memberof": "src/client.js~Client",
@@ -780,7 +807,7 @@
     "longname": "src/client.js~Client#checkSession",
     "access": "public",
     "description": "Checks existance of pin",
-    "lineNumber": 74,
+    "lineNumber": 76,
     "return": {
       "nullable": null,
       "types": [
@@ -792,7 +819,7 @@
     "params": []
   },
   {
-    "__docId__": 60,
+    "__docId__": 61,
     "kind": "method",
     "name": "doLogin",
     "memberof": "src/client.js~Client",
@@ -802,7 +829,7 @@
     "longname": "src/client.js~Client#doLogin",
     "access": "public",
     "description": "Adds main player to the game, this is normally called after initialize to get other functions working.\nAutomatically bruteforces 2FA",
-    "lineNumber": 100,
+    "lineNumber": 102,
     "return": {
       "nullable": null,
       "types": [
@@ -814,7 +841,7 @@
     "params": []
   },
   {
-    "__docId__": 61,
+    "__docId__": 62,
     "kind": "method",
     "name": "addPlayer",
     "memberof": "src/client.js~Client",
@@ -824,7 +851,7 @@
     "longname": "src/client.js~Client#addPlayer",
     "access": "public",
     "description": "Adds a player to the game",
-    "lineNumber": 129,
+    "lineNumber": 131,
     "params": [
       {
         "nullable": null,
@@ -867,7 +894,7 @@
     }
   },
   {
-    "__docId__": 62,
+    "__docId__": 63,
     "kind": "file",
     "name": "src/events.js",
     "content": "export default {\n  getReady: 1,\n  startQuestion: 2,\n  gameOver: 3,\n  timeUp: 4,\n  playAgain: 5,\n  answerSelected: 6,\n  answerResponse: 7,\n  revealAnswer: 8,\n  startQuiz: 9,\n  resetController: 10,\n  submitFeedback: 11,\n  feedback: 12,\n  revealRanking: 13,\n  userNameAccepted: 14,\n  userNameRejected: 15,\n  requestRecoveryDataFromPlayer: 16,\n  sendRecoveryDataToController: 17,\n  joinTeamMembers: 18,\n  joinTeamMembersResponse: 19,\n  startTeamTalk: 20,\n  skipTeamTalk: 21,\n  iframeControllerEvent: 31,\n  serverIframeMessage: 32,\n  storyBlockGetReady: 40,\n  reactionSelected: 41,\n  reactionResponse: 42,\n  gameBlockStart: 43,\n  gameBlockEnd: 44,\n  gameBlockAnswer: 45,\n  submitTwoFactorAuth: 50,\n  twoFactorAuthIncorrect: 51,\n  twoFactorAuthCorrect: 52,\n  resetTwoFactorAuth: 53\n}",
@@ -878,7 +905,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 63,
+    "__docId__": 64,
     "kind": "file",
     "name": "src/helpers.js",
     "content": "import atob from \"atob\"\n\n/**\n * Helper class, contains static functions used when authenticating\n *\n * @class Helpers\n */\nexport default class Helpers {\n  /**\n   * Gets unix time\n   * \n   * @return {String} Time in macroseconds\n   */\n  static getTime() {\n    return new Date().getTime()\n  }\n\n  /**\n   * Does some magic by xor'ing the session and challenge to generate a url\n   * \n   * @param {String} session Session string\n   * @param {String} challenge Challenge string\n   * \n   * @return {String} Parsed session\n   */\n  static shiftBits(session, challenge) {\n    const sessionBytes = this.convertDataToBinary(atob(session))\n    const challengeBytes = this.convertDataToBinary(challenge)\n    const bytesList = []\n    for (let i = 0; i < sessionBytes.length; i++) {\n      bytesList.push(\n        String.fromCharCode(\n          sessionBytes[i] ^ challengeBytes[i % challengeBytes.length]\n        )\n      )\n    }\n    return bytesList.join(\"\");\n  }\n\n  /**\n   * Converts any data to binary data\n   * \n   * @param raw Data to convert\n   * \n   * @return {String} Parsed session\n   */\n  static convertDataToBinary(raw) {\n    const rawLength = raw.length;\n    const tempArray = new Uint8Array(new ArrayBuffer(rawLength));\n\n    for (let i = 0; i < rawLength; i++) {\n      tempArray[i] = raw.charCodeAt(i);\n    }\n    return tempArray;\n  }\n\n  /**\n   * Solves challenge to get the first part of authentication out of the way\n   * \n   * @param {String} challenge Challenge code\n   * \n   * @return {String} Parsed challenge\n   */\n  static solveChallenge(challenge) {\n    let toDecode = challenge.split(\"'\")[1].split(\"'\")[0];\n    const offset = eval(challenge.split(\"var offset = \")[1].split(\";\")[0]);\n    const decodeMod = parseInt(\n      challenge\n      .split(\") % \")[1]\n      .split(\")\")[0]\n      .trim()\n    );\n    const decodePlus = parseInt(\n      challenge\n      .split(decodeMod)[1]\n      .split(\"+ \")[1]\n      .split(\")\")[0]\n    );\n    let final = \"\";\n\n    for (let i = 0; i < toDecode.length; i++) {\n      const char = toDecode[i];\n      final += String.fromCharCode(\n        ((char.charCodeAt(0) * i + offset) % decodeMod) + decodePlus\n      );\n    }\n\n    return final;\n  }\n\n  /**\n   * Generates random id for players\n   * \n   * @return {String} Random cid\n   */\n  static randomCid() {\n    return 10000 + Math.floor(Math.random() * 10000)\n  }\n}",
@@ -889,7 +916,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 64,
+    "__docId__": 65,
     "kind": "class",
     "name": "Helpers",
     "memberof": "src/helpers.js",
@@ -910,7 +937,7 @@
     "interface": false
   },
   {
-    "__docId__": 65,
+    "__docId__": 66,
     "kind": "method",
     "name": "getTime",
     "memberof": "src/helpers.js~Helpers",
@@ -932,7 +959,7 @@
     "params": []
   },
   {
-    "__docId__": 66,
+    "__docId__": 67,
     "kind": "method",
     "name": "shiftBits",
     "memberof": "src/helpers.js~Helpers",
@@ -975,7 +1002,7 @@
     }
   },
   {
-    "__docId__": 67,
+    "__docId__": 68,
     "kind": "method",
     "name": "convertDataToBinary",
     "memberof": "src/helpers.js~Helpers",
@@ -1008,7 +1035,7 @@
     }
   },
   {
-    "__docId__": 68,
+    "__docId__": 69,
     "kind": "method",
     "name": "solveChallenge",
     "memberof": "src/helpers.js~Helpers",
@@ -1041,7 +1068,7 @@
     }
   },
   {
-    "__docId__": 69,
+    "__docId__": 70,
     "kind": "method",
     "name": "randomCid",
     "memberof": "src/helpers.js~Helpers",
@@ -1063,10 +1090,10 @@
     "params": []
   },
   {
-    "__docId__": 70,
+    "__docId__": 71,
     "kind": "file",
     "name": "src/index.js",
-    "content": "export default {\n  Client: require(\"./client\"),\n  Helpers: require(\"./helpers\"),\n}",
+    "content": "import Client from \"./client\"\nimport Helpers from \"./helpers\"\n\nclass Kahoot {\n  constructor() {\n    this.Client = Client\n    this.Helpers = Helpers\n  }\n}\n\nexport default new Kahoot()",
     "static": true,
     "longname": "/home/idiidk/Documents/Node_Project/kahoot-api/src/index.js",
     "access": "public",
@@ -1074,7 +1101,92 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 71,
+    "__docId__": 72,
+    "kind": "class",
+    "name": "Kahoot",
+    "memberof": "src/index.js",
+    "static": true,
+    "longname": "src/index.js~Kahoot",
+    "access": "public",
+    "export": true,
+    "importPath": "kahoot-api/src/index.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 4,
+    "pseudoExport": true,
+    "undocument": true,
+    "interface": false
+  },
+  {
+    "__docId__": 73,
+    "kind": "constructor",
+    "name": "constructor",
+    "memberof": "src/index.js~Kahoot",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/index.js~Kahoot#constructor",
+    "access": "public",
+    "description": null,
+    "lineNumber": 5,
+    "undocument": true
+  },
+  {
+    "__docId__": 74,
+    "kind": "member",
+    "name": "Client",
+    "memberof": "src/index.js~Kahoot",
+    "static": false,
+    "longname": "src/index.js~Kahoot#Client",
+    "access": "public",
+    "description": null,
+    "lineNumber": 6,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 75,
+    "kind": "member",
+    "name": "Helpers",
+    "memberof": "src/index.js~Kahoot",
+    "static": false,
+    "longname": "src/index.js~Kahoot#Helpers",
+    "access": "public",
+    "description": null,
+    "lineNumber": 7,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 76,
+    "kind": "variable",
+    "name": "kahoot",
+    "memberof": "src/index.js",
+    "static": true,
+    "longname": "src/index.js~kahoot",
+    "access": "public",
+    "export": true,
+    "importPath": "kahoot-api/src/index.js",
+    "importStyle": "kahoot",
+    "description": null,
+    "lineNumber": 11,
+    "undocument": true,
+    "type": {
+      "types": [
+        "src/index.js~Kahoot"
+      ]
+    }
+  },
+  {
+    "__docId__": 77,
     "kind": "file",
     "name": "src/player.js",
     "content": "import EVENTS from \"./events\"\n\n/**\n * Player class, created when calling addPlayer. \n * Contains player related functions\n *\n * @class Player\n */\nexport default class Player {\n  /**\n   * @param {Object} cometd CometD instance\n   * @param {String} cid Cid of the player\n   * @param {String} pin Pin of the current game\n   */\n  constructor(cometd, cid, pin) {\n    this.cometd = cometd\n    this.cid = cid\n    this.pin = pin\n  }\n\n  /**\n   * Sends a packet to Kahoot\n   * \n   * @param {String} channel Channel to send to\n   * @param {Object} data Data to send to channel specified\n   * \n   * @return {Promise} Resolves when done\n   */\n  sendPacket(channel, data = {}) {\n    return new Promise((resolve, _) => {\n      data.host = \"play.kahoot.it\"\n      data.gameid = this.pin\n      this.cometd.publish(channel, data, resolve)\n    })\n  }\n\n  /**\n   * Attempts 2FA login using code, 0000 to 3333\n   * \n   * @param {String} code 0000 to 3333\n   */\n  twoFactorLogin(code) {\n    this.sendPacket(\n      \"/service/controller\", {\n        id: EVENTS.submitTwoFactorAuth,\n        type: \"message\",\n        cid: this.cid,\n        gameid: this.pin,\n        host: \"kahoot.it\",\n        content: JSON.stringify({\n          sequence: code\n        })\n      }\n    )\n  }\n\n  /**\n   * Attempts all 2FA codes until logged in\n   */\n  bruteForceTwoFactor() {\n    let combinations = [\n      \"0123\",\n      \"0132\",\n      \"0213\",\n      \"0231\",\n      \"0321\",\n      \"0312\",\n      \"1023\",\n      \"1032\",\n      \"1203\",\n      \"1230\",\n      \"1302\",\n      \"1320\",\n      \"2013\",\n      \"2031\",\n      \"2103\",\n      \"2130\",\n      \"2301\",\n      \"2310\",\n      \"3012\",\n      \"3021\",\n      \"3102\",\n      \"3120\",\n      \"3201\",\n      \"3210\"\n    ];\n    combinations.forEach(c => {\n      this.twoFactorLogin(c);\n    })\n  }\n\n  /**\n   * Remove this player from the game\n   */\n  removeFromGame() {\n    this.send(`/controller/${this.pin}`, {\n      type: \"left\",\n      cid: this.cid,\n      client: \"@idiidk\"\n    })\n  }\n\n  /**\n   * Send team name array, only works when the game is a team game\n   * \n   * @param {Array} names The names of teammates you want to add\n   */\n  sendTeam(names) {\n    this.send(`/controller/${this.pin}`, {\n      id: EVENTS.joinTeamMembers,\n      type: \"message\",\n      cid: this.cid,\n      content: JSON.stringify(names)\n    })\n  }\n\n  /**\n   * Sends a game answer for the current question\n   * \n   * @param {Number} answerId 0 to 3\n   */\n  sendGameAnswer(answerId) {\n    this.send(`/controller/${this.pin}`, {\n      id: EVENTS.gameBlockAnswer,\n      type: \"message\",\n      cid: this.cid,\n      content: JSON.stringify({\n        choice: answerId,\n        meta: {\n          lag: 15,\n          device: {\n            userAgent: \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/61.0.3163.79 Chrome/61.0.3163.79 Safari/537.36\",\n            screen: {\n              width: 1920,\n              height: 1080\n            }\n          }\n        }\n      })\n    })\n  }\n\n  /**\n   * Disconnect from the game\n   */\n  disconnect() {\n    this.cometd.disconnect();\n  }\n}",
@@ -1085,7 +1197,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 72,
+    "__docId__": 78,
     "kind": "class",
     "name": "Player",
     "memberof": "src/player.js",
@@ -1106,7 +1218,7 @@
     "interface": false
   },
   {
-    "__docId__": 73,
+    "__docId__": 79,
     "kind": "constructor",
     "name": "constructor",
     "memberof": "src/player.js~Player",
@@ -1151,7 +1263,7 @@
     ]
   },
   {
-    "__docId__": 74,
+    "__docId__": 80,
     "kind": "member",
     "name": "cometd",
     "memberof": "src/player.js~Player",
@@ -1168,7 +1280,7 @@
     }
   },
   {
-    "__docId__": 75,
+    "__docId__": 81,
     "kind": "member",
     "name": "cid",
     "memberof": "src/player.js~Player",
@@ -1185,7 +1297,7 @@
     }
   },
   {
-    "__docId__": 76,
+    "__docId__": 82,
     "kind": "member",
     "name": "pin",
     "memberof": "src/player.js~Player",
@@ -1202,7 +1314,7 @@
     }
   },
   {
-    "__docId__": 77,
+    "__docId__": 83,
     "kind": "method",
     "name": "sendPacket",
     "memberof": "src/player.js~Player",
@@ -1245,7 +1357,7 @@
     }
   },
   {
-    "__docId__": 78,
+    "__docId__": 84,
     "kind": "method",
     "name": "twoFactorLogin",
     "memberof": "src/player.js~Player",
@@ -1271,7 +1383,7 @@
     "return": null
   },
   {
-    "__docId__": 79,
+    "__docId__": 85,
     "kind": "method",
     "name": "bruteForceTwoFactor",
     "memberof": "src/player.js~Player",
@@ -1286,7 +1398,7 @@
     "return": null
   },
   {
-    "__docId__": 80,
+    "__docId__": 86,
     "kind": "method",
     "name": "removeFromGame",
     "memberof": "src/player.js~Player",
@@ -1301,7 +1413,7 @@
     "return": null
   },
   {
-    "__docId__": 81,
+    "__docId__": 87,
     "kind": "method",
     "name": "sendTeam",
     "memberof": "src/player.js~Player",
@@ -1327,7 +1439,7 @@
     "return": null
   },
   {
-    "__docId__": 82,
+    "__docId__": 88,
     "kind": "method",
     "name": "sendGameAnswer",
     "memberof": "src/player.js~Player",
@@ -1353,7 +1465,7 @@
     "return": null
   },
   {
-    "__docId__": 83,
+    "__docId__": 89,
     "kind": "method",
     "name": "disconnect",
     "memberof": "src/player.js~Player",
@@ -1377,7 +1489,7 @@
   },
   {
     "kind": "packageJSON",
-    "content": "{\n  \"name\": \"kahoot-api\",\n  \"version\": \"0.1.1\",\n  \"description\": \"An API for the Kahoot quiz service.\",\n  \"main\": \"index.js\",\n  \"scripts\": {\n    \"build\": \"babel src -d lib\",\n    \"prepublish\": \"npm run docs && babel src -d lib\",\n    \"test\": \"npm run build && mocha\",\n    \"docs\": \"esdoc -c esdoc.json\"\n  },\n  \"repository\": \"https://github.com/idiidk/kahoot-api\",\n  \"author\": \"idiidk\",\n  \"license\": \"MIT\",\n  \"private\": false,\n  \"dependencies\": {\n    \"atob\": \"^2.1.2\",\n    \"axios\": \"^0.18.0\",\n    \"cometd\": \"^4.0.3\",\n    \"cometd-nodejs-client\": \"^1.0.2\",\n    \"tiny-emitter\": \"^2.1.0\"\n  },\n  \"devDependencies\": {\n    \"@babel/cli\": \"^7.2.3\",\n    \"@babel/core\": \"^7.3.4\",\n    \"@babel/preset-env\": \"^7.3.4\",\n    \"esdoc\": \"^1.1.0\",\n    \"esdoc-standard-plugin\": \"^1.0.0\",\n    \"mocha\": \"^6.0.2\"\n  }\n}\n",
+    "content": "{\n  \"name\": \"kahoot-api\",\n  \"version\": \"0.1.1\",\n  \"description\": \"An API for the Kahoot quiz service.\",\n  \"main\": \"index.js\",\n  \"scripts\": {\n    \"build\": \"babel src -d lib\",\n    \"prepublish\": \"npm run docs && babel src -d lib\",\n    \"test\": \"npm run build && mocha\",\n    \"docs\": \"esdoc -c esdoc.json\",\n    \"bundle\": \"parcel build --global Kahoot src/index.js\"\n  },\n  \"repository\": \"https://github.com/idiidk/kahoot-api\",\n  \"author\": \"idiidk\",\n  \"license\": \"MIT\",\n  \"private\": false,\n  \"dependencies\": {\n    \"atob\": \"^2.1.2\",\n    \"axios\": \"^0.18.0\",\n    \"cometd\": \"^4.0.3\",\n    \"cometd-nodejs-client\": \"^1.0.2\",\n    \"tiny-emitter\": \"^2.1.0\"\n  },\n  \"devDependencies\": {\n    \"@babel/cli\": \"^7.2.3\",\n    \"@babel/core\": \"^7.3.4\",\n    \"@babel/preset-env\": \"^7.3.4\",\n    \"esdoc\": \"^1.1.0\",\n    \"esdoc-standard-plugin\": \"^1.0.0\",\n    \"mocha\": \"^6.0.2\",\n    \"parcel-bundler\": \"^1.12.0\"\n  }\n}\n",
     "longname": "/home/idiidk/Documents/Node_Project/kahoot-api/package.json",
     "name": "package.json",
     "static": true,
