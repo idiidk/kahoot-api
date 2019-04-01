@@ -12,6 +12,12 @@ window.esdocSearchIndex = [
     "class"
   ],
   [
+    "kahoot-api/src/information.js~information",
+    "class/src/information.js~Information.html",
+    "<span>Information</span> <span class=\"search-result-import-path\">kahoot-api/src/information.js</span>",
+    "class"
+  ],
+  [
     "kahoot-api/src/index.js~kahoot",
     "class/src/index.js~Kahoot.html",
     "<span>Kahoot</span> <span class=\"search-result-import-path\">kahoot-api/src/index.js</span>",
@@ -454,6 +460,54 @@ window.esdocSearchIndex = [
     "class/src/index.js~Kahoot.html#instance-constructor-constructor",
     "src/index.js~Kahoot#constructor",
     "method"
+  ],
+  [
+    "src/information.js",
+    "file/src/information.js.html",
+    "src/information.js",
+    "file"
+  ],
+  [
+    "src/information.js~information#authenticate",
+    "class/src/information.js~Information.html#instance-method-authenticate",
+    "src/information.js~Information#authenticate",
+    "method"
+  ],
+  [
+    "src/information.js~information#bearer_token",
+    "class/src/information.js~Information.html#instance-member-bearer_token",
+    "src/information.js~Information#bearer_token",
+    "member"
+  ],
+  [
+    "src/information.js~information#client",
+    "class/src/information.js~Information.html#instance-member-client",
+    "src/information.js~Information#client",
+    "member"
+  ],
+  [
+    "src/information.js~information#constructor",
+    "class/src/information.js~Information.html#instance-constructor-constructor",
+    "src/information.js~Information#constructor",
+    "method"
+  ],
+  [
+    "src/information.js~information#getgame",
+    "class/src/information.js~Information.html#instance-method-getGame",
+    "src/information.js~Information#getGame",
+    "method"
+  ],
+  [
+    "src/information.js~information#search",
+    "class/src/information.js~Information.html#instance-method-search",
+    "src/information.js~Information#search",
+    "method"
+  ],
+  [
+    "src/information.js~information#token_expiration",
+    "class/src/information.js~Information.html#instance-member-token_expiration",
+    "src/information.js~Information#token_expiration",
+    "member"
   ],
   [
     "src/player.js",

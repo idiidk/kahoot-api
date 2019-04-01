@@ -1,7 +1,7 @@
 {
-  "coverage": "61.11%",
-  "expectCount": 36,
-  "actualCount": 22,
+  "coverage": "59.09%",
+  "expectCount": 44,
+  "actualCount": 26,
   "files": {
     "src/client.js": {
       "expectCount": 13,
@@ -29,6 +29,16 @@
         6,
         7,
         11
+      ]
+    },
+    "src/information.js": {
+      "expectCount": 8,
+      "actualCount": 4,
+      "undocumentLines": [
+        10,
+        11,
+        41,
+        42
       ]
     },
     "src/player.js": {

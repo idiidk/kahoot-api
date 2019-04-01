@@ -1188,6 +1188,218 @@
   {
     "__docId__": 77,
     "kind": "file",
+    "name": "src/information.js",
+    "content": "import axios from \"axios\"\n\n/**\n * Information class, used for communication with the Kahoot quiz gateway\n *\n * @class Information\n */\nexport default class Information {\n\n  constructor() {\n    this.client = axios.create({\n      baseURL: \"https://create.kahoot.com\"\n    });\n  }\n\n  /**\n   * Authenticates to kahoot, must be called first\n   * \n   * @param {String} username Username to login to create.kahoot.com\n   * @param {String} password Password to login to create.kahoot.com\n   * @return {Promise<Error>} Error\n   */\n  authenticate(username, password, callback) {\n    headers = {\n      \"x-kahoot-login-gate\": \"enabled\",\n      \"Content-Type\": \"application/json\"\n    }\n    data = {\n      user_name: username,\n      password: password,\n      grant_type: \"password\"\n    }\n    this.client.post(\"/rest/authenticate\", data, {\n        headers: headers\n      })\n      .catch((error) => {\n        callback(error);\n      })\n      .then((resp) => {\n        const response = resp.response.data;\n        this.bearer_token = response.access_token;\n        this.token_expiration = response.expires;\n        this.client.headers[\"Authorization\"] = \"Bearer \" + response.access_token;\n        callback(null);\n      })\n  }\n  /**\n   * Searches kahoots for the specified term\n   * @param {String} query search term\n   * @param {Promise<Object>} callback axios response\n   */\n  search(query, callback) {\n    params = {\n      query: query.replace(/[.,\\/#!$%\\^&\\*;:{}=\\-_`~()]/g, \"\"),\n      _: new Date().getTime(),\n      limit: 100\n    }\n    callback(this.client.get(\"/rest/kahoots/search/public\", {\n      params: params\n    }))\n  }\n  /**\n   * Searches kahoots for the specified term\n   * @param {String} uuid game id\n   * @param {Promise<Object>} callback axios response\n   */\n  getGame(callback) {\n    params = {\n      _: new Date().getTime()\n    }\n    callback(this.client.get(\"/rest/kahoots/uuid\", {\n      params: params\n    }))\n  }\n}",
+    "static": true,
+    "longname": "/home/idiidk/Documents/Node_Project/kahoot-api/src/information.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 78,
+    "kind": "class",
+    "name": "Information",
+    "memberof": "src/information.js",
+    "static": true,
+    "longname": "src/information.js~Information",
+    "access": "public",
+    "export": true,
+    "importPath": "kahoot-api/src/information.js",
+    "importStyle": "Information",
+    "description": "Information class, used for communication with the Kahoot quiz gateway",
+    "lineNumber": 8,
+    "unknown": [
+      {
+        "tagName": "@class",
+        "tagValue": "Information"
+      }
+    ],
+    "interface": false
+  },
+  {
+    "__docId__": 79,
+    "kind": "constructor",
+    "name": "constructor",
+    "memberof": "src/information.js~Information",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/information.js~Information#constructor",
+    "access": "public",
+    "description": null,
+    "lineNumber": 10,
+    "undocument": true
+  },
+  {
+    "__docId__": 80,
+    "kind": "member",
+    "name": "client",
+    "memberof": "src/information.js~Information",
+    "static": false,
+    "longname": "src/information.js~Information#client",
+    "access": "public",
+    "description": null,
+    "lineNumber": 11,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 81,
+    "kind": "method",
+    "name": "authenticate",
+    "memberof": "src/information.js~Information",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/information.js~Information#authenticate",
+    "access": "public",
+    "description": "Authenticates to kahoot, must be called first",
+    "lineNumber": 23,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "String"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "username",
+        "description": "Username to login to create.kahoot.com"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "String"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "password",
+        "description": "Password to login to create.kahoot.com"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Promise<Error>"
+      ],
+      "spread": false,
+      "description": "Error"
+    }
+  },
+  {
+    "__docId__": 82,
+    "kind": "member",
+    "name": "bearer_token",
+    "memberof": "src/information.js~Information",
+    "static": false,
+    "longname": "src/information.js~Information#bearer_token",
+    "access": "public",
+    "description": null,
+    "lineNumber": 41,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 83,
+    "kind": "member",
+    "name": "token_expiration",
+    "memberof": "src/information.js~Information",
+    "static": false,
+    "longname": "src/information.js~Information#token_expiration",
+    "access": "public",
+    "description": null,
+    "lineNumber": 42,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 84,
+    "kind": "method",
+    "name": "search",
+    "memberof": "src/information.js~Information",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/information.js~Information#search",
+    "access": "public",
+    "description": "Searches kahoots for the specified term",
+    "lineNumber": 52,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "String"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "query",
+        "description": "search term"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Promise<Object>"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "callback",
+        "description": "axios response"
+      }
+    ],
+    "return": null
+  },
+  {
+    "__docId__": 85,
+    "kind": "method",
+    "name": "getGame",
+    "memberof": "src/information.js~Information",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/information.js~Information#getGame",
+    "access": "public",
+    "description": "Searches kahoots for the specified term",
+    "lineNumber": 67,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "String"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "uuid",
+        "description": "game id"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Promise<Object>"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "callback",
+        "description": "axios response"
+      }
+    ],
+    "return": null
+  },
+  {
+    "__docId__": 86,
+    "kind": "file",
     "name": "src/player.js",
     "content": "import EVENTS from \"./events\"\n\n/**\n * Player class, created when calling addPlayer. \n * Contains player related functions\n *\n * @class Player\n */\nexport default class Player {\n  /**\n   * @param {Object} cometd CometD instance\n   * @param {String} cid Cid of the player\n   * @param {String} pin Pin of the current game\n   */\n  constructor(cometd, cid, pin) {\n    this.cometd = cometd\n    this.cid = cid\n    this.pin = pin\n  }\n\n  /**\n   * Sends a packet to Kahoot\n   * \n   * @param {String} channel Channel to send to\n   * @param {Object} data Data to send to channel specified\n   * \n   * @return {Promise} Resolves when done\n   */\n  sendPacket(channel, data = {}) {\n    return new Promise((resolve, _) => {\n      data.host = \"play.kahoot.it\"\n      data.gameid = this.pin\n      this.cometd.publish(channel, data, resolve)\n    })\n  }\n\n  /**\n   * Attempts 2FA login using code, 0000 to 3333\n   * \n   * @param {String} code 0000 to 3333\n   */\n  twoFactorLogin(code) {\n    this.sendPacket(\n      \"/service/controller\", {\n        id: EVENTS.submitTwoFactorAuth,\n        type: \"message\",\n        cid: this.cid,\n        gameid: this.pin,\n        host: \"kahoot.it\",\n        content: JSON.stringify({\n          sequence: code\n        })\n      }\n    )\n  }\n\n  /**\n   * Attempts all 2FA codes until logged in\n   */\n  bruteForceTwoFactor() {\n    let combinations = [\n      \"0123\",\n      \"0132\",\n      \"0213\",\n      \"0231\",\n      \"0321\",\n      \"0312\",\n      \"1023\",\n      \"1032\",\n      \"1203\",\n      \"1230\",\n      \"1302\",\n      \"1320\",\n      \"2013\",\n      \"2031\",\n      \"2103\",\n      \"2130\",\n      \"2301\",\n      \"2310\",\n      \"3012\",\n      \"3021\",\n      \"3102\",\n      \"3120\",\n      \"3201\",\n      \"3210\"\n    ];\n    combinations.forEach(c => {\n      this.twoFactorLogin(c);\n    })\n  }\n\n  /**\n   * Remove this player from the game\n   */\n  removeFromGame() {\n    this.send(`/controller/${this.pin}`, {\n      type: \"left\",\n      cid: this.cid,\n      client: \"@idiidk\"\n    })\n  }\n\n  /**\n   * Send team name array, only works when the game is a team game\n   * \n   * @param {Array} names The names of teammates you want to add\n   */\n  sendTeam(names) {\n    this.send(`/controller/${this.pin}`, {\n      id: EVENTS.joinTeamMembers,\n      type: \"message\",\n      cid: this.cid,\n      content: JSON.stringify(names)\n    })\n  }\n\n  /**\n   * Sends a game answer for the current question\n   * \n   * @param {Number} answerId 0 to 3\n   */\n  sendGameAnswer(answerId) {\n    this.send(`/controller/${this.pin}`, {\n      id: EVENTS.gameBlockAnswer,\n      type: \"message\",\n      cid: this.cid,\n      content: JSON.stringify({\n        choice: answerId,\n        meta: {\n          lag: 15,\n          device: {\n            userAgent: \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/61.0.3163.79 Chrome/61.0.3163.79 Safari/537.36\",\n            screen: {\n              width: 1920,\n              height: 1080\n            }\n          }\n        }\n      })\n    })\n  }\n\n  /**\n   * Disconnect from the game\n   */\n  disconnect() {\n    this.cometd.disconnect();\n  }\n}",
     "static": true,
@@ -1197,7 +1409,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 78,
+    "__docId__": 87,
     "kind": "class",
     "name": "Player",
     "memberof": "src/player.js",
@@ -1218,7 +1430,7 @@
     "interface": false
   },
   {
-    "__docId__": 79,
+    "__docId__": 88,
     "kind": "constructor",
     "name": "constructor",
     "memberof": "src/player.js~Player",
@@ -1263,7 +1475,7 @@
     ]
   },
   {
-    "__docId__": 80,
+    "__docId__": 89,
     "kind": "member",
     "name": "cometd",
     "memberof": "src/player.js~Player",
@@ -1280,7 +1492,7 @@
     }
   },
   {
-    "__docId__": 81,
+    "__docId__": 90,
     "kind": "member",
     "name": "cid",
     "memberof": "src/player.js~Player",
@@ -1297,7 +1509,7 @@
     }
   },
   {
-    "__docId__": 82,
+    "__docId__": 91,
     "kind": "member",
     "name": "pin",
     "memberof": "src/player.js~Player",
@@ -1314,7 +1526,7 @@
     }
   },
   {
-    "__docId__": 83,
+    "__docId__": 92,
     "kind": "method",
     "name": "sendPacket",
     "memberof": "src/player.js~Player",
@@ -1357,7 +1569,7 @@
     }
   },
   {
-    "__docId__": 84,
+    "__docId__": 93,
     "kind": "method",
     "name": "twoFactorLogin",
     "memberof": "src/player.js~Player",
@@ -1383,7 +1595,7 @@
     "return": null
   },
   {
-    "__docId__": 85,
+    "__docId__": 94,
     "kind": "method",
     "name": "bruteForceTwoFactor",
     "memberof": "src/player.js~Player",
@@ -1398,7 +1610,7 @@
     "return": null
   },
   {
-    "__docId__": 86,
+    "__docId__": 95,
     "kind": "method",
     "name": "removeFromGame",
     "memberof": "src/player.js~Player",
@@ -1413,7 +1625,7 @@
     "return": null
   },
   {
-    "__docId__": 87,
+    "__docId__": 96,
     "kind": "method",
     "name": "sendTeam",
     "memberof": "src/player.js~Player",
@@ -1439,7 +1651,7 @@
     "return": null
   },
   {
-    "__docId__": 88,
+    "__docId__": 97,
     "kind": "method",
     "name": "sendGameAnswer",
     "memberof": "src/player.js~Player",
@@ -1465,7 +1677,7 @@
     "return": null
   },
   {
-    "__docId__": 89,
+    "__docId__": 98,
     "kind": "method",
     "name": "disconnect",
     "memberof": "src/player.js~Player",
@@ -1489,7 +1701,7 @@
   },
   {
     "kind": "packageJSON",
-    "content": "{\n  \"name\": \"kahoot-api\",\n  \"version\": \"0.1.1\",\n  \"description\": \"An API for the Kahoot quiz service.\",\n  \"main\": \"index.js\",\n  \"scripts\": {\n    \"build\": \"babel src -d lib\",\n    \"prepublish\": \"npm run docs && babel src -d lib\",\n    \"test\": \"npm run build && mocha\",\n    \"docs\": \"esdoc -c esdoc.json\",\n    \"bundle\": \"parcel build --global Kahoot src/index.js\"\n  },\n  \"repository\": \"https://github.com/idiidk/kahoot-api\",\n  \"author\": \"idiidk\",\n  \"license\": \"MIT\",\n  \"private\": false,\n  \"dependencies\": {\n    \"atob\": \"^2.1.2\",\n    \"axios\": \"^0.18.0\",\n    \"cometd\": \"^4.0.3\",\n    \"cometd-nodejs-client\": \"^1.0.2\",\n    \"tiny-emitter\": \"^2.1.0\"\n  },\n  \"devDependencies\": {\n    \"@babel/cli\": \"^7.2.3\",\n    \"@babel/core\": \"^7.3.4\",\n    \"@babel/preset-env\": \"^7.3.4\",\n    \"esdoc\": \"^1.1.0\",\n    \"esdoc-standard-plugin\": \"^1.0.0\",\n    \"mocha\": \"^6.0.2\",\n    \"parcel-bundler\": \"^1.12.0\"\n  }\n}\n",
+    "content": "{\n  \"name\": \"kahoot-api\",\n  \"version\": \"0.2.1\",\n  \"description\": \"An API for the Kahoot quiz service.\",\n  \"main\": \"index.js\",\n  \"scripts\": {\n    \"build\": \"babel src -d lib\",\n    \"prepublish\": \"npm run docs && babel src -d lib\",\n    \"test\": \"npm run build && mocha\",\n    \"docs\": \"esdoc -c esdoc.json\",\n    \"bundle\": \"parcel build --global Kahoot src/index.js\"\n  },\n  \"repository\": \"https://github.com/idiidk/kahoot-api\",\n  \"author\": \"idiidk\",\n  \"license\": \"MIT\",\n  \"private\": false,\n  \"dependencies\": {\n    \"atob\": \"^2.1.2\",\n    \"axios\": \"^0.18.0\",\n    \"cometd\": \"^4.0.3\",\n    \"cometd-nodejs-client\": \"^1.0.2\",\n    \"tiny-emitter\": \"^2.1.0\"\n  },\n  \"devDependencies\": {\n    \"@babel/cli\": \"^7.2.3\",\n    \"@babel/core\": \"^7.3.4\",\n    \"@babel/preset-env\": \"^7.3.4\",\n    \"esdoc\": \"^1.1.0\",\n    \"esdoc-standard-plugin\": \"^1.0.0\",\n    \"mocha\": \"^6.0.2\",\n    \"parcel-bundler\": \"^1.12.0\"\n  }\n}\n",
     "longname": "/home/idiidk/Documents/Node_Project/kahoot-api/package.json",
     "name": "package.json",
     "static": true,

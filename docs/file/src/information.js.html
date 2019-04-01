@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <base data-ice="baseUrl" href="../../">
-  <title data-ice="title">src/helpers.js | kahoot-api</title>
+  <title data-ice="title">src/information.js | kahoot-api</title>
   <link type="text/css" rel="stylesheet" href="css/style.css">
   <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
   <script src="script/prettify/prettify.js"></script>
@@ -39,104 +39,80 @@
 </div>
 </nav>
 
-<div class="content" data-ice="content"><h1 data-ice="title">src/helpers.js</h1>
-<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import atob from &quot;atob&quot;
+<div class="content" data-ice="content"><h1 data-ice="title">src/information.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import axios from &quot;axios&quot;
 
 /**
- * Helper class, contains static functions used when authenticating
+ * Information class, used for communication with the Kahoot quiz gateway
  *
- * @class Helpers
+ * @class Information
  */
-export default class Helpers {
-  /**
-   * Gets unix time
-   * 
-   * @return {String} Time in macroseconds
-   */
-  static getTime() {
-    return new Date().getTime()
+export default class Information {
+
+  constructor() {
+    this.client = axios.create({
+      baseURL: &quot;https://create.kahoot.com&quot;
+    });
   }
 
   /**
-   * Does some magic by xor&apos;ing the session and challenge to generate a url
+   * Authenticates to kahoot, must be called first
    * 
-   * @param {String} session Session string
-   * @param {String} challenge Challenge string
-   * 
-   * @return {String} Parsed session
+   * @param {String} username Username to login to create.kahoot.com
+   * @param {String} password Password to login to create.kahoot.com
+   * @return {Promise&lt;Error&gt;} Error
    */
-  static shiftBits(session, challenge) {
-    const sessionBytes = this.convertDataToBinary(atob(session))
-    const challengeBytes = this.convertDataToBinary(challenge)
-    const bytesList = []
-    for (let i = 0; i &lt; sessionBytes.length; i++) {
-      bytesList.push(
-        String.fromCharCode(
-          sessionBytes[i] ^ challengeBytes[i % challengeBytes.length]
-        )
-      )
+  authenticate(username, password, callback) {
+    headers = {
+      &quot;x-kahoot-login-gate&quot;: &quot;enabled&quot;,
+      &quot;Content-Type&quot;: &quot;application/json&quot;
     }
-    return bytesList.join(&quot;&quot;);
-  }
-
-  /**
-   * Converts any data to binary data
-   * 
-   * @param raw Data to convert
-   * 
-   * @return {String} Parsed session
-   */
-  static convertDataToBinary(raw) {
-    const rawLength = raw.length;
-    const tempArray = new Uint8Array(new ArrayBuffer(rawLength));
-
-    for (let i = 0; i &lt; rawLength; i++) {
-      tempArray[i] = raw.charCodeAt(i);
+    data = {
+      user_name: username,
+      password: password,
+      grant_type: &quot;password&quot;
     }
-    return tempArray;
+    this.client.post(&quot;/rest/authenticate&quot;, data, {
+        headers: headers
+      })
+      .catch((error) =&gt; {
+        callback(error);
+      })
+      .then((resp) =&gt; {
+        const response = resp.response.data;
+        this.bearer_token = response.access_token;
+        this.token_expiration = response.expires;
+        this.client.headers[&quot;Authorization&quot;] = &quot;Bearer &quot; + response.access_token;
+        callback(null);
+      })
   }
-
   /**
-   * Solves challenge to get the first part of authentication out of the way
-   * 
-   * @param {String} challenge Challenge code
-   * 
-   * @return {String} Parsed challenge
+   * Searches kahoots for the specified term
+   * @param {String} query search term
+   * @param {Promise&lt;Object&gt;} callback axios response
    */
-  static solveChallenge(challenge) {
-    let toDecode = challenge.split(&quot;&apos;&quot;)[1].split(&quot;&apos;&quot;)[0];
-    const offset = eval(challenge.split(&quot;var offset = &quot;)[1].split(&quot;;&quot;)[0]);
-    const decodeMod = parseInt(
-      challenge
-      .split(&quot;) % &quot;)[1]
-      .split(&quot;)&quot;)[0]
-      .trim()
-    );
-    const decodePlus = parseInt(
-      challenge
-      .split(decodeMod)[1]
-      .split(&quot;+ &quot;)[1]
-      .split(&quot;)&quot;)[0]
-    );
-    let final = &quot;&quot;;
-
-    for (let i = 0; i &lt; toDecode.length; i++) {
-      const char = toDecode[i];
-      final += String.fromCharCode(
-        ((char.charCodeAt(0) * i + offset) % decodeMod) + decodePlus
-      );
+  search(query, callback) {
+    params = {
+      query: query.replace(/[.,\/#!$%\^&amp;\*;:{}=\-_`~()]/g, &quot;&quot;),
+      _: new Date().getTime(),
+      limit: 100
     }
-
-    return final;
+    callback(this.client.get(&quot;/rest/kahoots/search/public&quot;, {
+      params: params
+    }))
   }
-
   /**
-   * Generates random id for players
-   * 
-   * @return {String} Random cid
+   * Searches kahoots for the specified term
+   * @param {String} uuid game id
+   * @param {Promise&lt;Object&gt;} callback axios response
    */
-  static randomCid() {
-    return 10000 + Math.floor(Math.random() * 10000)
+  getGame(callback) {
+    params = {
+      _: new Date().getTime()
+    }
+    callback(this.client.get(&quot;/rest/kahoots/uuid&quot;, {
+      params: params
+    }))
   }
 }</code></pre>
 
