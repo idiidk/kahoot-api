@@ -372,12 +372,6 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
-    "src/client.js~client#name",
-    "class/src/client.js~Client.html#instance-member-name",
-    "src/client.js~Client#name",
-    "member"
-  ],
-  [
     "src/client.js~client#pin",
     "class/src/client.js~Client.html#instance-member-pin",
     "src/client.js~Client#pin",
