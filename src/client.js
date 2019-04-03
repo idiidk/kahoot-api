@@ -19,14 +19,12 @@ if (typeof window === "undefined") {
 export default class Client extends Player {
   /**
    * @param {Number} pin The game pin
-   * @param {String} name Name of the main player
    * @param {String} proxy Optional cors proxy url for the browser
    */
-  constructor(pin, name, proxy = "") {
+  constructor(pin, proxy = "") {
     super(null, Helpers.randomCid(), pin)
 
     this.pin = pin
-    this.name = name
     this.proxy = proxy
     this.emitter = emitter
     this.cometd = null
@@ -99,12 +97,12 @@ export default class Client extends Player {
    * 
    * @return {Promise<>} Returns when complete
    */
-  doLogin() {
+  doLogin(name) {
     this.sendPacket(
         "/service/controller", {
           gameid: this.pin,
           host: "kahoot.it",
-          name: this.name,
+          name: name,
           type: "login"
         })
       .then(() => {

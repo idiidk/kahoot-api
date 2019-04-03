@@ -2,7 +2,7 @@ const OPTIONS = require("./options")
 const Kahoot = require("../lib").default
 const Helpers = Kahoot.Helpers
 
-const client = new Kahoot.Client(OPTIONS.pin, `@idiidk-${Math.floor(Math.random() * 1000)}`)
+const client = new Kahoot.Client(OPTIONS.pin)
 
 client.emitter.on("player", (m) => {
   console.log(m)
@@ -17,7 +17,7 @@ describe("Client", function () {
 
   describe("#doLogin", function () {
     it("should be able to login with a username", function () {
-      return client.doLogin();
+      return client.doLogin(`@idiidk-${Math.floor(Math.random() * 1000)}`);
     })
   })
 
