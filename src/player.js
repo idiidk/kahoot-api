@@ -84,7 +84,9 @@ export default class Player {
       "3201",
       "3210"
     ];
-    combinations.forEach(this.twoFactorLogin)
+    combinations.forEach(c => {
+      this.twoFactorLogin(c);
+    })
   }
 
   /**
