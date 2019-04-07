@@ -1381,7 +1381,7 @@
     "__docId__": 85,
     "kind": "file",
     "name": "src/player.js",
-    "content": "import EVENTS from \"./events\"\n\n/**\n * Player class, created when calling addPlayer. \n * Contains player related functions\n *\n * @class Player\n */\nexport default class Player {\n  /**\n   * @param {Object} cometd CometD instance\n   * @param {String} cid Cid of the player\n   * @param {String} pin Pin of the current game\n   */\n  constructor(cometd, cid, pin) {\n    this.cometd = cometd\n    this.cid = cid\n    this.pin = pin\n  }\n\n  /**\n   * Sends a packet to Kahoot\n   * \n   * @param {String} channel Channel to send to\n   * @param {Object} data Data to send to channel specified\n   * \n   * @return {Promise} Resolves when done\n   */\n  sendPacket(channel, data = {}) {\n    return new Promise((resolve, _) => {\n      data.host = \"play.kahoot.it\"\n      data.gameid = this.pin\n      this.cometd.publish(channel, data, resolve)\n    })\n  }\n\n  /**\n   * Attempts 2FA login using code, 0000 to 3333\n   * \n   * @param {String} code 0000 to 3333\n   */\n  twoFactorLogin(code) {\n    this.sendPacket(\n      \"/service/controller\", {\n        id: EVENTS.submitTwoFactorAuth,\n        type: \"message\",\n        cid: this.cid,\n        gameid: this.pin,\n        host: \"kahoot.it\",\n        content: JSON.stringify({\n          sequence: code\n        })\n      }\n    )\n  }\n\n  /**\n   * Attempts all 2FA codes until logged in\n   */\n  bruteForceTwoFactor() {\n    let combinations = [\n      \"0123\",\n      \"0132\",\n      \"0213\",\n      \"0231\",\n      \"0321\",\n      \"0312\",\n      \"1023\",\n      \"1032\",\n      \"1203\",\n      \"1230\",\n      \"1302\",\n      \"1320\",\n      \"2013\",\n      \"2031\",\n      \"2103\",\n      \"2130\",\n      \"2301\",\n      \"2310\",\n      \"3012\",\n      \"3021\",\n      \"3102\",\n      \"3120\",\n      \"3201\",\n      \"3210\"\n    ];\n    combinations.forEach(c => {\n      this.twoFactorLogin(c);\n    })\n  }\n\n  /**\n   * Remove this player from the game\n   */\n  removeFromGame() {\n    this.sendPacket(`/controller/${this.pin}`, {\n      type: \"left\",\n      cid: this.cid,\n      client: \"@idiidk\"\n    })\n  }\n\n  /**\n   * Send team name array, only works when the game is a team game\n   * \n   * @param {Array} names The names of teammates you want to add\n   */\n  sendTeam(names) {\n    this.sendPacket(`/controller/${this.pin}`, {\n      id: EVENTS.joinTeamMembers,\n      type: \"message\",\n      cid: this.cid,\n      content: JSON.stringify(names)\n    })\n  }\n\n  /**\n   * Sends a game answer for the current question\n   * \n   * @param {Number} answerId 0 to 3\n   */\n  sendGameAnswer(answerId) {\n    this.sendPacket(`/controller/${this.pin}`, {\n      id: EVENTS.gameBlockAnswer,\n      type: \"message\",\n      cid: this.cid,\n      content: JSON.stringify({\n        choice: answerId,\n        meta: {\n          lag: 15,\n          device: {\n            userAgent: \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/61.0.3163.79 Chrome/61.0.3163.79 Safari/537.36\",\n            screen: {\n              width: 1920,\n              height: 1080\n            }\n          }\n        }\n      })\n    })\n  }\n\n  /**\n   * Disconnect from the game\n   */\n  disconnect() {\n    this.cometd.disconnect();\n  }\n}",
+    "content": "import EVENTS from \"./events\"\n\n/**\n * Player class, created when calling addPlayer. \n * Contains player related functions\n *\n * @class Player\n */\nexport default class Player {\n  /**\n   * @param {Object} cometd CometD instance\n   * @param {String} cid Cid of the player\n   * @param {String} pin Pin of the current game\n   */\n  constructor(cometd, cid, pin) {\n    this.cometd = cometd\n    this.cid = cid\n    this.pin = pin\n  }\n\n  /**\n   * Sends a packet to Kahoot\n   * \n   * @param {String} channel Channel to send to\n   * @param {Object} data Data to send to channel specified\n   * \n   * @return {Promise} Resolves when done\n   */\n  sendPacket(channel, data = {}) {\n    return new Promise((resolve, _) => {\n      data.host = \"play.kahoot.it\"\n      data.gameid = this.pin\n      this.cometd.publish(channel, data, resolve)\n    })\n  }\n\n  /**\n   * Attempts 2FA login using code, 0000 to 3333\n   * \n   * @param {String} code 0000 to 3333\n   */\n  twoFactorLogin(code) {\n    this.sendPacket(\n      \"/service/controller\", {\n        id: EVENTS.submitTwoFactorAuth,\n        type: \"message\",\n        cid: this.cid,\n        gameid: this.pin,\n        host: \"kahoot.it\",\n        content: JSON.stringify({\n          sequence: code\n        })\n      }\n    )\n  }\n\n  /**\n   * Attempts all 2FA codes until logged in\n   */\n  bruteForceTwoFactor() {\n    let combinations = [\n      \"0123\",\n      \"0132\",\n      \"0213\",\n      \"0231\",\n      \"0321\",\n      \"0312\",\n      \"1023\",\n      \"1032\",\n      \"1203\",\n      \"1230\",\n      \"1302\",\n      \"1320\",\n      \"2013\",\n      \"2031\",\n      \"2103\",\n      \"2130\",\n      \"2301\",\n      \"2310\",\n      \"3012\",\n      \"3021\",\n      \"3102\",\n      \"3120\",\n      \"3201\",\n      \"3210\"\n    ];\n    combinations.forEach(this.twoFactorLogin)\n  }\n\n  /**\n   * Remove this player from the game\n   */\n  removeFromGame() {\n    this.sendPacket(`/controller/${this.pin}`, {\n      type: \"left\",\n      cid: this.cid,\n      client: \"@idiidk\"\n    })\n  }\n\n  /**\n   * Send team name array, only works when the game is a team game\n   * \n   * @param {Array} names The names of teammates you want to add\n   */\n  sendTeam(names) {\n    this.sendPacket(`/controller/${this.pin}`, {\n      id: EVENTS.joinTeamMembers,\n      type: \"message\",\n      cid: this.cid,\n      content: JSON.stringify(names)\n    })\n  }\n\n  /**\n   * Sends a game answer for the current question\n   * \n   * @param {Number} answerId 0 to 3\n   */\n  sendGameAnswer(answerId) {\n    this.sendPacket(`/controller/${this.pin}`, {\n      id: EVENTS.gameBlockAnswer,\n      type: \"message\",\n      cid: this.cid,\n      content: JSON.stringify({\n        choice: answerId,\n        meta: {\n          lag: 15,\n          device: {\n            userAgent: \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/61.0.3163.79 Chrome/61.0.3163.79 Safari/537.36\",\n            screen: {\n              width: 1920,\n              height: 1080\n            }\n          }\n        }\n      })\n    })\n  }\n\n  /**\n   * Disconnect from the game\n   */\n  disconnect() {\n    this.cometd.disconnect();\n  }\n}",
     "static": true,
     "longname": "/home/idiidk/Documents/Node_Project/kahoot-api/src/player.js",
     "access": "public",
@@ -1600,7 +1600,7 @@
     "longname": "src/player.js~Player#removeFromGame",
     "access": "public",
     "description": "Remove this player from the game",
-    "lineNumber": 95,
+    "lineNumber": 93,
     "params": [],
     "return": null
   },
@@ -1615,7 +1615,7 @@
     "longname": "src/player.js~Player#sendTeam",
     "access": "public",
     "description": "Send team name array, only works when the game is a team game",
-    "lineNumber": 108,
+    "lineNumber": 106,
     "params": [
       {
         "nullable": null,
@@ -1641,7 +1641,7 @@
     "longname": "src/player.js~Player#sendGameAnswer",
     "access": "public",
     "description": "Sends a game answer for the current question",
-    "lineNumber": 122,
+    "lineNumber": 120,
     "params": [
       {
         "nullable": null,
@@ -1667,7 +1667,7 @@
     "longname": "src/player.js~Player#disconnect",
     "access": "public",
     "description": "Disconnect from the game",
-    "lineNumber": 146,
+    "lineNumber": 144,
     "params": [],
     "return": null
   },
@@ -1681,7 +1681,7 @@
   },
   {
     "kind": "packageJSON",
-    "content": "{\n  \"name\": \"kahoot-api\",\n  \"version\": \"0.4.4\",\n  \"description\": \"An API for the Kahoot quiz service.\",\n  \"main\": \"lib/index.js\",\n  \"scripts\": {\n    \"build\": \"babel src -d lib\",\n    \"prepublish\": \"npm run docs && babel src -d lib\",\n    \"test\": \"npm run build && mocha\",\n    \"docs\": \"esdoc -c esdoc.json\",\n    \"bundle\": \"parcel build --global Kahoot src/index.js\"\n  },\n  \"repository\": \"https://github.com/idiidk/kahoot-api\",\n  \"author\": \"idiidk\",\n  \"license\": \"MIT\",\n  \"private\": false,\n  \"dependencies\": {\n    \"atob\": \"^2.1.2\",\n    \"axios\": \"^0.18.0\",\n    \"cometd\": \"^4.0.3\",\n    \"cometd-nodejs-client\": \"^1.0.2\",\n    \"tiny-emitter\": \"^2.1.0\"\n  },\n  \"devDependencies\": {\n    \"@babel/cli\": \"^7.2.3\",\n    \"@babel/core\": \"^7.3.4\",\n    \"@babel/preset-env\": \"^7.3.4\",\n    \"esdoc\": \"^1.1.0\",\n    \"esdoc-standard-plugin\": \"^1.0.0\",\n    \"mocha\": \"^6.0.2\",\n    \"parcel-bundler\": \"^1.12.0\"\n  }\n}\n",
+    "content": "{\n  \"name\": \"kahoot-api\",\n  \"version\": \"0.4.5\",\n  \"description\": \"An API for the Kahoot quiz service.\",\n  \"main\": \"lib/index.js\",\n  \"scripts\": {\n    \"build\": \"babel src -d lib\",\n    \"prepublish\": \"npm run docs && babel src -d lib\",\n    \"test\": \"npm run build && mocha\",\n    \"docs\": \"esdoc -c esdoc.json\",\n    \"bundle\": \"parcel build --global Kahoot src/index.js\",\n    \"full\": \"npm run build && npm run docs && npm run bundle\"\n  },\n  \"repository\": \"https://github.com/idiidk/kahoot-api\",\n  \"author\": \"idiidk\",\n  \"license\": \"MIT\",\n  \"private\": false,\n  \"dependencies\": {\n    \"atob\": \"^2.1.2\",\n    \"axios\": \"^0.18.0\",\n    \"cometd\": \"^4.0.3\",\n    \"cometd-nodejs-client\": \"^1.0.2\",\n    \"tiny-emitter\": \"^2.1.0\"\n  },\n  \"devDependencies\": {\n    \"@babel/cli\": \"^7.2.3\",\n    \"@babel/core\": \"^7.3.4\",\n    \"@babel/preset-env\": \"^7.3.4\",\n    \"esdoc\": \"^1.1.0\",\n    \"esdoc-standard-plugin\": \"^1.0.0\",\n    \"mocha\": \"^6.0.2\",\n    \"parcel-bundler\": \"^1.12.0\"\n  }\n}\n",
     "longname": "/home/idiidk/Documents/Node_Project/kahoot-api/package.json",
     "name": "package.json",
     "static": true,

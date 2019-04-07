@@ -1,6 +1,6 @@
 {
   "name": "kahoot-api",
-  "version": "0.4.4",
+  "version": "0.4.5",
   "description": "An API for the Kahoot quiz service.",
   "main": "lib/index.js",
   "scripts": {
@@ -8,7 +8,8 @@
     "prepublish": "npm run docs && babel src -d lib",
     "test": "npm run build && mocha",
     "docs": "esdoc -c esdoc.json",
-    "bundle": "parcel build --global Kahoot src/index.js"
+    "bundle": "parcel build --global Kahoot src/index.js",
+    "full": "npm run build && npm run docs && npm run bundle"
   },
   "repository": "https://github.com/idiidk/kahoot-api",
   "author": "idiidk",
