@@ -93,7 +93,7 @@ export default class Player {
    * Remove this player from the game
    */
   removeFromGame() {
-    this.send(`/controller/${this.pin}`, {
+    this.sendPacket(`/controller/${this.pin}`, {
       type: "left",
       cid: this.cid,
       client: "@idiidk"
@@ -106,7 +106,7 @@ export default class Player {
    * @param {Array} names The names of teammates you want to add
    */
   sendTeam(names) {
-    this.send(`/controller/${this.pin}`, {
+    this.sendPacket(`/controller/${this.pin}`, {
       id: EVENTS.joinTeamMembers,
       type: "message",
       cid: this.cid,
@@ -120,7 +120,7 @@ export default class Player {
    * @param {Number} answerId 0 to 3
    */
   sendGameAnswer(answerId) {
-    this.send(`/controller/${this.pin}`, {
+    this.sendPacket(`/controller/${this.pin}`, {
       id: EVENTS.gameBlockAnswer,
       type: "message",
       cid: this.cid,
