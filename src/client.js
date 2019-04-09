@@ -98,7 +98,7 @@ export default class Client extends Player {
    * @return {Promise<>} Returns when complete
    */
   doLogin(name) {
-    this.sendPacket(
+    return this.sendPacket(
         "/service/controller", {
           gameid: this.pin,
           host: "kahoot.it",
