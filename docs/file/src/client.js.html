@@ -140,7 +140,7 @@ export default class Client extends Player {
    * @return {Promise&lt;&gt;} Returns when complete
    */
   doLogin(name) {
-    this.sendPacket(
+    return this.sendPacket(
         &quot;/service/controller&quot;, {
           gameid: this.pin,
           host: &quot;kahoot.it&quot;,
