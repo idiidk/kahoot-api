@@ -1,6 +1,6 @@
 # Kahoot API
 
-An API for the kahoot.it quiz platform. Includes all the features of [kahoot-tools](https://github.com/idiidk/kahoot-tools)
+An API for the kahoot.it quiz platform. ~~Includes~~ Will include all the features of [kahoot-tools](https://github.com/idiidk/kahoot-tools)
 
 ## Installation
 
@@ -31,7 +31,7 @@ Kahoot.Session.check(123456) //Get pin info
   });
 ```
 
-For usage please refer to the [documentation](https://idiidk.site/kahoot-api)
+For usage please refer to the [~~documentation~~](https://idiidk.site/kahoot-api) (WIP, probably old)
 
 ## Contributing
 
