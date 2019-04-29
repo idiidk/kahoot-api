@@ -1,11 +1,8 @@
-import Client from "./client"
-import Helpers from "./helpers"
+import * as Helpers from './helpers';
+import * as Session from './session';
+import Player from './player';
+import Events from './events';
 
-class Kahoot {
-  constructor() {
-    this.Client = Client
-    this.Helpers = Helpers
-  }
-}
-
-export default new Kahoot()
+export {
+  Session, Player, Helpers, Events,
+};

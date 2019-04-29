@@ -31,5 +31,5 @@ export default {
   submitTwoFactorAuth: 50,
   twoFactorAuthIncorrect: 51,
   twoFactorAuthCorrect: 52,
-  resetTwoFactorAuth: 53
-}
+  resetTwoFactorAuth: 53,
+};
