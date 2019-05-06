@@ -17,9 +17,16 @@ npm install kahoot-api
 To get you started, here is a basic example of the Player authentication flow:
 
 ```JavaScript
+/** 
+ * import * as Kahoot from 'kahoot-api' for node
+ * import * as Kahoot from 'kahoot-api/browser' for browser support
+*/
+
 import * as Kahoot from 'kahoot-api';
-Kahoot.Session.check(123456) //Get pin info
-  .then(info => Kahoot.Session.connect)
+
+const session = Kahoot.Session(/** optional cors proxy, url string */)
+session.check(123456) //Get pin info
+  .then(info => session.connect)
   .then(socket => {
     const player = new Kahoot.Player(socket); //Create player class
     player.join('test'); //Join with name

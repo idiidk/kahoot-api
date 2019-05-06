@@ -1,5 +1,5 @@
-import * as Helpers from './helpers';
-import * as Session from './session';
+import Helpers from './helpers';
+import Session from './session';
 import Player from './player';
 import Events from './events';
 

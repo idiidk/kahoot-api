@@ -1,10 +1,10 @@
 {
   "name": "kahoot-api",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "description": "An API for the Kahoot quiz service.",
   "main": "dist/index.js",
   "scripts": {
-    "build": "babel src --out-dir ./dist --source-maps",
+    "build": "babel src --out-dir ./dist --source-maps && browserify dist/index.js -o browser.js",
     "test": "mocha --bail --require @babel/register --require @babel/polyfill",
     "prepublish": "npm run build"
   },
@@ -29,8 +29,11 @@
   "dependencies": {
     "atob": "^2.1.2",
     "axios": "^0.18.0",
+    "babelify": "^10.0.0",
+    "browserify": "^16.2.3",
     "cometd": "^4.0.3",
     "cometd-nodejs-client": "^1.0.2",
+    "core-js": "2",
     "events": "^3.0.0"
   }
 }

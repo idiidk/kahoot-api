@@ -67,15 +67,15 @@ export default class Player extends EventEmitter {
     });
   }
 
-  async join(name) {
-    await this.send('/service/controller', {
+  join(name) {
+    return this.send('/service/controller', {
       type: 'login',
       name,
+    }).then(() => {
+      if (this.socket.info.twoFactorAuth) {
+        this.bruteForceTwoFactor();
+      }
+      return true;
     });
-
-    if (this.socket.info.twoFactorAuth) {
-      this.bruteForceTwoFactor();
-    }
-    return true;
   }
 }
