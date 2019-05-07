@@ -1,8 +1,10 @@
-import atob from 'atob';
-
 export default class Helpers {
   static time() {
     return new Date().getTime();
+  }
+
+  static atob(str) {
+    return Buffer.from(str, 'base64').toString('binary');
   }
 
   static solve(challenge) {
@@ -38,7 +40,7 @@ export default class Helpers {
   }
 
   static shiftBits(token, challenge) {
-    const sessionBytes = this.toBinary(atob(token));
+    const sessionBytes = this.toBinary(this.atob(token));
     const challengeBytes = this.toBinary(challenge);
     const bytes = [];
     for (let i = 0; i < sessionBytes.length; i += 1) {

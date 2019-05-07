@@ -5,25 +5,25 @@ Object.defineProperty(exports, "__esModule", {
 });
 Object.defineProperty(exports, "Helpers", {
   enumerable: true,
-  get: function get() {
+  get: function () {
     return _helpers.default;
   }
 });
 Object.defineProperty(exports, "Session", {
   enumerable: true,
-  get: function get() {
+  get: function () {
     return _session.default;
   }
 });
 Object.defineProperty(exports, "Player", {
   enumerable: true,
-  get: function get() {
+  get: function () {
     return _player.default;
   }
 });
 Object.defineProperty(exports, "Events", {
   enumerable: true,
-  get: function get() {
+  get: function () {
     return _events.default;
   }
 });

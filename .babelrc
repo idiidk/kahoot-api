@@ -1,15 +1,30 @@
 {
-  "presets": [
-    [
-      "@babel/preset-env",
-      {
-        "targets": {
-          "node": "current",
-          "browsers": "> 0.25%, not dead"
-        },
-        "useBuiltIns": "usage",
-        "corejs": 2
-      }
-    ]
-  ]
+  "env": {
+    "development": {
+      "presets": [
+        [
+          "@babel/preset-env",
+          {
+            "targets": {
+              "node": "6.10"
+            }
+          }
+        ]
+      ]
+    },
+    "browser": {
+      "presets": [
+        [
+          "@babel/preset-env",
+          {
+            "targets": {
+              "browsers": "last 2 versions, ie 10-11"
+            },
+            "modules": false
+          }
+        ]
+      ]
+    }
+  },
+  "sourceMaps": true
 }

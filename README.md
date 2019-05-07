@@ -22,13 +22,13 @@ To get you started, here is a basic example of the Player authentication flow:
  * import * as Kahoot from 'kahoot-api/browser' for browser support
 */
 
-import * as Kahoot from 'kahoot-api';
+import { Session, Player } from 'kahoot-api';
 
-const session = Kahoot.Session(/** optional cors proxy, url string */)
+const session = new Session(/** optional cors proxy, url string */)
 session.check(123456) //Get pin info
   .then(info => session.connect)
   .then(socket => {
-    const player = new Kahoot.Player(socket); //Create player class
+    const player = new Player(socket); //Create player class
     player.join('test'); //Join with name
     player.on('status', (message) => { //Listen to status messages
         if (message.data.status === 'ACTIVE') { //If session active

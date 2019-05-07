@@ -1,12 +1,12 @@
 /* eslint-env node, mocha */
 import { expect } from 'chai';
 import { pin, proxy } from './config';
-import * as Kahoot from '../dist';
+import { Session, Player } from '..';
 
 // Change pin first in pin.js
 
 describe('Kahoot', () => {
-  const session = new Kahoot.Session(proxy);
+  const session = new Session(proxy);
   let socket;
 
   describe('Session', () => {
@@ -36,7 +36,7 @@ describe('Kahoot', () => {
   describe('Player', () => {
     describe('#join', () => {
       it('Should be able to join with the created socket', () => {
-        const player = new Kahoot.Player(socket);
+        const player = new Player(socket);
         expect(socket.playerBound).to.equal(player);
 
         player.join('mereltjelief');
