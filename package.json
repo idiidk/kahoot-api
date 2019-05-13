@@ -1,6 +1,6 @@
 {
   "name": "kahoot-api",
-  "version": "0.6.2",
+  "version": "0.6.4",
   "description": "An API for the Kahoot quiz service.",
   "main": "dist/index.js",
   "browser": "lib/index.js",
@@ -22,6 +22,7 @@
     "@babel/polyfill": "^7.4.4",
     "@babel/preset-env": "^7.4.4",
     "@babel/register": "^7.4.4",
+    "browserify": "^16.2.3",
     "chai": "^4.2.0",
     "cross-env": "^5.2.0",
     "eslint": "^5.16.0",
@@ -31,7 +32,6 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
-    "browserify": "^16.2.3",
     "cometd": "^4.0.3",
     "cometd-nodejs-client": "^1.0.2",
     "core-js": "2",

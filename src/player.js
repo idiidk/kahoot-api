@@ -1,5 +1,5 @@
 import EventEmitter from 'events';
-import events from './events';
+import Events from './events';
 
 export default class Player extends EventEmitter {
   constructor(socket) {
@@ -27,7 +27,7 @@ export default class Player extends EventEmitter {
 
   twoFactorLogin(code) {
     this.send('/service/controller', {
-      id: events.submitTwoFactorAuth,
+      id: Events.submitTwoFactorAuth,
       type: 'message',
       content: JSON.stringify({
         sequence: code,
@@ -62,8 +62,10 @@ export default class Player extends EventEmitter {
       '3201',
       '3210',
     ];
-    combinations.forEach((combi) => {
-      this.twoFactorLogin(combi);
+    combinations.forEach((combi, index) => {
+      setTimeout(() => {
+        this.twoFactorLogin(combi);
+      }, index * (5000 / combinations.length));
     });
   }
 
@@ -71,11 +73,29 @@ export default class Player extends EventEmitter {
     return this.send('/service/controller', {
       type: 'login',
       name,
-    }).then(() => {
-      if (this.socket.info.twoFactorAuth) {
-        this.bruteForceTwoFactor();
-      }
-      return true;
-    });
+    }).then(
+      () => new Promise((resolve) => {
+        this.once('status', (statusMessage) => {
+          if (statusMessage.data.status === 'ACTIVE') {
+            if (this.socket.info.twoFactorAuth) {
+              const twoFactorListener = (playerMessage) => {
+                const { id } = playerMessage.data;
+                if (id === Events.twoFactorAuthCorrect) {
+                  this.off('player', twoFactorListener);
+                  resolve();
+                } else if (id === Events.resetTwoFactorAuth) {
+                  this.bruteForceTwoFactor();
+                }
+              };
+
+              this.on('player', twoFactorListener);
+              this.bruteForceTwoFactor();
+            } else {
+              resolve();
+            }
+          }
+        });
+      }),
+    );
   }
 }

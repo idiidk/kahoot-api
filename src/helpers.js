@@ -21,7 +21,7 @@ export default class Helpers {
     const plus = parseInt(
       challenge
         .split(mod)[1]
-        .split('+ ')[1]
+        .split(challenge.includes('+') ? '+ ' : '- ')[1]
         .split(')')[0],
       0,
     );
@@ -34,21 +34,18 @@ export default class Helpers {
     return final;
   }
 
-  static toBinary(raw) {
-    const codes = [...raw].map(char => char.charCodeAt(0));
-    return codes;
-  }
+  static shiftBits(rawToken, session) {
+    let final = '';
+    const token = this.atob(rawToken);
 
-  static shiftBits(token, challenge) {
-    const sessionBytes = this.toBinary(this.atob(token));
-    const challengeBytes = this.toBinary(challenge);
-    const bytes = [];
-    for (let i = 0; i < sessionBytes.length; i += 1) {
-      bytes.push(
-        // eslint-disable-next-line no-bitwise
-        String.fromCharCode(sessionBytes[i] ^ challengeBytes[i % challengeBytes.length]),
-      );
+    for (let i = 0; i < token.length; i += 1) {
+      const tokenChar = token.charCodeAt(i);
+      const charCode = session.charCodeAt(i % session.length);
+      // eslint-disable-next-line no-bitwise
+      const shifted = tokenChar ^ charCode;
+      final += String.fromCharCode(shifted);
     }
-    return bytes.join('');
+
+    return final;
   }
 }

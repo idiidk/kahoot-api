@@ -39,14 +39,8 @@ describe('Kahoot', () => {
         const player = new Player(socket);
         expect(socket.playerBound).to.equal(player);
 
-        player.join('mereltjelief');
-        return new Promise((resolve) => {
-          player.on('status', (message) => {
-            if (message.data.status === 'ACTIVE') {
-              socket.disconnect();
-              resolve();
-            }
-          });
+        return player.join('mereltjelief').then(() => {
+          socket.disconnect();
         });
       });
     });

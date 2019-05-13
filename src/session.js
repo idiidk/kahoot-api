@@ -31,12 +31,13 @@ export default class Session {
     const socket = new cometd.CometD();
     const challenge = Helpers.solve(info.challenge);
     const session = Helpers.shiftBits(info.token, challenge);
-    if (session.length !== 96 || session.includes('`')) {
-      return this.check(info.pin).then(this.connect);
+    const validated = /([A-Z,0-9])\w+/g.exec(session)[0];
+    if (validated.length !== 96) {
+      return this.check(info.pin).then(secondInfo => this.connect(secondInfo));
     }
 
     socket.configure({
-      url: `https://kahoot.it/cometd/${info.pin}/${session}`,
+      url: `https://kahoot.it/cometd/${info.pin}/${validated}`,
     });
     socket.websocketEnabled = true;
     const handshake = new Promise(resolve => socket.handshake(resolve));
