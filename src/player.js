@@ -19,9 +19,13 @@ export default class Player extends EventEmitter {
   send(channel, data = {}) {
     const final = data;
     return new Promise((resolve) => {
-      final.host = 'play.kahoot.it';
-      final.gameid = this.socket.info.pin;
-      this.socket.publish(channel, final, resolve);
+      if (!this.socket.isDisconnected()) {
+        final.host = 'play.kahoot.it';
+        final.gameid = this.socket.info.pin;
+        this.socket.publish(channel, final, resolve);
+      } else {
+        resolve();
+      }
     });
   }
 
@@ -97,5 +101,10 @@ export default class Player extends EventEmitter {
         });
       }),
     );
+  }
+
+  leave() {
+    this.socket.playerBound = false;
+    this.socket.disconnect();
   }
 }

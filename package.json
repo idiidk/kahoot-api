@@ -1,6 +1,6 @@
 {
   "name": "kahoot-api",
-  "version": "0.6.4",
+  "version": "0.6.5",
   "description": "An API for the Kahoot quiz service.",
   "main": "dist/index.js",
   "browser": "lib/index.js",
