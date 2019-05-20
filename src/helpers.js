@@ -18,14 +18,21 @@ export default class Helpers {
         .trim(),
       0,
     );
-    const plus = parseInt(
-      challenge
-        .split(mod)[1]
-        .split(challenge.includes('+') ? '+ ' : '- ')[1]
-        .split(')')[0],
-      0,
-    );
+
+    let plus = '';
     let final = '';
+
+    try {
+      plus = parseInt(
+        challenge
+          .split(mod)[1]
+          .split(challenge.includes('+') ? '+ ' : '- ')[1]
+          .split(')')[0],
+        0,
+      );
+    } catch (error) {
+      return error;
+    }
 
     [...decode].forEach((char, index) => {
       final += String.fromCharCode(((char.charCodeAt(0) * index + offset) % mod) + plus);
@@ -46,6 +53,14 @@ export default class Helpers {
       final += String.fromCharCode(shifted);
     }
 
+    return final;
+  }
+
+  static cid() {
+    let final = '';
+    for (let i = 0; i < 9; i += 1) {
+      final += Math.floor(Math.random() * 9) + 1;
+    }
     return final;
   }
 }

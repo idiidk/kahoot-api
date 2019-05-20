@@ -1,8 +1,15 @@
 import Helpers from './helpers';
 import Session from './session';
-import Player from './player';
 import Events from './events';
 
+import Player from './adapters/player';
+import Ghost from './adapters/ghost';
+
+const Adapters = {
+  Player,
+  Ghost,
+};
+
 export {
-  Session, Player, Helpers, Events,
+  Session, Helpers, Events, Adapters,
 };

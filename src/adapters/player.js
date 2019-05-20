@@ -1,32 +1,18 @@
-import EventEmitter from 'events';
-import Events from './events';
+import Adapter from './adapter';
+import Events from '../events';
 
-export default class Player extends EventEmitter {
+export default class Player extends Adapter {
   constructor(socket) {
-    super();
+    super(socket);
     if (socket.playerBound) {
       throw new Error('Socket can only be used for one player');
     }
 
     this.socket = socket;
     this.socket.playerBound = this;
-
     this.socket.subscribe('/service/controller', m => this.emit('controller', m));
     this.socket.subscribe('/service/player', m => this.emit('player', m));
     this.socket.subscribe('/service/status', m => this.emit('status', m));
-  }
-
-  send(channel, data = {}) {
-    const final = data;
-    return new Promise((resolve) => {
-      if (!this.socket.isDisconnected()) {
-        final.host = 'play.kahoot.it';
-        final.gameid = this.socket.info.pin;
-        this.socket.publish(channel, final, resolve);
-      } else {
-        resolve();
-      }
-    });
   }
 
   twoFactorLogin(code) {

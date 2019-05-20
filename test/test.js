@@ -1,19 +1,18 @@
 /* eslint-env node, mocha */
 import { expect } from 'chai';
 import { pin, proxy } from './config';
-import { Session, Player } from '..';
+import { Session, Adapters } from '..';
 
 // Change pin first in pin.js
 
 describe('Kahoot', () => {
-  const session = new Session(proxy);
+  const session = new Session(pin, proxy);
   let socket;
 
   describe('Session', () => {
-    let info;
     describe('#check', () => {
       it('Should be able to retrieve game info', async () => {
-        info = await session.check(pin);
+        const info = await session.check(pin);
         expect(typeof info.twoFactorAuth).to.equal('boolean');
       });
     });
@@ -21,7 +20,7 @@ describe('Kahoot', () => {
     describe('#connect', () => {
       it('Should be able to solve the challenge and connect', async () => {
         try {
-          socket = await session.connect(info);
+          socket = await session.openSocket();
         } catch (error) {
           if (socket) {
             socket.disconnect();
@@ -36,7 +35,7 @@ describe('Kahoot', () => {
   describe('Player', () => {
     describe('#join', () => {
       it('Should be able to join with the created socket', () => {
-        const player = new Player(socket);
+        const player = new Adapters.Player(socket);
         expect(socket.playerBound).to.equal(player);
 
         return player.join('mereltjelief').then(() => {
