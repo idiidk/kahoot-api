@@ -65,8 +65,8 @@ export default class Player extends Adapter {
       name,
     }).then(
       () => new Promise((resolve) => {
-        this.once('status', (statusMessage) => {
-          if (statusMessage.data.status === 'ACTIVE') {
+        this.once('player', (statusMessage) => {
+          if (statusMessage.data.id === Events.userNameAccepted) {
             if (this.socket.info.twoFactorAuth) {
               const twoFactorListener = (playerMessage) => {
                 const { id } = playerMessage.data;
