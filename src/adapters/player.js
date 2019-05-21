@@ -8,6 +8,8 @@ export default class Player extends Adapter {
       throw new Error('Socket can only be used for one player');
     }
 
+    this.cid = '';
+
     this.socket = socket;
     this.socket.playerBound = this;
     this.socket.subscribe('/service/controller', m => this.emit('controller', m));
@@ -60,33 +62,35 @@ export default class Player extends Adapter {
   }
 
   join(name) {
-    return this.send('/service/controller', {
-      type: 'login',
-      name,
-    }).then(
-      () => new Promise((resolve) => {
-        this.once('player', (statusMessage) => {
-          if (statusMessage.data.id === Events.userNameAccepted) {
-            if (this.socket.info.twoFactorAuth) {
-              const twoFactorListener = (playerMessage) => {
-                const { id } = playerMessage.data;
-                if (id === Events.twoFactorAuthCorrect) {
-                  this.off('player', twoFactorListener);
-                  resolve();
-                } else if (id === Events.resetTwoFactorAuth) {
-                  this.bruteForceTwoFactor();
-                }
-              };
+    return new Promise((resolve) => {
+      this.once('controller', (statusMessage) => {
+        if (statusMessage.data.type === 'loginResponse') {
+          this.cid = statusMessage.data.cid;
 
-              this.on('player', twoFactorListener);
-              this.bruteForceTwoFactor();
-            } else {
-              resolve();
-            }
+          if (this.socket.info.twoFactorAuth) {
+            const twoFactorListener = (playerMessage) => {
+              const { id } = playerMessage.data;
+              if (id === Events.twoFactorAuthCorrect) {
+                this.off('player', twoFactorListener);
+                resolve();
+              } else if (id === Events.resetTwoFactorAuth) {
+                this.bruteForceTwoFactor();
+              }
+            };
+
+            this.on('player', twoFactorListener);
+            this.bruteForceTwoFactor();
+          } else {
+            resolve();
           }
-        });
-      }),
-    );
+        }
+      });
+
+      this.send('/service/controller', {
+        type: 'login',
+        name,
+      });
+    });
   }
 
   leave() {
