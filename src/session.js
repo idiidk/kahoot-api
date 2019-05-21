@@ -7,16 +7,32 @@ if (typeof window === 'undefined') {
   cometdAdapter.adapt();
 }
 
+/**
+ * Used to create sockets
+ */
 export default class Session {
+  /**
+   * @param {String} pin - Pin of the game
+   * @param {String} proxy - Optional cors proxy server
+   */
   constructor(pin, proxy) {
     this.pin = pin;
     this.proxy = proxy;
   }
 
+  /**
+   * Checks pin and connects
+   * @return {Promise<CometD>} Returns the CometD socket
+   */
   openSocket() {
     return this.check(this.pin).then(info => this.connect(info));
   }
 
+  /**
+   * Gets pin game info from kahoot
+   * @param {String} pin
+   * @return {Promise<Object>} Game info
+   */
   check(pin) {
     return http
       .get(`${this.proxy}https://kahoot.it/reserve/session/${pin}/?${Helpers.time()}`)
@@ -32,6 +48,11 @@ export default class Session {
       });
   }
 
+  /**
+   * Opens a CometD socket with the provided info
+   * @param {Object} info From the check function
+   * @return {Promise<CometD>} Returns the CometD socket
+   */
   connect(info) {
     const socket = new cometd.CometD();
     const challenge = Helpers.solve(info.challenge);

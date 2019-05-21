@@ -1,7 +1,13 @@
 import Adapter from './adapter';
 import Events from '../events';
 
+/**
+ * Normal player
+ */
 export default class Player extends Adapter {
+  /**
+   * @param {CometD} socket - CometD instance
+   */
   constructor(socket) {
     super(socket);
     if (socket.playerBound) {
@@ -17,8 +23,13 @@ export default class Player extends Adapter {
     this.socket.subscribe('/service/status', m => this.emit('status', m));
   }
 
+  /**
+   * Attempt two factor login
+   * @param {String} code - Code of the symbol pattern
+   * @return {Promise}
+   */
   twoFactorLogin(code) {
-    this.send('/service/controller', {
+    return this.send('/service/controller', {
       id: Events.submitTwoFactorAuth,
       type: 'message',
       content: JSON.stringify({
@@ -27,6 +38,9 @@ export default class Player extends Adapter {
     });
   }
 
+  /**
+   * Tries all combinations of 2FA codes
+   */
   bruteForceTwoFactor() {
     const combinations = [
       '0123',
@@ -61,6 +75,10 @@ export default class Player extends Adapter {
     });
   }
 
+  /**
+   * Join the game
+   * @param {String} name
+   */
   join(name) {
     return new Promise((resolve) => {
       this.once('controller', (statusMessage) => {
@@ -93,6 +111,9 @@ export default class Player extends Adapter {
     });
   }
 
+  /**
+   * Leave the game and disconnect socket
+   */
   leave() {
     this.socket.playerBound = false;
     this.socket.disconnect();

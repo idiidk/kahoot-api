@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../../">
+  <title data-ice="title">src/adapters/player.js | kahoot-api</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  <script src="script/manual.js"></script>
+<meta name="description" content="An API for the Kahoot quiz service."><meta property="twitter:card" content="summary"><meta property="twitter:title" content="kahoot-api"><meta property="twitter:description" content="An API for the Kahoot quiz service."></head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+<a style="position:relative; top:3px;" href="https://github.com/idiidk/kahoot-api"><img width="20px" src="./image/github.png"></a></header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/helpers.js~Helpers.html">Helpers</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/session.js~Session.html">Session</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-Adapters">Adapters</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#adapters">adapters</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/adapters/adapter.js~Adapter.html">Adapter</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/adapters/ghost.js~Ghost.html">Ghost</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/adapters/player.js~Player.html">Player</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">src/adapters/player.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import Adapter from &apos;./adapter&apos;;
+import Events from &apos;../events&apos;;
+
+/**
+ * Normal player
+ */
+export default class Player extends Adapter {
+  /**
+   * @param {CometD} socket - CometD instance
+   */
+  constructor(socket) {
+    super(socket);
+    if (socket.playerBound) {
+      throw new Error(&apos;Socket can only be used for one player&apos;);
+    }
+
+    this.cid = &apos;&apos;;
+
+    this.socket = socket;
+    this.socket.playerBound = this;
+    this.socket.subscribe(&apos;/service/controller&apos;, m =&gt; this.emit(&apos;controller&apos;, m));
+    this.socket.subscribe(&apos;/service/player&apos;, m =&gt; this.emit(&apos;player&apos;, m));
+    this.socket.subscribe(&apos;/service/status&apos;, m =&gt; this.emit(&apos;status&apos;, m));
+  }
+
+  /**
+   * Attempt two factor login
+   * @param {String} code - Code of the symbol pattern
+   * @return {Promise}
+   */
+  twoFactorLogin(code) {
+    return this.send(&apos;/service/controller&apos;, {
+      id: Events.submitTwoFactorAuth,
+      type: &apos;message&apos;,
+      content: JSON.stringify({
+        sequence: code,
+      }),
+    });
+  }
+
+  /**
+   * Tries all combinations of 2FA codes
+   */
+  bruteForceTwoFactor() {
+    const combinations = [
+      &apos;0123&apos;,
+      &apos;0132&apos;,
+      &apos;0213&apos;,
+      &apos;0231&apos;,
+      &apos;0321&apos;,
+      &apos;0312&apos;,
+      &apos;1023&apos;,
+      &apos;1032&apos;,
+      &apos;1203&apos;,
+      &apos;1230&apos;,
+      &apos;1302&apos;,
+      &apos;1320&apos;,
+      &apos;2013&apos;,
+      &apos;2031&apos;,
+      &apos;2103&apos;,
+      &apos;2130&apos;,
+      &apos;2301&apos;,
+      &apos;2310&apos;,
+      &apos;3012&apos;,
+      &apos;3021&apos;,
+      &apos;3102&apos;,
+      &apos;3120&apos;,
+      &apos;3201&apos;,
+      &apos;3210&apos;,
+    ];
+    combinations.forEach((combi, index) =&gt; {
+      setTimeout(() =&gt; {
+        this.twoFactorLogin(combi);
+      }, index * (5000 / combinations.length));
+    });
+  }
+
+  /**
+   * Join the game
+   * @param {String} name
+   */
+  join(name) {
+    return new Promise((resolve) =&gt; {
+      this.once(&apos;controller&apos;, (statusMessage) =&gt; {
+        if (statusMessage.data.type === &apos;loginResponse&apos;) {
+          this.cid = statusMessage.data.cid;
+
+          if (this.socket.info.twoFactorAuth) {
+            const twoFactorListener = (playerMessage) =&gt; {
+              const { id } = playerMessage.data;
+              if (id === Events.twoFactorAuthCorrect) {
+                this.off(&apos;player&apos;, twoFactorListener);
+                resolve();
+              } else if (id === Events.resetTwoFactorAuth) {
+                this.bruteForceTwoFactor();
+              }
+            };
+
+            this.on(&apos;player&apos;, twoFactorListener);
+            this.bruteForceTwoFactor();
+          } else {
+            resolve();
+          }
+        }
+      });
+
+      this.send(&apos;/service/controller&apos;, {
+        type: &apos;login&apos;,
+        name,
+      });
+    });
+  }
+
+  /**
+   * Leave the game and disconnect socket
+   */
+  leave() {
+    this.socket.playerBound = false;
+    this.socket.disconnect();
+  }
+}
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.1.0)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

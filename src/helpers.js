@@ -1,12 +1,29 @@
+/**
+ * Contains functions commonly used in login
+ */
 export default class Helpers {
+  /**
+   * Get unix time
+   * @return {Integer} Time
+   */
   static time() {
     return new Date().getTime();
   }
 
+  /**
+   * Convert base64 to ascii
+   * @param {String} str - Base64 string
+   * @return {String} Decoded string
+   */
   static atob(str) {
     return Buffer.from(str, 'base64').toString('binary');
   }
 
+  /**
+   * Solves kahoot challenge
+   * @param {String} challenge
+   * @return {String} CometD id
+   */
   static solve(challenge) {
     const decode = challenge.split("'")[1].split("'")[0];
     // eslint-disable-next-line no-eval
@@ -41,6 +58,11 @@ export default class Helpers {
     return final;
   }
 
+  /**
+   * Does some bit magic
+   * @param {String} rawToken
+   * @param {String} session
+   */
   static shiftBits(rawToken, session) {
     let final = '';
     const token = this.atob(rawToken);
@@ -56,6 +78,9 @@ export default class Helpers {
     return final;
   }
 
+  /**
+   * Get a random valid cid
+   */
   static cid() {
     let final = '';
     for (let i = 0; i < 9; i += 1) {

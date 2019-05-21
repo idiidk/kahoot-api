@@ -1,0 +1,1416 @@
+[
+  {
+    "__docId__": 1,
+    "kind": "external",
+    "name": "Infinity",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Infinity",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Infinity",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 2,
+    "kind": "external",
+    "name": "NaN",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/NaN",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~NaN",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 3,
+    "kind": "external",
+    "name": "undefined",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~undefined",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 4,
+    "kind": "external",
+    "name": "null",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/null",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~null",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 5,
+    "kind": "external",
+    "name": "Object",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Object",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 6,
+    "kind": "external",
+    "name": "object",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~object",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 7,
+    "kind": "external",
+    "name": "Function",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Function",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 8,
+    "kind": "external",
+    "name": "function",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~function",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 9,
+    "kind": "external",
+    "name": "Boolean",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Boolean",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 10,
+    "kind": "external",
+    "name": "boolean",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~boolean",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 11,
+    "kind": "external",
+    "name": "Symbol",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Symbol",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 12,
+    "kind": "external",
+    "name": "Error",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Error",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 13,
+    "kind": "external",
+    "name": "EvalError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/EvalError",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~EvalError",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 14,
+    "kind": "external",
+    "name": "InternalError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/InternalError",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~InternalError",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 15,
+    "kind": "external",
+    "name": "RangeError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RangeError",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~RangeError",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 16,
+    "kind": "external",
+    "name": "ReferenceError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ReferenceError",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~ReferenceError",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 17,
+    "kind": "external",
+    "name": "SyntaxError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SyntaxError",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~SyntaxError",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 18,
+    "kind": "external",
+    "name": "TypeError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypeError",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~TypeError",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 19,
+    "kind": "external",
+    "name": "URIError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/URIError",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~URIError",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 20,
+    "kind": "external",
+    "name": "Number",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Number",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 21,
+    "kind": "external",
+    "name": "number",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~number",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 22,
+    "kind": "external",
+    "name": "Date",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Date",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 23,
+    "kind": "external",
+    "name": "String",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~String",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 24,
+    "kind": "external",
+    "name": "string",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~string",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 25,
+    "kind": "external",
+    "name": "RegExp",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~RegExp",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 26,
+    "kind": "external",
+    "name": "Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 27,
+    "kind": "external",
+    "name": "Int8Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int8Array",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Int8Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 28,
+    "kind": "external",
+    "name": "Uint8Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Uint8Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 29,
+    "kind": "external",
+    "name": "Uint8ClampedArray",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8ClampedArray",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Uint8ClampedArray",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 30,
+    "kind": "external",
+    "name": "Int16Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int16Array",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Int16Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 31,
+    "kind": "external",
+    "name": "Uint16Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint16Array",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Uint16Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 32,
+    "kind": "external",
+    "name": "Int32Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int32Array",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Int32Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 33,
+    "kind": "external",
+    "name": "Uint32Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint32Array",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Uint32Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 34,
+    "kind": "external",
+    "name": "Float32Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Float32Array",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Float32Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 35,
+    "kind": "external",
+    "name": "Float64Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Float64Array",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Float64Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 36,
+    "kind": "external",
+    "name": "Map",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Map",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 37,
+    "kind": "external",
+    "name": "Set",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Set",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 38,
+    "kind": "external",
+    "name": "WeakMap",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~WeakMap",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 39,
+    "kind": "external",
+    "name": "WeakSet",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakSet",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~WeakSet",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 40,
+    "kind": "external",
+    "name": "ArrayBuffer",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~ArrayBuffer",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 41,
+    "kind": "external",
+    "name": "DataView",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DataView",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~DataView",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 42,
+    "kind": "external",
+    "name": "JSON",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~JSON",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 43,
+    "kind": "external",
+    "name": "Promise",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Promise",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 44,
+    "kind": "external",
+    "name": "Generator",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Generator",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Generator",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 45,
+    "kind": "external",
+    "name": "GeneratorFunction",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/GeneratorFunction",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~GeneratorFunction",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 46,
+    "kind": "external",
+    "name": "Reflect",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Reflect",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Reflect",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 47,
+    "kind": "external",
+    "name": "Proxy",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Proxy",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 48,
+    "kind": "file",
+    "name": "src/adapters/adapter.js",
+    "content": "import Emitter from 'tiny-emitter';\n\n/**\n * Class used as a base for all adapters\n */\nexport default class Adapter extends Emitter {\n  /**\n   * @param {CometD} socket - CometD instance\n   */\n  constructor(socket) {\n    super();\n\n    this.socket = socket;\n  }\n\n  /**\n   * Send data over the socket\n   * @param {String} channel - CometD channel to send data to\n   * @param {Object} data - Data to send\n   */\n  send(channel, data = {}) {\n    const final = data;\n    return new Promise((resolve) => {\n      if (!this.socket.isDisconnected()) {\n        final.host = 'play.kahoot.it';\n        final.gameid = this.socket.info.pin;\n        this.socket.publish(channel, final, resolve);\n      } else {\n        resolve();\n      }\n    });\n  }\n}\n",
+    "static": true,
+    "longname": "/home/idiidk/Documents/Node_Project/kahoot-api/src/adapters/adapter.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 49,
+    "kind": "class",
+    "name": "Adapter",
+    "memberof": "src/adapters/adapter.js",
+    "static": true,
+    "longname": "src/adapters/adapter.js~Adapter",
+    "access": "public",
+    "export": true,
+    "importPath": "kahoot-api/src/adapters/adapter.js",
+    "importStyle": "Adapter",
+    "description": "Class used as a base for all adapters",
+    "lineNumber": 6,
+    "interface": false,
+    "extends": [
+      "tiny-emitter~Emitter"
+    ]
+  },
+  {
+    "__docId__": 50,
+    "kind": "constructor",
+    "name": "constructor",
+    "memberof": "src/adapters/adapter.js~Adapter",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/adapters/adapter.js~Adapter#constructor",
+    "access": "public",
+    "description": "",
+    "lineNumber": 10,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "CometD"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "socket",
+        "description": "CometD instance"
+      }
+    ]
+  },
+  {
+    "__docId__": 51,
+    "kind": "member",
+    "name": "socket",
+    "memberof": "src/adapters/adapter.js~Adapter",
+    "static": false,
+    "longname": "src/adapters/adapter.js~Adapter#socket",
+    "access": "public",
+    "description": null,
+    "lineNumber": 13,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 52,
+    "kind": "method",
+    "name": "send",
+    "memberof": "src/adapters/adapter.js~Adapter",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/adapters/adapter.js~Adapter#send",
+    "access": "public",
+    "description": "Send data over the socket",
+    "lineNumber": 21,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "String"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "channel",
+        "description": "CometD channel to send data to"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Object"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "data",
+        "description": "Data to send"
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 53,
+    "kind": "file",
+    "name": "src/adapters/ghost.js",
+    "content": "import Helpers from '../helpers';\nimport Adapter from './adapter';\n\n/**\n * Ghost player\n */\nexport default class Ghost extends Adapter {\n  /**\n   * @param {CometD} socket - CometD instance\n   */\n  constructor(socket) {\n    super(socket);\n\n    this.socket = socket;\n    this.cid = Helpers.cid();\n  }\n\n  /**\n   * Join the game\n   * @param {String} name\n   */\n  join(name) {\n    return this.send(`/controller/${this.socket.info.pin}`, {\n      type: 'joined',\n      name,\n      cid: this.cid,\n      isGhost: true,\n    });\n  }\n\n  /**\n   * Leave the game\n   */\n  leave() {\n    this.send(`/controller/${this.socket.info.pin}`, {\n      type: 'left',\n      cid: this.cid,\n    });\n  }\n}\n",
+    "static": true,
+    "longname": "/home/idiidk/Documents/Node_Project/kahoot-api/src/adapters/ghost.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 54,
+    "kind": "class",
+    "name": "Ghost",
+    "memberof": "src/adapters/ghost.js",
+    "static": true,
+    "longname": "src/adapters/ghost.js~Ghost",
+    "access": "public",
+    "export": true,
+    "importPath": "kahoot-api/src/adapters/ghost.js",
+    "importStyle": "Ghost",
+    "description": "Ghost player",
+    "lineNumber": 7,
+    "interface": false,
+    "extends": [
+      "src/adapters/adapter.js~Adapter"
+    ]
+  },
+  {
+    "__docId__": 55,
+    "kind": "constructor",
+    "name": "constructor",
+    "memberof": "src/adapters/ghost.js~Ghost",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/adapters/ghost.js~Ghost#constructor",
+    "access": "public",
+    "description": "",
+    "lineNumber": 11,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "CometD"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "socket",
+        "description": "CometD instance"
+      }
+    ]
+  },
+  {
+    "__docId__": 56,
+    "kind": "member",
+    "name": "socket",
+    "memberof": "src/adapters/ghost.js~Ghost",
+    "static": false,
+    "longname": "src/adapters/ghost.js~Ghost#socket",
+    "access": "public",
+    "description": null,
+    "lineNumber": 14,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 57,
+    "kind": "member",
+    "name": "cid",
+    "memberof": "src/adapters/ghost.js~Ghost",
+    "static": false,
+    "longname": "src/adapters/ghost.js~Ghost#cid",
+    "access": "public",
+    "description": null,
+    "lineNumber": 15,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 58,
+    "kind": "method",
+    "name": "join",
+    "memberof": "src/adapters/ghost.js~Ghost",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/adapters/ghost.js~Ghost#join",
+    "access": "public",
+    "description": "Join the game",
+    "lineNumber": 22,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "String"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "name",
+        "description": ""
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 59,
+    "kind": "method",
+    "name": "leave",
+    "memberof": "src/adapters/ghost.js~Ghost",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/adapters/ghost.js~Ghost#leave",
+    "access": "public",
+    "description": "Leave the game",
+    "lineNumber": 34,
+    "params": [],
+    "return": null
+  },
+  {
+    "__docId__": 60,
+    "kind": "file",
+    "name": "src/adapters/player.js",
+    "content": "import Adapter from './adapter';\nimport Events from '../events';\n\n/**\n * Normal player\n */\nexport default class Player extends Adapter {\n  /**\n   * @param {CometD} socket - CometD instance\n   */\n  constructor(socket) {\n    super(socket);\n    if (socket.playerBound) {\n      throw new Error('Socket can only be used for one player');\n    }\n\n    this.cid = '';\n\n    this.socket = socket;\n    this.socket.playerBound = this;\n    this.socket.subscribe('/service/controller', m => this.emit('controller', m));\n    this.socket.subscribe('/service/player', m => this.emit('player', m));\n    this.socket.subscribe('/service/status', m => this.emit('status', m));\n  }\n\n  /**\n   * Attempt two factor login\n   * @param {String} code - Code of the symbol pattern\n   * @return {Promise}\n   */\n  twoFactorLogin(code) {\n    return this.send('/service/controller', {\n      id: Events.submitTwoFactorAuth,\n      type: 'message',\n      content: JSON.stringify({\n        sequence: code,\n      }),\n    });\n  }\n\n  /**\n   * Tries all combinations of 2FA codes\n   */\n  bruteForceTwoFactor() {\n    const combinations = [\n      '0123',\n      '0132',\n      '0213',\n      '0231',\n      '0321',\n      '0312',\n      '1023',\n      '1032',\n      '1203',\n      '1230',\n      '1302',\n      '1320',\n      '2013',\n      '2031',\n      '2103',\n      '2130',\n      '2301',\n      '2310',\n      '3012',\n      '3021',\n      '3102',\n      '3120',\n      '3201',\n      '3210',\n    ];\n    combinations.forEach((combi, index) => {\n      setTimeout(() => {\n        this.twoFactorLogin(combi);\n      }, index * (5000 / combinations.length));\n    });\n  }\n\n  /**\n   * Join the game\n   * @param {String} name\n   */\n  join(name) {\n    return new Promise((resolve) => {\n      this.once('controller', (statusMessage) => {\n        if (statusMessage.data.type === 'loginResponse') {\n          this.cid = statusMessage.data.cid;\n\n          if (this.socket.info.twoFactorAuth) {\n            const twoFactorListener = (playerMessage) => {\n              const { id } = playerMessage.data;\n              if (id === Events.twoFactorAuthCorrect) {\n                this.off('player', twoFactorListener);\n                resolve();\n              } else if (id === Events.resetTwoFactorAuth) {\n                this.bruteForceTwoFactor();\n              }\n            };\n\n            this.on('player', twoFactorListener);\n            this.bruteForceTwoFactor();\n          } else {\n            resolve();\n          }\n        }\n      });\n\n      this.send('/service/controller', {\n        type: 'login',\n        name,\n      });\n    });\n  }\n\n  /**\n   * Leave the game and disconnect socket\n   */\n  leave() {\n    this.socket.playerBound = false;\n    this.socket.disconnect();\n  }\n}\n",
+    "static": true,
+    "longname": "/home/idiidk/Documents/Node_Project/kahoot-api/src/adapters/player.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 61,
+    "kind": "class",
+    "name": "Player",
+    "memberof": "src/adapters/player.js",
+    "static": true,
+    "longname": "src/adapters/player.js~Player",
+    "access": "public",
+    "export": true,
+    "importPath": "kahoot-api/src/adapters/player.js",
+    "importStyle": "Player",
+    "description": "Normal player",
+    "lineNumber": 7,
+    "interface": false,
+    "extends": [
+      "src/adapters/adapter.js~Adapter"
+    ]
+  },
+  {
+    "__docId__": 62,
+    "kind": "constructor",
+    "name": "constructor",
+    "memberof": "src/adapters/player.js~Player",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/adapters/player.js~Player#constructor",
+    "access": "public",
+    "description": "",
+    "lineNumber": 11,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "CometD"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "socket",
+        "description": "CometD instance"
+      }
+    ]
+  },
+  {
+    "__docId__": 63,
+    "kind": "member",
+    "name": "cid",
+    "memberof": "src/adapters/player.js~Player",
+    "static": false,
+    "longname": "src/adapters/player.js~Player#cid",
+    "access": "public",
+    "description": null,
+    "lineNumber": 17,
+    "undocument": true,
+    "type": {
+      "types": [
+        "string"
+      ]
+    }
+  },
+  {
+    "__docId__": 64,
+    "kind": "member",
+    "name": "socket",
+    "memberof": "src/adapters/player.js~Player",
+    "static": false,
+    "longname": "src/adapters/player.js~Player#socket",
+    "access": "public",
+    "description": null,
+    "lineNumber": 19,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 65,
+    "kind": "method",
+    "name": "twoFactorLogin",
+    "memberof": "src/adapters/player.js~Player",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/adapters/player.js~Player#twoFactorLogin",
+    "access": "public",
+    "description": "Attempt two factor login",
+    "lineNumber": 31,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "String"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "code",
+        "description": "Code of the symbol pattern"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Promise"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 66,
+    "kind": "method",
+    "name": "bruteForceTwoFactor",
+    "memberof": "src/adapters/player.js~Player",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/adapters/player.js~Player#bruteForceTwoFactor",
+    "access": "public",
+    "description": "Tries all combinations of 2FA codes",
+    "lineNumber": 44,
+    "params": [],
+    "return": null
+  },
+  {
+    "__docId__": 67,
+    "kind": "method",
+    "name": "join",
+    "memberof": "src/adapters/player.js~Player",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/adapters/player.js~Player#join",
+    "access": "public",
+    "description": "Join the game",
+    "lineNumber": 82,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "String"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "name",
+        "description": ""
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 69,
+    "kind": "method",
+    "name": "leave",
+    "memberof": "src/adapters/player.js~Player",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/adapters/player.js~Player#leave",
+    "access": "public",
+    "description": "Leave the game and disconnect socket",
+    "lineNumber": 117,
+    "params": [],
+    "return": null
+  },
+  {
+    "__docId__": 70,
+    "kind": "file",
+    "name": "src/events.js",
+    "content": "export default {\n  getReady: 1,\n  startQuestion: 2,\n  gameOver: 3,\n  timeUp: 4,\n  playAgain: 5,\n  answerSelected: 6,\n  answerResponse: 7,\n  revealAnswer: 8,\n  startQuiz: 9,\n  resetController: 10,\n  submitFeedback: 11,\n  feedback: 12,\n  revealRanking: 13,\n  userNameAccepted: 14,\n  userNameRejected: 15,\n  requestRecoveryDataFromPlayer: 16,\n  sendRecoveryDataToController: 17,\n  joinTeamMembers: 18,\n  joinTeamMembersResponse: 19,\n  startTeamTalk: 20,\n  skipTeamTalk: 21,\n  iframeControllerEvent: 31,\n  serverIframeMessage: 32,\n  storyBlockGetReady: 40,\n  reactionSelected: 41,\n  reactionResponse: 42,\n  gameBlockStart: 43,\n  gameBlockEnd: 44,\n  gameBlockAnswer: 45,\n  submitTwoFactorAuth: 50,\n  twoFactorAuthIncorrect: 51,\n  twoFactorAuthCorrect: 52,\n  resetTwoFactorAuth: 53,\n};\n",
+    "static": true,
+    "longname": "/home/idiidk/Documents/Node_Project/kahoot-api/src/events.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 71,
+    "kind": "file",
+    "name": "src/helpers.js",
+    "content": "/**\n * Contains functions commonly used in login\n */\nexport default class Helpers {\n  /**\n   * Get unix time\n   * @return {Integer} Time\n   */\n  static time() {\n    return new Date().getTime();\n  }\n\n  /**\n   * Convert base64 to ascii\n   * @param {String} str - Base64 string\n   * @return {String} Decoded string\n   */\n  static atob(str) {\n    return Buffer.from(str, 'base64').toString('binary');\n  }\n\n  /**\n   * Solves kahoot challenge\n   * @param {String} challenge\n   * @return {String} CometD id\n   */\n  static solve(challenge) {\n    const decode = challenge.split(\"'\")[1].split(\"'\")[0];\n    // eslint-disable-next-line no-eval\n    const offset = eval(challenge.split('var offset = ')[1].split(';')[0]);\n    const mod = parseInt(\n      challenge\n        .split(') % ')[1]\n        .split(')')[0]\n        .trim(),\n      0,\n    );\n\n    let plus = '';\n    let final = '';\n\n    try {\n      plus = parseInt(\n        challenge\n          .split(mod)[1]\n          .split(challenge.includes('+') ? '+ ' : '- ')[1]\n          .split(')')[0],\n        0,\n      );\n    } catch (error) {\n      return error;\n    }\n\n    [...decode].forEach((char, index) => {\n      final += String.fromCharCode(((char.charCodeAt(0) * index + offset) % mod) + plus);\n    });\n\n    return final;\n  }\n\n  /**\n   * Does some bit magic\n   * @param {String} rawToken\n   * @param {String} session\n   */\n  static shiftBits(rawToken, session) {\n    let final = '';\n    const token = this.atob(rawToken);\n\n    for (let i = 0; i < token.length; i += 1) {\n      const tokenChar = token.charCodeAt(i);\n      const charCode = session.charCodeAt(i % session.length);\n      // eslint-disable-next-line no-bitwise\n      const shifted = tokenChar ^ charCode;\n      final += String.fromCharCode(shifted);\n    }\n\n    return final;\n  }\n\n  /**\n   * Get a random valid cid\n   */\n  static cid() {\n    let final = '';\n    for (let i = 0; i < 9; i += 1) {\n      final += Math.floor(Math.random() * 9) + 1;\n    }\n    return final;\n  }\n}\n",
+    "static": true,
+    "longname": "/home/idiidk/Documents/Node_Project/kahoot-api/src/helpers.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 72,
+    "kind": "class",
+    "name": "Helpers",
+    "memberof": "src/helpers.js",
+    "static": true,
+    "longname": "src/helpers.js~Helpers",
+    "access": "public",
+    "export": true,
+    "importPath": "kahoot-api/src/helpers.js",
+    "importStyle": "Helpers",
+    "description": "Contains functions commonly used in login",
+    "lineNumber": 4,
+    "interface": false
+  },
+  {
+    "__docId__": 73,
+    "kind": "method",
+    "name": "time",
+    "memberof": "src/helpers.js~Helpers",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/helpers.js~Helpers.time",
+    "access": "public",
+    "description": "Get unix time",
+    "lineNumber": 9,
+    "return": {
+      "nullable": null,
+      "types": [
+        "Integer"
+      ],
+      "spread": false,
+      "description": "Time"
+    },
+    "params": []
+  },
+  {
+    "__docId__": 74,
+    "kind": "method",
+    "name": "atob",
+    "memberof": "src/helpers.js~Helpers",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/helpers.js~Helpers.atob",
+    "access": "public",
+    "description": "Convert base64 to ascii",
+    "lineNumber": 18,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "String"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "str",
+        "description": "Base64 string"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "String"
+      ],
+      "spread": false,
+      "description": "Decoded string"
+    }
+  },
+  {
+    "__docId__": 75,
+    "kind": "method",
+    "name": "solve",
+    "memberof": "src/helpers.js~Helpers",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/helpers.js~Helpers.solve",
+    "access": "public",
+    "description": "Solves kahoot challenge",
+    "lineNumber": 27,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "String"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "challenge",
+        "description": ""
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "String"
+      ],
+      "spread": false,
+      "description": "CometD id"
+    }
+  },
+  {
+    "__docId__": 76,
+    "kind": "method",
+    "name": "shiftBits",
+    "memberof": "src/helpers.js~Helpers",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/helpers.js~Helpers.shiftBits",
+    "access": "public",
+    "description": "Does some bit magic",
+    "lineNumber": 66,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "String"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "rawToken",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "String"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "session",
+        "description": ""
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 77,
+    "kind": "method",
+    "name": "cid",
+    "memberof": "src/helpers.js~Helpers",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/helpers.js~Helpers.cid",
+    "access": "public",
+    "description": "Get a random valid cid",
+    "lineNumber": 84,
+    "params": [],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 78,
+    "kind": "file",
+    "name": "src/http.js",
+    "content": "import * as axios from 'axios';\n\nexport default axios.create();\n",
+    "static": true,
+    "longname": "/home/idiidk/Documents/Node_Project/kahoot-api/src/http.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 79,
+    "kind": "file",
+    "name": "src/index.js",
+    "content": "import Helpers from './helpers';\nimport Session from './session';\nimport Events from './events';\n\nimport Player from './adapters/player';\nimport Ghost from './adapters/ghost';\n\nconst Adapters = {\n  Player,\n  Ghost,\n};\n\nexport {\n  Session, Helpers, Events, Adapters,\n};\n",
+    "static": true,
+    "longname": "/home/idiidk/Documents/Node_Project/kahoot-api/src/index.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 80,
+    "kind": "variable",
+    "name": "Adapters",
+    "memberof": "src/index.js",
+    "static": true,
+    "longname": "src/index.js~Adapters",
+    "access": "public",
+    "export": true,
+    "importPath": "kahoot-api/src/index.js",
+    "importStyle": "{Adapters}",
+    "description": null,
+    "lineNumber": 8,
+    "undocument": true,
+    "type": {
+      "types": [
+        "{\"Player\": *, \"Ghost\": *}"
+      ]
+    }
+  },
+  {
+    "__docId__": 81,
+    "kind": "file",
+    "name": "src/session.js",
+    "content": "import cometd from 'cometd';\nimport cometdAdapter from 'cometd-nodejs-client';\nimport http from './http';\nimport Helpers from './helpers';\n\nif (typeof window === 'undefined') {\n  cometdAdapter.adapt();\n}\n\n/**\n * Used to create sockets\n */\nexport default class Session {\n  /**\n   * @param {String} pin - Pin of the game\n   * @param {String} proxy - Optional cors proxy server\n   */\n  constructor(pin, proxy) {\n    this.pin = pin;\n    this.proxy = proxy;\n  }\n\n  /**\n   * Checks pin and connects\n   * @return {Promise<CometD>} Returns the CometD socket\n   */\n  openSocket() {\n    return this.check(this.pin).then(info => this.connect(info));\n  }\n\n  /**\n   * Gets pin game info from kahoot\n   * @param {String} pin\n   * @return {Promise<Object>} Game info\n   */\n  check(pin) {\n    return http\n      .get(`${this.proxy}https://kahoot.it/reserve/session/${pin}/?${Helpers.time()}`)\n      .then((response) => {\n        const info = response.data;\n        info.token = response.headers['x-kahoot-session-token'];\n        info.pin = pin;\n\n        return info;\n      })\n      .catch(() => {\n        throw new Error('Game not found');\n      });\n  }\n\n  /**\n   * Opens a CometD socket with the provided info\n   * @param {Object} info From the check function\n   * @return {Promise<CometD>} Returns the CometD socket\n   */\n  connect(info) {\n    const socket = new cometd.CometD();\n    const challenge = Helpers.solve(info.challenge);\n    const session = Helpers.shiftBits(info.token, challenge);\n    const validated = /([A-Z,0-9])\\w+/g.exec(session);\n    if (validated && validated[0].length !== 96) {\n      return this.check(info.pin).then(secondInfo => this.connect(secondInfo));\n    }\n\n    socket.configure({\n      url: `https://kahoot.it/cometd/${info.pin}/${validated[0]}`,\n    });\n    socket.websocketEnabled = true;\n    const handshake = new Promise(resolve => socket.handshake(resolve));\n\n    return handshake.then((response) => {\n      if (!response.successful) throw new Error('Session failed to connect');\n      socket.info = info;\n      return socket;\n    });\n  }\n}\n",
+    "static": true,
+    "longname": "/home/idiidk/Documents/Node_Project/kahoot-api/src/session.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 82,
+    "kind": "class",
+    "name": "Session",
+    "memberof": "src/session.js",
+    "static": true,
+    "longname": "src/session.js~Session",
+    "access": "public",
+    "export": true,
+    "importPath": "kahoot-api/src/session.js",
+    "importStyle": "Session",
+    "description": "Used to create sockets",
+    "lineNumber": 13,
+    "interface": false
+  },
+  {
+    "__docId__": 83,
+    "kind": "constructor",
+    "name": "constructor",
+    "memberof": "src/session.js~Session",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/session.js~Session#constructor",
+    "access": "public",
+    "description": "",
+    "lineNumber": 18,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "String"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "pin",
+        "description": "Pin of the game"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "String"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "proxy",
+        "description": "Optional cors proxy server"
+      }
+    ]
+  },
+  {
+    "__docId__": 84,
+    "kind": "member",
+    "name": "pin",
+    "memberof": "src/session.js~Session",
+    "static": false,
+    "longname": "src/session.js~Session#pin",
+    "access": "public",
+    "description": null,
+    "lineNumber": 19,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 85,
+    "kind": "member",
+    "name": "proxy",
+    "memberof": "src/session.js~Session",
+    "static": false,
+    "longname": "src/session.js~Session#proxy",
+    "access": "public",
+    "description": null,
+    "lineNumber": 20,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 86,
+    "kind": "method",
+    "name": "openSocket",
+    "memberof": "src/session.js~Session",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/session.js~Session#openSocket",
+    "access": "public",
+    "description": "Checks pin and connects",
+    "lineNumber": 27,
+    "return": {
+      "nullable": null,
+      "types": [
+        "Promise<CometD>"
+      ],
+      "spread": false,
+      "description": "Returns the CometD socket"
+    },
+    "params": []
+  },
+  {
+    "__docId__": 87,
+    "kind": "method",
+    "name": "check",
+    "memberof": "src/session.js~Session",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/session.js~Session#check",
+    "access": "public",
+    "description": "Gets pin game info from kahoot",
+    "lineNumber": 36,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "String"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "pin",
+        "description": ""
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Promise<Object>"
+      ],
+      "spread": false,
+      "description": "Game info"
+    }
+  },
+  {
+    "__docId__": 88,
+    "kind": "method",
+    "name": "connect",
+    "memberof": "src/session.js~Session",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/session.js~Session#connect",
+    "access": "public",
+    "description": "Opens a CometD socket with the provided info",
+    "lineNumber": 56,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Object"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "info",
+        "description": "From the check function"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Promise<CometD>"
+      ],
+      "spread": false,
+      "description": "Returns the CometD socket"
+    }
+  },
+  {
+    "kind": "index",
+    "content": "# Kahoot API\n\nAn API for the kahoot.it quiz platform. ~~Includes~~ Will include all the features of [kahoot-tools](https://github.com/idiidk/kahoot-tools)\n\n## Installation\n\nInstall with npm or yarn\n\n```bash\nyarn add kahoot-api\n# or\nnpm install kahoot-api\n```\n\n## Usage\n\nTo get you started, here is a basic example of the Player authentication flow:\n\n```JavaScript\nimport { Session, Adapters } from 'kahoot-api';\n\nconst session = new Session(000000 /** pin */, /** optional cors proxy, url string */)\nsession.openSocket() //Connect\n  .then(socket => {\n    const player = new Adapters.Player(socket); //Create player class\n    player.join('test') //Join with name\n      .then(() => {\n         console.log('Success!');\n      });\n  });\n```\n\nFor usage please refer to the [~~documentation~~](https://idiidk.site/kahoot-api) (WIP, probably old)\n\n## Contributing\n\nPull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.\n\nPlease make sure to update tests as appropriate.\n\n## License\n\n[MIT](https://choosealicense.com/licenses/mit/)\n",
+    "longname": "/home/idiidk/Documents/Node_Project/kahoot-api/README.md",
+    "name": "./README.md",
+    "static": true,
+    "access": "public"
+  },
+  {
+    "kind": "packageJSON",
+    "content": "{\n  \"name\": \"kahoot-api\",\n  \"version\": \"0.7.3\",\n  \"description\": \"An API for the Kahoot quiz service.\",\n  \"main\": \"dist/index.js\",\n  \"browser\": \"lib/index.js\",\n  \"scripts\": {\n    \"build-browser\": \"cross-env BABEL_ENV=browser babel ./src --out-dir ./lib --source-maps --copy-files\",\n    \"build-node\": \"babel ./src --out-dir ./dist --source-maps --copy-files\",\n    \"build\": \"npm run build-node && npm run build-browser\",\n    \"docs\": \"esdoc\",\n    \"test\": \"mocha --bail --no-timeouts --require @babel/register --require @babel/polyfill\",\n    \"prepublish\": \"npm run build\"\n  },\n  \"repository\": \"https://github.com/idiidk/kahoot-api\",\n  \"author\": \"idiidk\",\n  \"license\": \"MIT\",\n  \"private\": false,\n  \"devDependencies\": {\n    \"@babel/cli\": \"^7.4.4\",\n    \"@babel/core\": \"^7.4.4\",\n    \"@babel/node\": \"^7.2.2\",\n    \"@babel/polyfill\": \"^7.4.4\",\n    \"@babel/preset-env\": \"^7.4.4\",\n    \"@babel/register\": \"^7.4.4\",\n    \"browserify\": \"^16.2.3\",\n    \"chai\": \"^4.2.0\",\n    \"cross-env\": \"^5.2.0\",\n    \"esdoc\": \"^1.1.0\",\n    \"esdoc-standard-plugin\": \"^1.0.0\",\n    \"eslint\": \"^5.16.0\",\n    \"eslint-config-airbnb-base\": \"^13.1.0\",\n    \"eslint-plugin-import\": \"^2.17.2\",\n    \"mocha\": \"^6.1.4\"\n  },\n  \"dependencies\": {\n    \"axios\": \"^0.18.0\",\n    \"cometd\": \"^4.0.3\",\n    \"cometd-nodejs-client\": \"^1.0.2\",\n    \"core-js\": \"2\",\n    \"tiny-emitter\": \"^2.1.0\"\n  }\n}\n",
+    "longname": "/home/idiidk/Documents/Node_Project/kahoot-api/package.json",
+    "name": "package.json",
+    "static": true,
+    "access": "public"
+  }
+]
