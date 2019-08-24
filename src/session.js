@@ -1,4 +1,3 @@
-import cometd from 'cometd';
 import cometdAdapter from 'cometd-nodejs-client';
 import http from './http';
 import Helpers from './helpers';
@@ -6,6 +5,8 @@ import Helpers from './helpers';
 if (typeof window === 'undefined') {
   cometdAdapter.adapt();
 }
+
+import cometd from 'cometd';
 
 /**
  * Used to create sockets
