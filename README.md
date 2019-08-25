@@ -1,6 +1,6 @@
 # Kahoot API
 
-An API for the kahoot.it quiz platform. ~~Includes~~ Will include all the features of [kahoot-tools](https://github.com/idiidk/kahoot-tools)
+An API for the kahoot.it quiz platform. WIP, will support all live game functions.
 
 ## Installation
 
