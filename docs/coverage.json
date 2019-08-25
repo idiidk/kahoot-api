@@ -35,15 +35,15 @@
       "expectCount": 1,
       "actualCount": 0,
       "undocumentLines": [
-        8
+        9
       ]
     },
     "src/session.js": {
       "expectCount": 7,
       "actualCount": 5,
       "undocumentLines": [
-        19,
-        20
+        20,
+        21
       ]
     }
   }

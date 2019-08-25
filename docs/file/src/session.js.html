@@ -40,14 +40,15 @@
 </nav>
 
 <div class="content" data-ice="content"><h1 data-ice="title">src/session.js</h1>
-<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import cometd from &apos;cometd&apos;;
-import cometdAdapter from &apos;cometd-nodejs-client&apos;;
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import cometdAdapter from &apos;cometd-nodejs-client&apos;;
 import http from &apos;./http&apos;;
 import Helpers from &apos;./helpers&apos;;
 
 if (typeof window === &apos;undefined&apos;) {
   cometdAdapter.adapt();
 }
+
+import cometd from &apos;cometd&apos;;
 
 /**
  * Used to create sockets
