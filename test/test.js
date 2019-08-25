@@ -38,7 +38,7 @@ describe('Kahoot', () => {
         const player = new Adapters.Player(socket);
         expect(socket.playerBound).to.equal(player);
 
-        return player.join('mereltjelief').then(() => {
+        return player.join('idiidk').then(() => {
           expect(player.cid).to.not.equal('');
           socket.disconnect();
         });
