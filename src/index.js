@@ -9,7 +9,7 @@ import Ghost from './adapters/ghost';
 const Adapters = {
   Player,
   Ghost,
-  Adapter
+  Generic: Adapter
 };
 
 export {
