@@ -6,7 +6,8 @@ if (typeof window === 'undefined') {
   cometdAdapter.adapt();
 }
 
-import cometd from 'cometd';
+//Old school require to fix adapter not adapting :)
+const cometd = require("cometd");
 
 /**
  * Used to create sockets
