@@ -1,6 +1,6 @@
 {
-  "coverage": "75%",
-  "expectCount": 32,
+  "coverage": "72.72%",
+  "expectCount": 33,
   "actualCount": 24,
   "files": {
     "src/adapters/adapter.js": {
@@ -39,11 +39,12 @@
       ]
     },
     "src/session.js": {
-      "expectCount": 7,
+      "expectCount": 8,
       "actualCount": 5,
       "undocumentLines": [
-        20,
-        21
+        10,
+        21,
+        22
       ]
     }
   }

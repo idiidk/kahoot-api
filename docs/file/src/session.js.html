@@ -48,7 +48,8 @@ if (typeof window === &apos;undefined&apos;) {
   cometdAdapter.adapt();
 }
 
-import cometd from &apos;cometd&apos;;
+// Old school require to fix adapter not adapting :)
+const cometd = require(&apos;cometd&apos;);
 
 /**
  * Used to create sockets
