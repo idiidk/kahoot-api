@@ -33,7 +33,6 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/session.js~Session.html">Session</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-Adapters">Adapters</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#adapters">adapters</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/adapters/adapter.js~Adapter.html">Adapter</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/adapters/ghost.js~Ghost.html">Ghost</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/adapters/player.js~Player.html">Player</a></span></span></li>
 </ul>
 </div>
@@ -49,6 +48,8 @@ import Events from &apos;../events&apos;;
 export default class Player extends Adapter {
   /**
    * @param {CometD} socket - CometD instance
+   * @property {String} cid - Unique client id
+   * @property {Boolean} loggedIn
    */
   constructor(socket) {
     super(socket);
@@ -57,12 +58,15 @@ export default class Player extends Adapter {
     }
 
     this.cid = &apos;&apos;;
+    this.loggedIn = false;
 
     this.socket = socket;
     this.socket.playerBound = this;
     this.socket.subscribe(&apos;/service/controller&apos;, m =&gt; this.emit(&apos;controller&apos;, m));
     this.socket.subscribe(&apos;/service/player&apos;, m =&gt; this.emit(&apos;player&apos;, m));
     this.socket.subscribe(&apos;/service/status&apos;, m =&gt; this.emit(&apos;status&apos;, m));
+
+    this.timeouts = [];
   }
 
   /**
@@ -111,44 +115,85 @@ export default class Player extends Adapter {
       &apos;3210&apos;,
     ];
     combinations.forEach((combi, index) =&gt; {
-      setTimeout(() =&gt; {
-        this.twoFactorLogin(combi);
-      }, index * (5000 / combinations.length));
+      const timeout = setTimeout(() =&gt; {
+        if (!this.loggedIn) {
+          this.twoFactorLogin(combi);
+        }
+
+        this.timeouts.splice(this.timeouts.indexOf(timeout), 1);
+      }, index * (1000 / combinations.length));
+
+      this.timeouts.push(timeout);
+    });
+  }
+
+  /**
+   * Stop the current brute force attempt
+   */
+  stopBruteForce() {
+    this.timeouts.forEach((timeout, index) =&gt; {
+      clearTimeout(timeout);
+      this.timeouts.splice(index, 1);
     });
   }
 
   /**
    * Join the game
    * @param {String} name
+   * @return {Promise}
    */
   join(name) {
-    return new Promise((resolve) =&gt; {
-      this.once(&apos;controller&apos;, (statusMessage) =&gt; {
-        if (statusMessage.data.type === &apos;loginResponse&apos;) {
-          this.cid = statusMessage.data.cid;
+    const twoFactor = this.socket.info.twoFactorAuth;
+    const deviceInfo = { participantUserId: null, device: { userAgent: &apos;Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.75 Safari/537.36&apos;, screen: { width: 1920, height: 1080 } } };
 
-          if (this.socket.info.twoFactorAuth) {
-            const twoFactorListener = (playerMessage) =&gt; {
-              const { id } = playerMessage.data;
-              if (id === Events.twoFactorAuthCorrect) {
-                this.off(&apos;player&apos;, twoFactorListener);
-                resolve();
-              } else if (id === Events.resetTwoFactorAuth) {
-                this.bruteForceTwoFactor();
-              }
-            };
+    return new Promise((resolve, rejects) =&gt; {
+      this.on(&apos;controller&apos;, (res) =&gt; {
+        const { data } = res;
+        if (data.type === &apos;loginResponse&apos;) {
+          if (data.error) rejects(new Error(data.description));
 
-            this.on(&apos;player&apos;, twoFactorListener);
-            this.bruteForceTwoFactor();
-          } else {
+          this.cid = data.cid;
+          if (!twoFactor) {
+            this.loggedIn = true;
             resolve();
           }
         }
       });
 
+      if (twoFactor) {
+        this.once(&apos;status&apos;, (statusRes) =&gt; {
+          const statusData = statusRes.data;
+          const { status } = statusData;
+          if (status === &apos;ACTIVE&apos;) {
+            this.on(&apos;player&apos;, (playerRes) =&gt; {
+              const playerData = playerRes.data;
+              const { id } = playerData;
+
+              if (id === Events.resetTwoFactorAuth &amp;&amp; !this.loggedIn) {
+                this.stopBruteForce();
+                this.bruteForceTwoFactor();
+              }
+
+              if (id === Events.twoFactorAuthCorrect) {
+                this.loggedIn = true;
+                this.stopBruteForce();
+                resolve();
+              }
+
+              if (id === Events.userNameAccepted) {
+                this.bruteForceTwoFactor();
+              }
+            });
+          } else {
+            rejects(new Error(`Status not active: ${status}`));
+          }
+        });
+      }
+
       this.send(&apos;/service/controller&apos;, {
-        type: &apos;login&apos;,
+        content: JSON.stringify(deviceInfo),
         name,
+        type: &apos;login&apos;,
       });
     });
   }

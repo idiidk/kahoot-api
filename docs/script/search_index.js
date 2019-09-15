@@ -12,12 +12,6 @@ window.esdocSearchIndex = [
     "variable"
   ],
   [
-    "kahoot-api/src/adapters/ghost.js~ghost",
-    "class/src/adapters/ghost.js~Ghost.html",
-    "<span>Ghost</span> <span class=\"search-result-import-path\">kahoot-api/src/adapters/ghost.js</span>",
-    "class"
-  ],
-  [
     "kahoot-api/src/helpers.js~helpers",
     "class/src/helpers.js~Helpers.html",
     "<span>Helpers</span> <span class=\"search-result-import-path\">kahoot-api/src/helpers.js</span>",
@@ -342,42 +336,6 @@ window.esdocSearchIndex = [
     "member"
   ],
   [
-    "src/adapters/ghost.js",
-    "file/src/adapters/ghost.js.html",
-    "src/adapters/ghost.js",
-    "file"
-  ],
-  [
-    "src/adapters/ghost.js~ghost#cid",
-    "class/src/adapters/ghost.js~Ghost.html#instance-member-cid",
-    "src/adapters/ghost.js~Ghost#cid",
-    "member"
-  ],
-  [
-    "src/adapters/ghost.js~ghost#constructor",
-    "class/src/adapters/ghost.js~Ghost.html#instance-constructor-constructor",
-    "src/adapters/ghost.js~Ghost#constructor",
-    "method"
-  ],
-  [
-    "src/adapters/ghost.js~ghost#join",
-    "class/src/adapters/ghost.js~Ghost.html#instance-method-join",
-    "src/adapters/ghost.js~Ghost#join",
-    "method"
-  ],
-  [
-    "src/adapters/ghost.js~ghost#leave",
-    "class/src/adapters/ghost.js~Ghost.html#instance-method-leave",
-    "src/adapters/ghost.js~Ghost#leave",
-    "method"
-  ],
-  [
-    "src/adapters/ghost.js~ghost#socket",
-    "class/src/adapters/ghost.js~Ghost.html#instance-member-socket",
-    "src/adapters/ghost.js~Ghost#socket",
-    "member"
-  ],
-  [
     "src/adapters/player.js",
     "file/src/adapters/player.js.html",
     "src/adapters/player.js",
@@ -414,9 +372,27 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
+    "src/adapters/player.js~player#loggedin",
+    "class/src/adapters/player.js~Player.html#instance-member-loggedIn",
+    "src/adapters/player.js~Player#loggedIn",
+    "member"
+  ],
+  [
     "src/adapters/player.js~player#socket",
     "class/src/adapters/player.js~Player.html#instance-member-socket",
     "src/adapters/player.js~Player#socket",
+    "member"
+  ],
+  [
+    "src/adapters/player.js~player#stopbruteforce",
+    "class/src/adapters/player.js~Player.html#instance-method-stopBruteForce",
+    "src/adapters/player.js~Player#stopBruteForce",
+    "method"
+  ],
+  [
+    "src/adapters/player.js~player#timeouts",
+    "class/src/adapters/player.js~Player.html#instance-member-timeouts",
+    "src/adapters/player.js~Player#timeouts",
     "member"
   ],
   [

@@ -1,7 +1,7 @@
 {
-  "coverage": "72.72%",
-  "expectCount": 33,
-  "actualCount": 24,
+  "coverage": "70%",
+  "expectCount": 30,
+  "actualCount": 21,
   "files": {
     "src/adapters/adapter.js": {
       "expectCount": 4,
@@ -10,20 +10,14 @@
         13
       ]
     },
-    "src/adapters/ghost.js": {
-      "expectCount": 6,
-      "actualCount": 4,
-      "undocumentLines": [
-        14,
-        15
-      ]
-    },
     "src/adapters/player.js": {
-      "expectCount": 8,
-      "actualCount": 6,
+      "expectCount": 11,
+      "actualCount": 7,
       "undocumentLines": [
-        17,
-        19
+        19,
+        20,
+        22,
+        28
       ]
     },
     "src/helpers.js": {
@@ -35,7 +29,7 @@
       "expectCount": 1,
       "actualCount": 0,
       "undocumentLines": [
-        9
+        8
       ]
     },
     "src/session.js": {
