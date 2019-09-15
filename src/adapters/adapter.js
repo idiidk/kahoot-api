@@ -22,7 +22,7 @@ export default class Adapter extends Emitter {
     const final = data;
     return new Promise((resolve) => {
       if (!this.socket.isDisconnected()) {
-        final.host = 'play.kahoot.it';
+        final.host = 'kahoot.it';
         final.gameid = this.socket.info.pin;
         this.socket.publish(channel, final, resolve);
       } else {

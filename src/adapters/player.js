@@ -7,6 +7,8 @@ import Events from '../events';
 export default class Player extends Adapter {
   /**
    * @param {CometD} socket - CometD instance
+   * @property {String} cid - Unique client id
+   * @property {Boolean} loggedIn
    */
   constructor(socket) {
     super(socket);
@@ -15,12 +17,15 @@ export default class Player extends Adapter {
     }
 
     this.cid = '';
+    this.loggedIn = false;
 
     this.socket = socket;
     this.socket.playerBound = this;
     this.socket.subscribe('/service/controller', m => this.emit('controller', m));
     this.socket.subscribe('/service/player', m => this.emit('player', m));
     this.socket.subscribe('/service/status', m => this.emit('status', m));
+
+    this.timeouts = [];
   }
 
   /**
@@ -69,44 +74,85 @@ export default class Player extends Adapter {
       '3210',
     ];
     combinations.forEach((combi, index) => {
-      setTimeout(() => {
-        this.twoFactorLogin(combi);
-      }, index * (5000 / combinations.length));
+      const timeout = setTimeout(() => {
+        if (!this.loggedIn) {
+          this.twoFactorLogin(combi);
+        }
+
+        this.timeouts.splice(this.timeouts.indexOf(timeout), 1);
+      }, index * (1000 / combinations.length));
+
+      this.timeouts.push(timeout);
+    });
+  }
+
+  /**
+   * Stop the current brute force attempt
+   */
+  stopBruteForce() {
+    this.timeouts.forEach((timeout, index) => {
+      clearTimeout(timeout);
+      this.timeouts.splice(index, 1);
     });
   }
 
   /**
    * Join the game
    * @param {String} name
+   * @return {Promise}
    */
   join(name) {
-    return new Promise((resolve) => {
-      this.once('controller', (statusMessage) => {
-        if (statusMessage.data.type === 'loginResponse') {
-          this.cid = statusMessage.data.cid;
+    const twoFactor = this.socket.info.twoFactorAuth;
+    const deviceInfo = { participantUserId: null, device: { userAgent: 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.75 Safari/537.36', screen: { width: 1920, height: 1080 } } };
 
-          if (this.socket.info.twoFactorAuth) {
-            const twoFactorListener = (playerMessage) => {
-              const { id } = playerMessage.data;
-              if (id === Events.twoFactorAuthCorrect) {
-                this.off('player', twoFactorListener);
-                resolve();
-              } else if (id === Events.resetTwoFactorAuth) {
-                this.bruteForceTwoFactor();
-              }
-            };
+    return new Promise((resolve, rejects) => {
+      this.on('controller', (res) => {
+        const { data } = res;
+        if (data.type === 'loginResponse') {
+          if (data.error) rejects(new Error(data.description));
 
-            this.on('player', twoFactorListener);
-            this.bruteForceTwoFactor();
-          } else {
+          this.cid = data.cid;
+          if (!twoFactor) {
+            this.loggedIn = true;
             resolve();
           }
         }
       });
 
+      if (twoFactor) {
+        this.once('status', (statusRes) => {
+          const statusData = statusRes.data;
+          const { status } = statusData;
+          if (status === 'ACTIVE') {
+            this.on('player', (playerRes) => {
+              const playerData = playerRes.data;
+              const { id } = playerData;
+
+              if (id === Events.resetTwoFactorAuth && !this.loggedIn) {
+                this.stopBruteForce();
+                this.bruteForceTwoFactor();
+              }
+
+              if (id === Events.twoFactorAuthCorrect) {
+                this.loggedIn = true;
+                this.stopBruteForce();
+                resolve();
+              }
+
+              if (id === Events.userNameAccepted) {
+                this.bruteForceTwoFactor();
+              }
+            });
+          } else {
+            rejects(new Error(`Status not active: ${status}`));
+          }
+        });
+      }
+
       this.send('/service/controller', {
-        type: 'login',
+        content: JSON.stringify(deviceInfo),
         name,
+        type: 'login',
       });
     });
   }
