@@ -342,6 +342,12 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
+    "src/adapters/player.js~player#answer",
+    "class/src/adapters/player.js~Player.html#instance-method-answer",
+    "src/adapters/player.js~Player#answer",
+    "method"
+  ],
+  [
     "src/adapters/player.js~player#bruteforcetwofactor",
     "class/src/adapters/player.js~Player.html#instance-method-bruteForceTwoFactor",
     "src/adapters/player.js~Player#bruteForceTwoFactor",
@@ -376,6 +382,18 @@ window.esdocSearchIndex = [
     "class/src/adapters/player.js~Player.html#instance-member-loggedIn",
     "src/adapters/player.js~Player#loggedIn",
     "member"
+  ],
+  [
+    "src/adapters/player.js~player#questionindex",
+    "class/src/adapters/player.js~Player.html#instance-member-questionIndex",
+    "src/adapters/player.js~Player#questionIndex",
+    "member"
+  ],
+  [
+    "src/adapters/player.js~player#registerhandlers",
+    "class/src/adapters/player.js~Player.html#instance-method-registerHandlers",
+    "src/adapters/player.js~Player#registerHandlers",
+    "method"
   ],
   [
     "src/adapters/player.js~player#socket",
