@@ -153,6 +153,7 @@ export default class Player extends Adapter {
         content: JSON.stringify(deviceInfo),
         name,
         type: 'login',
+        status: 'VERIFIED',
       });
     });
   }
@@ -161,6 +162,7 @@ export default class Player extends Adapter {
    * Leave the game and disconnect socket
    */
   leave() {
+    this.stopBruteForce();
     this.socket.playerBound = false;
     this.socket.disconnect();
   }
