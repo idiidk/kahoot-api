@@ -26,6 +26,7 @@ export default class Player extends Adapter {
     this.socket.subscribe('/service/status', m => this.emit('status', m));
 
     this.timeouts = [];
+    this.registerHandlers();
   }
 
   /**
@@ -96,6 +97,21 @@ export default class Player extends Adapter {
     });
   }
 
+  registerHandlers() {
+    this.on('player', (res) => {
+      const { data } = res;
+      if (data.id === Events.startQuestion) {
+        if (data.content) {
+          const content = JSON.stringify(data.content);
+
+          if (content.questionIndex) {
+            this.questionIndex = content.questionIndex;
+          }
+        }
+      }
+    });
+  }
+
   /**
    * Join the game
    * @param {String} name
@@ -155,6 +171,21 @@ export default class Player extends Adapter {
         type: 'login',
         status: 'VERIFIED',
       });
+    });
+  }
+
+  /**
+   * Answer a question
+   * @param {Number} choice - 0 - 3
+   * @return {Promise}
+   */
+  answer(choice) {
+    const content = { choice, questionIndex: 0, meta: { lag: 50 } };
+
+    return this.send('/service/controller', {
+      content: JSON.stringify(content),
+      id: 45,
+      type: 'message',
     });
   }
 
