@@ -16,7 +16,7 @@
   
   <a href="identifiers.html">Reference</a>
   <a href="source.html">Source</a>
-  
+  <a href="test.html" data-ice="testLink">Test</a>
   <div class="search-box">
   <span>
     <img src="./image/search.png">
@@ -39,13 +39,13 @@
 </nav>
 
 <div class="content" data-ice="content"><div class="header-notice">
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import Player from &apos;<span><a href="file/src/adapters/player.js.html#lineNumber7">kahoot-api/src/adapters/player.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import Player from &apos;<span><a href="file/src/adapters/player.js.html#lineNumber11">kahoot-api/src/adapters/player.js</a></span>&apos;</code></pre></div>
   <span data-ice="access">public</span>
   <span data-ice="kind">class</span>
   
   
   
-  <span data-ice="source">| <span><a href="file/src/adapters/player.js.html#lineNumber7">source</a></span></span>
+  <span data-ice="source">| <span><a href="file/src/adapters/player.js.html#lineNumber11">source</a></span></span>
 </div>
 
 <div class="self-detail detail">
@@ -55,7 +55,7 @@
 
   
   
-  <div class="flat-list" data-ice="extendsChain"><h4>Extends:</h4><div><span>tiny-emitter~Emitter</span> &#x2192; <span><a href="class/src/adapters/adapter.js~Adapter.html">Adapter</a></span> &#x2192; Player</div></div>
+  <div class="flat-list" data-ice="extendsChain"><h4>Extends:</h4><div><span>Emitter</span> &#x2192; <span><a href="class/src/adapters/adapter.js~Adapter.html">Adapter</a></span> &#x2192; Player</div></div>
   
   
   
@@ -65,7 +65,7 @@
 
   
   
-  <div class="description" data-ice="description"><p>Normal player</p>
+  <div class="description" data-ice="description"><p>The player adapter, used for connecting to a game</p>
 </div>
   
 
@@ -104,7 +104,8 @@
       <div>
         
         
-        
+        <div data-ice="description"><p>Creates an instance of Player.</p>
+</div>
       </div>
     </td>
     <td>
@@ -162,34 +163,6 @@
           
           
           <span class="code" data-ice="name"><span><a href="class/src/adapters/player.js~Player.html#instance-member-loggedIn">loggedIn</a></span></span><span class="code" data-ice="signature">: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></span>
-        </p>
-      </div>
-      <div>
-        
-        
-        
-      </div>
-    </td>
-    <td>
-      
-      
-    </td>
-  </tr>
-<tr data-ice="target">
-    <td>
-      <span class="access" data-ice="access">public</span>
-      
-      
-      
-      <span class="override" data-ice="override"></span>
-    </td>
-    <td>
-      <div>
-        <p>
-          
-          
-          
-          <span class="code" data-ice="name"><span><a href="class/src/adapters/player.js~Player.html#instance-member-questionIndex">questionIndex</a></span></span><span class="code" data-ice="signature">: <span>*</span></span>
         </p>
       </div>
       <div>
@@ -396,34 +369,6 @@
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/adapters/player.js~Player.html#instance-method-registerHandlers">registerHandlers</a></span></span><span class="code" data-ice="signature">()</span>
-        </p>
-      </div>
-      <div>
-        
-        
-        
-      </div>
-    </td>
-    <td>
-      
-      
-    </td>
-  </tr>
-<tr data-ice="target">
-    <td>
-      <span class="access" data-ice="access">public</span>
-      
-      
-      
-      <span class="override" data-ice="override"></span>
-    </td>
-    <td>
-      <div>
-        <p>
-          
-          
-          
           <span class="code" data-ice="name"><span><a href="class/src/adapters/player.js~Player.html#instance-method-stopBruteForce">stopBruteForce</a></span></span><span class="code" data-ice="signature">()</span>
         </p>
       </div>
@@ -459,7 +404,7 @@
       <div>
         
         
-        <div data-ice="description"><p>Attempt two factor login</p>
+        <div data-ice="description"><p>Attempt two factor login with specified code</p>
 </div>
       </div>
     </td>
@@ -518,7 +463,7 @@
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/adapters/adapter.js~Adapter.html#instance-method-send">send</a></span></span><span class="code" data-ice="signature">(channel: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></span>, data: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>): <span>*</span></span>
+          <span class="code" data-ice="name"><span><a href="class/src/adapters/adapter.js~Adapter.html#instance-method-send">send</a></span></span><span class="code" data-ice="signature">(channel: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></span>, data: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></span></span>
         </p>
       </div>
       <div>
@@ -553,14 +498,15 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/adapters/player.js.html#lineNumber13">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/adapters/player.js.html#lineNumber18">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>Creates an instance of Player.</p>
+</div>
 
   <div data-ice="override"><h4>Override:</h4><span><a href="class/src/adapters/adapter.js~Adapter.html#instance-constructor-constructor">Adapter#constructor</a></span></div>
 
@@ -576,8 +522,7 @@
       <td data-ice="name" class="code" data-depth="0">socket</td>
       <td data-ice="type" class="code"><span>CometD</span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"><p>CometD instance</p>
-</td>
+      <td data-ice="description"></td>
     </tr>
 </tbody>
   </table>
@@ -616,7 +561,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/adapters/player.js.html#lineNumber19">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/adapters/player.js.html#lineNumber24">source</a></span></span>
     </span>
   </h3>
 
@@ -659,50 +604,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/adapters/player.js.html#lineNumber20">source</a></span></span>
-    </span>
-  </h3>
-
-  
-  
-  
-  
-
-  
-
-  <div data-ice="properties">
-</div>
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-  
-</div>
-<div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="instance-member-questionIndex">
-    <span class="access" data-ice="access">public</span>
-    
-    
-    
-    
-    
-    <span class="code" data-ice="name">questionIndex</span><span class="code" data-ice="signature">: <span>*</span></span>
-    <span class="right-info">
-      
-      
-      <span data-ice="source"><span><a href="file/src/adapters/player.js.html#lineNumber108">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/adapters/player.js.html#lineNumber25">source</a></span></span>
     </span>
   </h3>
 
@@ -745,7 +647,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/adapters/player.js.html#lineNumber22">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/adapters/player.js.html#lineNumber27">source</a></span></span>
     </span>
   </h3>
 
@@ -788,7 +690,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/adapters/player.js.html#lineNumber28">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/adapters/player.js.html#lineNumber33">source</a></span></span>
     </span>
   </h3>
 
@@ -834,7 +736,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/adapters/player.js.html#lineNumber182">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/adapters/player.js.html#lineNumber178">source</a></span></span>
     </span>
   </h3>
 
@@ -907,7 +809,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/adapters/player.js.html#lineNumber50">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/adapters/player.js.html#lineNumber57">source</a></span></span>
     </span>
   </h3>
 
@@ -951,7 +853,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/adapters/player.js.html#lineNumber120">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/adapters/player.js.html#lineNumber114">source</a></span></span>
     </span>
   </h3>
 
@@ -1023,7 +925,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/adapters/player.js.html#lineNumber195">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/adapters/player.js.html#lineNumber191">source</a></span></span>
     </span>
   </h3>
 
@@ -1032,49 +934,6 @@
   
   <div data-ice="description"><p>Leave the game and disconnect socket</p>
 </div>
-
-  
-
-  <div data-ice="properties">
-</div>
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-  
-</div>
-<div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="instance-method-registerHandlers">
-    <span class="access" data-ice="access">public</span>
-    
-    
-    
-    
-    
-    <span class="code" data-ice="name">registerHandlers</span><span class="code" data-ice="signature">()</span>
-    <span class="right-info">
-      
-      
-      <span data-ice="source"><span><a href="file/src/adapters/player.js.html#lineNumber100">source</a></span></span>
-    </span>
-  </h3>
-
-  
-  
-  
-  
 
   
 
@@ -1110,7 +969,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/adapters/player.js.html#lineNumber93">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/adapters/player.js.html#lineNumber100">source</a></span></span>
     </span>
   </h3>
 
@@ -1154,14 +1013,14 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/adapters/player.js.html#lineNumber37">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/adapters/player.js.html#lineNumber44">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  <div data-ice="description"><p>Attempt two factor login</p>
+  <div data-ice="description"><p>Attempt two factor login with specified code</p>
 </div>
 
   
@@ -1178,8 +1037,7 @@
       <td data-ice="name" class="code" data-depth="0">code</td>
       <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"><p>Code of the symbol pattern</p>
-</td>
+      <td data-ice="description"></td>
     </tr>
 </tbody>
   </table>

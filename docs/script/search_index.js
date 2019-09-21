@@ -30,6 +30,60 @@ window.esdocSearchIndex = [
     "class"
   ],
   [
+    "",
+    "test-file/test/test.js.html#lineNumber8",
+    "Kahoot",
+    "test"
+  ],
+  [
+    "",
+    "test-file/test/test.js.html#lineNumber35",
+    "Kahoot Player",
+    "test"
+  ],
+  [
+    "",
+    "test-file/test/test.js.html#lineNumber36",
+    "Kahoot Player #join",
+    "test"
+  ],
+  [
+    "",
+    "test-file/test/test.js.html#lineNumber37",
+    "Kahoot Player #join Should be able to join with the created socket",
+    "test"
+  ],
+  [
+    "",
+    "test-file/test/test.js.html#lineNumber12",
+    "Kahoot Session",
+    "test"
+  ],
+  [
+    "",
+    "test-file/test/test.js.html#lineNumber13",
+    "Kahoot Session #check",
+    "test"
+  ],
+  [
+    "",
+    "test-file/test/test.js.html#lineNumber14",
+    "Kahoot Session #check Should be able to retrieve game info",
+    "test"
+  ],
+  [
+    "",
+    "test-file/test/test.js.html#lineNumber20",
+    "Kahoot Session #connect",
+    "test"
+  ],
+  [
+    "",
+    "test-file/test/test.js.html#lineNumber21",
+    "Kahoot Session #connect Should be able to solve the challenge and connect",
+    "test"
+  ],
+  [
     "src/.external-ecmascript.js~array",
     "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array",
     "src/.external-ecmascript.js~Array",
@@ -384,18 +438,6 @@ window.esdocSearchIndex = [
     "member"
   ],
   [
-    "src/adapters/player.js~player#questionindex",
-    "class/src/adapters/player.js~Player.html#instance-member-questionIndex",
-    "src/adapters/player.js~Player#questionIndex",
-    "member"
-  ],
-  [
-    "src/adapters/player.js~player#registerhandlers",
-    "class/src/adapters/player.js~Player.html#instance-method-registerHandlers",
-    "src/adapters/player.js~Player#registerHandlers",
-    "method"
-  ],
-  [
     "src/adapters/player.js~player#socket",
     "class/src/adapters/player.js~Player.html#instance-member-socket",
     "src/adapters/player.js~Player#socket",
@@ -514,5 +556,11 @@ window.esdocSearchIndex = [
     "class/src/session.js~Session.html#instance-member-proxy",
     "src/session.js~Session#proxy",
     "member"
+  ],
+  [
+    "test/test.js",
+    "test-file/test/test.js.html",
+    "test/test.js",
+    "testFile"
   ]
 ]

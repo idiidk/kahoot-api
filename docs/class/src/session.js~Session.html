@@ -16,7 +16,7 @@
   
   <a href="identifiers.html">Reference</a>
   <a href="source.html">Source</a>
-  
+  <a href="test.html" data-ice="testLink">Test</a>
   <div class="search-box">
   <span>
     <img src="./image/search.png">
@@ -39,13 +39,13 @@
 </nav>
 
 <div class="content" data-ice="content"><div class="header-notice">
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import Session from &apos;<span><a href="file/src/session.js.html#lineNumber15">kahoot-api/src/session.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import Session from &apos;<span><a href="file/src/session.js.html#lineNumber18">kahoot-api/src/session.js</a></span>&apos;</code></pre></div>
   <span data-ice="access">public</span>
   <span data-ice="kind">class</span>
   
   
   
-  <span data-ice="source">| <span><a href="file/src/session.js.html#lineNumber15">source</a></span></span>
+  <span data-ice="source">| <span><a href="file/src/session.js.html#lineNumber18">source</a></span></span>
 </div>
 
 <div class="self-detail detail">
@@ -65,7 +65,7 @@
 
   
   
-  <div class="description" data-ice="description"><p>Used to create sockets</p>
+  <div class="description" data-ice="description"><p>Wrapper to open sockets</p>
 </div>
   
 
@@ -104,7 +104,8 @@
       <div>
         
         
-        
+        <div data-ice="description"><p>Creates an instance of Session.</p>
+</div>
       </div>
     </td>
     <td>
@@ -196,13 +197,13 @@
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/session.js~Session.html#instance-method-check">check</a></span></span><span class="code" data-ice="signature">(pin: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></span>&lt;<span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>&gt;</span>
+          <span class="code" data-ice="name"><span><a href="class/src/session.js~Session.html#instance-method-check">check</a></span></span><span class="code" data-ice="signature">(pin: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a></span> | <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></span>&lt;<span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>&gt;</span>
         </p>
       </div>
       <div>
         
         
-        <div data-ice="description"><p>Gets pin game info from kahoot</p>
+        <div data-ice="description"><p>Get session info</p>
 </div>
       </div>
     </td>
@@ -231,7 +232,7 @@
       <div>
         
         
-        <div data-ice="description"><p>Opens a CometD socket with the provided info</p>
+        <div data-ice="description"><p>Open a socket using the game info provided by the check function</p>
 </div>
       </div>
     </td>
@@ -260,7 +261,7 @@
       <div>
         
         
-        <div data-ice="description"><p>Checks pin and connects</p>
+        <div data-ice="description"><p>Open a socket to the current game</p>
 </div>
       </div>
     </td>
@@ -291,14 +292,15 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/session.js.html#lineNumber20">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/session.js.html#lineNumber26">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>Creates an instance of Session.</p>
+</div>
 
   
 
@@ -314,14 +316,13 @@
       <td data-ice="name" class="code" data-depth="0">pin</td>
       <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"><p>Pin of the game</p>
-</td>
+      <td data-ice="description"></td>
     </tr>
 <tr data-ice="property" data-depth="0">
       <td data-ice="name" class="code" data-depth="0">proxy</td>
       <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></span></td>
-      <td data-ice="appendix"></td>
-      <td data-ice="description"><p>Optional cors proxy server</p>
+      <td data-ice="appendix"><ul><li>optional</li></ul></td>
+      <td data-ice="description"><p>Optional cors proxy server url</p>
 </td>
     </tr>
 </tbody>
@@ -361,7 +362,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/session.js.html#lineNumber21">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/session.js.html#lineNumber27">source</a></span></span>
     </span>
   </h3>
 
@@ -404,7 +405,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/session.js.html#lineNumber22">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/session.js.html#lineNumber28">source</a></span></span>
     </span>
   </h3>
 
@@ -446,18 +447,18 @@
     
     
     
-    <span class="code" data-ice="name">check</span><span class="code" data-ice="signature">(pin: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></span>&lt;<span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>&gt;</span>
+    <span class="code" data-ice="name">check</span><span class="code" data-ice="signature">(pin: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a></span> | <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></span>&lt;<span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>&gt;</span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/session.js.html#lineNumber38">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/session.js.html#lineNumber48">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  <div data-ice="description"><p>Gets pin game info from kahoot</p>
+  <div data-ice="description"><p>Get session info</p>
 </div>
 
   
@@ -472,7 +473,7 @@
     
     <tr data-ice="property" data-depth="0">
       <td data-ice="name" class="code" data-depth="0">pin</td>
-      <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></span></td>
+      <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a></span> | <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></span></td>
       <td data-ice="appendix"></td>
       <td data-ice="description"></td>
     </tr>
@@ -523,14 +524,14 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/session.js.html#lineNumber58">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/session.js.html#lineNumber71">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  <div data-ice="description"><p>Opens a CometD socket with the provided info</p>
+  <div data-ice="description"><p>Open a socket using the game info provided by the check function</p>
 </div>
 
   
@@ -547,8 +548,7 @@
       <td data-ice="name" class="code" data-depth="0">info</td>
       <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"><p>From the check function</p>
-</td>
+      <td data-ice="description"></td>
     </tr>
 </tbody>
   </table>
@@ -561,8 +561,7 @@
       <tbody>
         <tr>
           <td class="return-type code" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></span>&lt;<span>CometD</span>&gt;</td>
-          <td class="return-desc" data-ice="returnDescription"><p>Returns the CometD socket</p>
-</td>
+          
         </tr>
       </tbody>
     </table>
@@ -597,14 +596,14 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/session.js.html#lineNumber29">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/session.js.html#lineNumber37">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  <div data-ice="description"><p>Checks pin and connects</p>
+  <div data-ice="description"><p>Open a socket to the current game</p>
 </div>
 
   
@@ -618,8 +617,7 @@
       <tbody>
         <tr>
           <td class="return-type code" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></span>&lt;<span>CometD</span>&gt;</td>
-          <td class="return-desc" data-ice="returnDescription"><p>Returns the CometD socket</p>
-</td>
+          
         </tr>
       </tbody>
     </table>

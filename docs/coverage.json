@@ -1,25 +1,23 @@
 {
-  "coverage": "66.66%",
-  "expectCount": 33,
+  "coverage": "70.96%",
+  "expectCount": 31,
   "actualCount": 22,
   "files": {
     "src/adapters/adapter.js": {
       "expectCount": 4,
       "actualCount": 3,
       "undocumentLines": [
-        13
+        20
       ]
     },
     "src/adapters/player.js": {
-      "expectCount": 14,
+      "expectCount": 12,
       "actualCount": 8,
       "undocumentLines": [
-        19,
-        20,
-        22,
-        28,
-        100,
-        108
+        24,
+        25,
+        27,
+        33
       ]
     },
     "src/helpers.js": {
@@ -39,8 +37,8 @@
       "actualCount": 5,
       "undocumentLines": [
         10,
-        21,
-        22
+        27,
+        28
       ]
     }
   }

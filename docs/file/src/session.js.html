@@ -16,7 +16,7 @@
   
   <a href="identifiers.html">Reference</a>
   <a href="source.html">Source</a>
-  
+  <a href="test.html" data-ice="testLink">Test</a>
   <div class="search-box">
   <span>
     <img src="./image/search.png">
@@ -51,12 +51,18 @@ if (typeof window === &apos;undefined&apos;) {
 const cometd = require(&apos;cometd&apos;);
 
 /**
- * Used to create sockets
+ * Wrapper to open sockets
+ *
+ * @export
+ * @class Session
  */
 export default class Session {
   /**
-   * @param {String} pin - Pin of the game
-   * @param {String} proxy - Optional cors proxy server
+   * Creates an instance of Session.
+   *
+   * @param {String} pin
+   * @param {String} [proxy] - Optional cors proxy server url
+   * @memberof Session
    */
   constructor(pin, proxy) {
     this.pin = pin;
@@ -64,17 +70,21 @@ export default class Session {
   }
 
   /**
-   * Checks pin and connects
-   * @return {Promise&lt;CometD&gt;} Returns the CometD socket
+   * Open a socket to the current game
+   *
+   * @returns {Promise&lt;CometD&gt;}
+   * @memberof Session
    */
   openSocket() {
     return this.check(this.pin).then(info =&gt; this.connect(info));
   }
 
   /**
-   * Gets pin game info from kahoot
-   * @param {String} pin
-   * @return {Promise&lt;Object&gt;} Game info
+   * Get session info
+   *
+   * @param {Number|String} pin
+   * @returns {Promise&lt;Object&gt;} Game info
+   * @memberof Session
    */
   check(pin) {
     return http
@@ -91,10 +101,13 @@ export default class Session {
       });
   }
 
+
   /**
-   * Opens a CometD socket with the provided info
-   * @param {Object} info From the check function
-   * @return {Promise&lt;CometD&gt;} Returns the CometD socket
+   * Open a socket using the game info provided by the check function
+   *
+   * @param {Object} info
+   * @returns {Promise&lt;CometD&gt;}
+   * @memberof Session
    */
   connect(info) {
     const socket = new cometd.CometD();
