@@ -10,12 +10,18 @@ if (typeof window === 'undefined') {
 const cometd = require('cometd');
 
 /**
- * Used to create sockets
+ * Wrapper to open sockets
+ *
+ * @export
+ * @class Session
  */
 export default class Session {
   /**
-   * @param {String} pin - Pin of the game
-   * @param {String} proxy - Optional cors proxy server
+   * Creates an instance of Session.
+   *
+   * @param {String} pin
+   * @param {String} [proxy] - Optional cors proxy server url
+   * @memberof Session
    */
   constructor(pin, proxy) {
     this.pin = pin;
@@ -23,17 +29,21 @@ export default class Session {
   }
 
   /**
-   * Checks pin and connects
-   * @return {Promise<CometD>} Returns the CometD socket
+   * Open a socket to the current game
+   *
+   * @returns {Promise<CometD>}
+   * @memberof Session
    */
   openSocket() {
     return this.check(this.pin).then(info => this.connect(info));
   }
 
   /**
-   * Gets pin game info from kahoot
-   * @param {String} pin
-   * @return {Promise<Object>} Game info
+   * Get session info
+   *
+   * @param {Number|String} pin
+   * @returns {Promise<Object>} Game info
+   * @memberof Session
    */
   check(pin) {
     return http
@@ -50,10 +60,13 @@ export default class Session {
       });
   }
 
+
   /**
-   * Opens a CometD socket with the provided info
-   * @param {Object} info From the check function
-   * @return {Promise<CometD>} Returns the CometD socket
+   * Open a socket using the game info provided by the check function
+   *
+   * @param {Object} info
+   * @returns {Promise<CometD>}
+   * @memberof Session
    */
   connect(info) {
     const socket = new cometd.CometD();

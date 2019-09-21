@@ -4,25 +4,35 @@
 export default class Helpers {
   /**
    * Get unix time
-   * @return {Integer} Time
+   *
+   * @static
+   * @returns {Number} - Time
+   * @memberof Helpers
    */
   static time() {
     return new Date().getTime();
   }
 
+
   /**
    * Convert base64 to ascii
-   * @param {String} str - Base64 string
-   * @return {String} Decoded string
+   *
+   * @static
+   * @param {String} base64
+   * @returns {String} - Decoded value
+   * @memberof Helpers
    */
-  static atob(str) {
-    return Buffer.from(str, 'base64').toString('binary');
+  static atob(base64) {
+    return Buffer.from(base64, 'base64').toString('binary');
   }
 
   /**
    * Solves kahoot challenge
+   *
+   * @static
    * @param {String} challenge
-   * @return {String} CometD id
+   * @returns {String} - Solved challenge
+   * @memberof Helpers
    */
   static solve(challenge) {
     const decode = challenge.split("'")[1].split("'")[0];
@@ -59,9 +69,13 @@ export default class Helpers {
   }
 
   /**
-   * Does some bit magic
+   * Shifts the token and session bits (magic)
+   *
+   * @static
    * @param {String} rawToken
    * @param {String} session
+   * @returns {String}
+   * @memberof Helpers
    */
   static shiftBits(rawToken, session) {
     let final = '';
@@ -79,7 +93,11 @@ export default class Helpers {
   }
 
   /**
-   * Get a random valid cid
+   * Get a random valid cid (unique id)
+   *
+   * @static
+   * @returns {String}
+   * @memberof Helpers
    */
   static cid() {
     let final = '';

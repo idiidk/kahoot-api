@@ -2,10 +2,17 @@ import Emitter from 'tiny-emitter';
 
 /**
  * Class used as a base for all adapters
+ *
+ * @export
+ * @class Adapter
+ * @extends {Emitter}
  */
 export default class Adapter extends Emitter {
   /**
-   * @param {CometD} socket - CometD instance
+   * Creates an instance of Adapter.
+   *
+   * @param {CometD} socket
+   * @memberof Adapter
    */
   constructor(socket) {
     super();
@@ -15,8 +22,11 @@ export default class Adapter extends Emitter {
 
   /**
    * Send data over the socket
-   * @param {String} channel - CometD channel to send data to
-   * @param {Object} data - Data to send
+   *
+   * @param {String} channel - CometD channel
+   * @param {Object} [data={}]
+   * @returns {Promise}
+   * @memberof Adapter
    */
   send(channel, data = {}) {
     const final = data;

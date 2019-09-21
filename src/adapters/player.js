@@ -2,13 +2,18 @@ import Adapter from './adapter';
 import Events from '../events';
 
 /**
- * Normal player
+ * The player adapter, used for connecting to a game
+ *
+ * @export
+ * @class Player
+ * @extends {Adapter}
  */
 export default class Player extends Adapter {
   /**
-   * @param {CometD} socket - CometD instance
-   * @property {String} cid - Unique client id
-   * @property {Boolean} loggedIn
+   * Creates an instance of Player.
+   *
+   * @param {CometD} socket
+   * @memberof Player
    */
   constructor(socket) {
     super(socket);
@@ -26,13 +31,15 @@ export default class Player extends Adapter {
     this.socket.subscribe('/service/status', m => this.emit('status', m));
 
     this.timeouts = [];
-    this.registerHandlers();
   }
 
+
   /**
-   * Attempt two factor login
-   * @param {String} code - Code of the symbol pattern
-   * @return {Promise}
+   * Attempt two factor login with specified code
+   *
+   * @param {String} code
+   * @returns {Promise}
+   * @memberof Player
    */
   twoFactorLogin(code) {
     return this.send('/service/controller', {
@@ -97,25 +104,12 @@ export default class Player extends Adapter {
     });
   }
 
-  registerHandlers() {
-    this.on('player', (res) => {
-      const { data } = res;
-      if (data.id === Events.startQuestion) {
-        if (data.content) {
-          const content = JSON.stringify(data.content);
-
-          if (content.questionIndex) {
-            this.questionIndex = content.questionIndex;
-          }
-        }
-      }
-    });
-  }
-
   /**
    * Join the game
+   *
    * @param {String} name
-   * @return {Promise}
+   * @returns {Promise}
+   * @memberof Player
    */
   join(name) {
     const twoFactor = this.socket.info.twoFactorAuth;
@@ -176,8 +170,10 @@ export default class Player extends Adapter {
 
   /**
    * Answer a question
+   *
    * @param {Number} choice - 0 - 3
-   * @return {Promise}
+   * @returns {Promise}
+   * @memberof Player
    */
   answer(choice) {
     const content = { choice, questionIndex: 0, meta: { lag: 50 } };
