@@ -7,7 +7,7 @@
     "build": "babel ./src --out-dir ./dist --source-maps --copy-files",
     "docs": "esdoc",
     "test": "mocha --bail --no-timeouts --require @babel/register --require @babel/polyfill",
-    "postinstall": "npm run build",
+    "prepublishOnly": "npm run build",
     "version": "npm run docs"
   },
   "repository": "https://github.com/idiidk/kahoot-api",

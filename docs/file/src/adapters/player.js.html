@@ -67,9 +67,9 @@ export default class Player extends Adapter {
 
     this.socket = socket;
     this.socket.playerBound = this;
-    this.socket.subscribe(&apos;/service/controller&apos;, m =&gt; this.emit(&apos;controller&apos;, m));
-    this.socket.subscribe(&apos;/service/player&apos;, m =&gt; this.emit(&apos;player&apos;, m));
-    this.socket.subscribe(&apos;/service/status&apos;, m =&gt; this.emit(&apos;status&apos;, m));
+    this.socket.subscribe(&apos;/service/controller&apos;, (m) =&gt; this.emit(&apos;controller&apos;, m));
+    this.socket.subscribe(&apos;/service/player&apos;, (m) =&gt; this.emit(&apos;player&apos;, m));
+    this.socket.subscribe(&apos;/service/status&apos;, (m) =&gt; this.emit(&apos;status&apos;, m));
 
     this.timeouts = [];
   }
