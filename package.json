@@ -5,8 +5,8 @@
   "main": "dist/index.js",
   "scripts": {
     "build": "babel ./src --out-dir ./dist --source-maps --copy-files",
+    "test": "mocha --bail --no-timeouts --require @babel/register",
     "docs": "esdoc",
-    "test": "mocha --bail --no-timeouts --require @babel/register --require @babel/polyfill",
     "prepublishOnly": "npm run build",
     "version": "npm run docs"
   },
@@ -17,6 +17,7 @@
   "devDependencies": {
     "@babel/cli": "^7.4.4",
     "@babel/core": "^7.4.4",
+    "@babel/plugin-transform-runtime": "^7.6.0",
     "@babel/preset-env": "^7.4.4",
     "@babel/register": "^7.6.0",
     "babel-preset-minify": "^0.5.1",
@@ -29,6 +30,7 @@
     "mocha": "^6.1.4"
   },
   "dependencies": {
+    "@babel/runtime": "^7.6.0",
     "axios": "^0.19.0",
     "cometd": "^4.0.3",
     "cometd-nodejs-client": "^1.0.2",

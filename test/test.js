@@ -1,7 +1,7 @@
 /* eslint-env node, mocha */
 import { expect } from 'chai';
 import { pin, proxy } from './config';
-import { Session, Adapters } from '..';
+import { Session, Adapters } from '../src';
 
 // Change pin first in pin.js
 
