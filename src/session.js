@@ -35,7 +35,7 @@ export default class Session {
    * @memberof Session
    */
   openSocket() {
-    return this.check(this.pin).then(info => this.connect(info));
+    return this.check(this.pin).then((info) => this.connect(info));
   }
 
   /**
@@ -74,14 +74,14 @@ export default class Session {
     const session = Helpers.shiftBits(info.token, challenge);
     const validated = /([A-Z,0-9])\w+/g.exec(session);
     if (validated && validated[0].length !== 96) {
-      return this.check(info.pin).then(secondInfo => this.connect(secondInfo));
+      return this.check(info.pin).then((secondInfo) => this.connect(secondInfo));
     }
 
     socket.configure({
       url: `https://kahoot.it/cometd/${info.pin}/${validated[0]}`,
     });
     socket.websocketEnabled = true;
-    const handshake = new Promise(resolve => socket.handshake(resolve));
+    const handshake = new Promise((resolve) => socket.handshake(resolve));
 
     return handshake.then((response) => {
       if (!response.successful) throw new Error('Session failed to connect');
