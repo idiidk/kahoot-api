@@ -18,6 +18,9 @@ export default class Adapter extends Emitter {
     super();
 
     this.socket = socket;
+    this.socket.subscribe('/service/controller', (m) => this.emit('controller', m));
+    this.socket.subscribe('/service/player', (m) => this.emit('player', m));
+    this.socket.subscribe('/service/status', (m) => this.emit('status', m));
   }
 
   /**

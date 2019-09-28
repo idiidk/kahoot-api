@@ -22,15 +22,12 @@ export default class Player extends Adapter {
     }
 
     this.cid = '';
+    this.name = '';
     this.loggedIn = false;
+    this.timeouts = [];
 
     this.socket = socket;
     this.socket.playerBound = this;
-    this.socket.subscribe('/service/controller', (m) => this.emit('controller', m));
-    this.socket.subscribe('/service/player', (m) => this.emit('player', m));
-    this.socket.subscribe('/service/status', (m) => this.emit('status', m));
-
-    this.timeouts = [];
   }
 
 
@@ -165,6 +162,30 @@ export default class Player extends Adapter {
         type: 'login',
         status: 'VERIFIED',
       });
+    }).then(() => { this.name = name; }).then(this.initListeners());
+  }
+
+  initListeners() {
+    this.on('player', (message) => {
+      const { data } = message;
+      const { type } = data;
+
+      switch (type) {
+        case 'message': {
+          const { id, content } = data;
+          const parsedContent = content ? JSON.parse(content) : '';
+
+          this.emit('message', {
+            id,
+            content: parsedContent,
+          });
+          break;
+        }
+
+        default: {
+          break;
+        }
+      }
     });
   }
 

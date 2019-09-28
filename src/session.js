@@ -1,6 +1,7 @@
 import cometdAdapter from 'cometd-nodejs-client';
 import http from './http';
 import Helpers from './helpers';
+import WebApi from './web/api';
 
 if (typeof window === 'undefined') {
   cometdAdapter.adapt();
@@ -26,6 +27,9 @@ export default class Session {
   constructor(pin, proxy) {
     this.pin = pin;
     this.proxy = proxy;
+    this.web = new WebApi();
+
+    this.web.proxy = proxy;
   }
 
   /**
