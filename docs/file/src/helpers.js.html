@@ -40,7 +40,9 @@
 </nav>
 
 <div class="content" data-ice="content"><h1 data-ice="title">src/helpers.js</h1>
-<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">/**
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import { replace } from &apos;lodash&apos;;
+
+/**
  * Contains functions commonly used in login
  */
 export default class Helpers {
@@ -77,37 +79,16 @@ export default class Helpers {
    * @memberof Helpers
    */
   static solve(challenge) {
-    const decode = challenge.split(&quot;&apos;&quot;)[1].split(&quot;&apos;&quot;)[0];
+    const patch = /(?&lt;=if\()(.*)(this)(.+?(?=\())/g;
+    // eslint-disable-next-line no-unused-vars
+    const no = () =&gt; false;
+    const _ = {};
+    _.replace = replace;
+
+    const patched = challenge.replace(patch, &apos;no&apos;);
+
     // eslint-disable-next-line no-eval
-    const offset = eval(challenge.split(&apos;var offset = &apos;)[1].split(&apos;;&apos;)[0]);
-    const mod = parseInt(
-      challenge
-        .split(&apos;) % &apos;)[1]
-        .split(&apos;)&apos;)[0]
-        .trim(),
-      0,
-    );
-
-    let plus = &apos;&apos;;
-    let final = &apos;&apos;;
-
-    try {
-      plus = parseInt(
-        challenge
-          .split(mod)[1]
-          .split(challenge.includes(&apos;+&apos;) ? &apos;+ &apos; : &apos;- &apos;)[1]
-          .split(&apos;)&apos;)[0],
-        0,
-      );
-    } catch (error) {
-      return error;
-    }
-
-    [...decode].forEach((char, index) =&gt; {
-      final += String.fromCharCode(((char.charCodeAt(0) * index + offset) % mod) + plus);
-    });
-
-    return final;
+    return eval(patched);
   }
 
   /**

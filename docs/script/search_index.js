@@ -558,12 +558,6 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
-    "src/session.js~session#info",
-    "class/src/session.js~Session.html#instance-member-info",
-    "src/session.js~Session#info",
-    "member"
-  ],
-  [
     "src/session.js~session#opensocket",
     "class/src/session.js~Session.html#instance-method-openSocket",
     "src/session.js~Session#openSocket",
