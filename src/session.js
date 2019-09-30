@@ -30,6 +30,7 @@ export default class Session {
     this.web = new WebApi();
 
     this.web.proxy = proxy;
+    this.info = null;
   }
 
   /**
@@ -49,7 +50,11 @@ export default class Session {
    * @returns {Promise<Object>} Game info
    * @memberof Session
    */
-  check(pin) {
+  async check(pin) {
+    if (this.info) {
+      return this.info;
+    }
+
     return http
       .get(`${this.proxy}https://kahoot.it/reserve/session/${pin}/?${Helpers.time()}`)
       .then((response) => {
@@ -57,10 +62,11 @@ export default class Session {
         info.token = response.headers['x-kahoot-session-token'];
         info.pin = pin;
 
+        this.info = info;
         return info;
       })
-      .catch(() => {
-        throw new Error('Game not found');
+      .catch((e) => {
+        throw new Error(e);
       });
   }
 
