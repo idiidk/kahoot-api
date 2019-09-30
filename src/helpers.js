@@ -1,3 +1,5 @@
+import { replace } from 'lodash';
+
 /**
  * Contains functions commonly used in login
  */
@@ -35,37 +37,16 @@ export default class Helpers {
    * @memberof Helpers
    */
   static solve(challenge) {
-    const decode = challenge.split("'")[1].split("'")[0];
+    const patch = /(?<=if\()(.*)(this)(.+?(?=\())/g;
+    // eslint-disable-next-line no-unused-vars
+    const no = () => false;
+    const _ = {};
+    _.replace = replace;
+
+    const patched = challenge.replace(patch, 'no');
+
     // eslint-disable-next-line no-eval
-    const offset = eval(challenge.split('var offset = ')[1].split(';')[0]);
-    const mod = parseInt(
-      challenge
-        .split(') % ')[1]
-        .split(')')[0]
-        .trim(),
-      0,
-    );
-
-    let plus = '';
-    let final = '';
-
-    try {
-      plus = parseInt(
-        challenge
-          .split(mod)[1]
-          .split(challenge.includes('+') ? '+ ' : '- ')[1]
-          .split(')')[0],
-        0,
-      );
-    } catch (error) {
-      return error;
-    }
-
-    [...decode].forEach((char, index) => {
-      final += String.fromCharCode(((char.charCodeAt(0) * index + offset) % mod) + plus);
-    });
-
-    return final;
+    return eval(patched);
   }
 
   /**
