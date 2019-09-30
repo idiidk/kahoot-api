@@ -34,6 +34,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-Adapters">Adapters</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#adapters">adapters</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/adapters/adapter.js~Adapter.html">Adapter</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/adapters/player.js~Player.html">Player</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#web">web</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/web/api.js~WebApi.html">WebApi</a></span></span></li>
 </ul>
 </div>
 </nav>
@@ -42,6 +43,7 @@
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import cometdAdapter from &apos;cometd-nodejs-client&apos;;
 import http from &apos;./http&apos;;
 import Helpers from &apos;./helpers&apos;;
+import WebApi from &apos;./web/api&apos;;
 
 if (typeof window === &apos;undefined&apos;) {
   cometdAdapter.adapt();
@@ -67,6 +69,10 @@ export default class Session {
   constructor(pin, proxy) {
     this.pin = pin;
     this.proxy = proxy;
+    this.web = new WebApi();
+
+    this.web.proxy = proxy;
+    this.info = null;
   }
 
   /**
@@ -86,7 +92,11 @@ export default class Session {
    * @returns {Promise&lt;Object&gt;} Game info
    * @memberof Session
    */
-  check(pin) {
+  async check(pin) {
+    if (this.info) {
+      return this.info;
+    }
+
     return http
       .get(`${this.proxy}https://kahoot.it/reserve/session/${pin}/?${Helpers.time()}`)
       .then((response) =&gt; {
@@ -94,10 +104,11 @@ export default class Session {
         info.token = response.headers[&apos;x-kahoot-session-token&apos;];
         info.pin = pin;
 
+        this.info = info;
         return info;
       })
-      .catch(() =&gt; {
-        throw new Error(&apos;Game not found&apos;);
+      .catch((e) =&gt; {
+        throw new Error(e);
       });
   }
 

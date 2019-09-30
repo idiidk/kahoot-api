@@ -34,6 +34,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-Adapters">Adapters</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#adapters">adapters</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/adapters/adapter.js~Adapter.html">Adapter</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/adapters/player.js~Player.html">Player</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#web">web</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/web/api.js~WebApi.html">WebApi</a></span></span></li>
 </ul>
 </div>
 </nav>
@@ -63,15 +64,12 @@ export default class Player extends Adapter {
     }
 
     this.cid = &apos;&apos;;
+    this.name = &apos;&apos;;
     this.loggedIn = false;
+    this.timeouts = [];
 
     this.socket = socket;
     this.socket.playerBound = this;
-    this.socket.subscribe(&apos;/service/controller&apos;, (m) =&gt; this.emit(&apos;controller&apos;, m));
-    this.socket.subscribe(&apos;/service/player&apos;, (m) =&gt; this.emit(&apos;player&apos;, m));
-    this.socket.subscribe(&apos;/service/status&apos;, (m) =&gt; this.emit(&apos;status&apos;, m));
-
-    this.timeouts = [];
   }
 
 
@@ -206,6 +204,30 @@ export default class Player extends Adapter {
         type: &apos;login&apos;,
         status: &apos;VERIFIED&apos;,
       });
+    }).then(() =&gt; { this.name = name; }).then(this.initListeners());
+  }
+
+  initListeners() {
+    this.on(&apos;player&apos;, (message) =&gt; {
+      const { data } = message;
+      const { type } = data;
+
+      switch (type) {
+        case &apos;message&apos;: {
+          const { id, content } = data;
+          const parsedContent = content ? JSON.parse(content) : &apos;&apos;;
+
+          this.emit(&apos;message&apos;, {
+            id,
+            content: parsedContent,
+          });
+          break;
+        }
+
+        default: {
+          break;
+        }
+      }
     });
   }
 

@@ -30,6 +30,12 @@ window.esdocSearchIndex = [
     "class"
   ],
   [
+    "kahoot-api/src/web/api.js~webapi",
+    "class/src/web/api.js~WebApi.html",
+    "<span>WebApi</span> <span class=\"search-result-import-path\">kahoot-api/src/web/api.js</span>",
+    "class"
+  ],
+  [
     "",
     "test-file/test/test.js.html#lineNumber8",
     "Kahoot",
@@ -420,6 +426,12 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
+    "src/adapters/player.js~player#initlisteners",
+    "class/src/adapters/player.js~Player.html#instance-method-initListeners",
+    "src/adapters/player.js~Player#initListeners",
+    "method"
+  ],
+  [
     "src/adapters/player.js~player#join",
     "class/src/adapters/player.js~Player.html#instance-method-join",
     "src/adapters/player.js~Player#join",
@@ -435,6 +447,12 @@ window.esdocSearchIndex = [
     "src/adapters/player.js~player#loggedin",
     "class/src/adapters/player.js~Player.html#instance-member-loggedIn",
     "src/adapters/player.js~Player#loggedIn",
+    "member"
+  ],
+  [
+    "src/adapters/player.js~player#name",
+    "class/src/adapters/player.js~Player.html#instance-member-name",
+    "src/adapters/player.js~Player#name",
     "member"
   ],
   [
@@ -540,6 +558,12 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
+    "src/session.js~session#info",
+    "class/src/session.js~Session.html#instance-member-info",
+    "src/session.js~Session#info",
+    "member"
+  ],
+  [
     "src/session.js~session#opensocket",
     "class/src/session.js~Session.html#instance-method-openSocket",
     "src/session.js~Session#openSocket",
@@ -556,6 +580,60 @@ window.esdocSearchIndex = [
     "class/src/session.js~Session.html#instance-member-proxy",
     "src/session.js~Session#proxy",
     "member"
+  ],
+  [
+    "src/session.js~session#web",
+    "class/src/session.js~Session.html#instance-member-web",
+    "src/session.js~Session#web",
+    "member"
+  ],
+  [
+    "src/web/api.js",
+    "file/src/web/api.js.html",
+    "src/web/api.js",
+    "file"
+  ],
+  [
+    "src/web/api.js~webapi#accesstoken",
+    "class/src/web/api.js~WebApi.html#instance-member-accessToken",
+    "src/web/api.js~WebApi#accessToken",
+    "member"
+  ],
+  [
+    "src/web/api.js~webapi#authenticate",
+    "class/src/web/api.js~WebApi.html#instance-method-authenticate",
+    "src/web/api.js~WebApi#authenticate",
+    "method"
+  ],
+  [
+    "src/web/api.js~webapi#constructor",
+    "class/src/web/api.js~WebApi.html#instance-constructor-constructor",
+    "src/web/api.js~WebApi#constructor",
+    "method"
+  ],
+  [
+    "src/web/api.js~webapi#endpoint",
+    "class/src/web/api.js~WebApi.html#instance-member-endpoint",
+    "src/web/api.js~WebApi#endpoint",
+    "member"
+  ],
+  [
+    "src/web/api.js~webapi#getkahoot",
+    "class/src/web/api.js~WebApi.html#instance-method-getKahoot",
+    "src/web/api.js~WebApi#getKahoot",
+    "method"
+  ],
+  [
+    "src/web/api.js~webapi#proxy",
+    "class/src/web/api.js~WebApi.html#instance-member-proxy",
+    "src/web/api.js~WebApi#proxy",
+    "member"
+  ],
+  [
+    "src/web/api.js~webapi#searchkahoots",
+    "class/src/web/api.js~WebApi.html#instance-method-searchKahoots",
+    "src/web/api.js~WebApi#searchKahoots",
+    "method"
   ],
   [
     "test/test.js",
