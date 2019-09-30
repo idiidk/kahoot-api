@@ -30,7 +30,6 @@ export default class Session {
     this.web = new WebApi();
 
     this.web.proxy = proxy;
-    this.info = null;
   }
 
   /**
@@ -51,10 +50,6 @@ export default class Session {
    * @memberof Session
    */
   async check(pin) {
-    if (this.info) {
-      return this.info;
-    }
-
     return http
       .get(`${this.proxy}https://kahoot.it/reserve/session/${pin}/?${Helpers.time()}`)
       .then((response) => {
@@ -62,14 +57,16 @@ export default class Session {
         info.token = response.headers['x-kahoot-session-token'];
         info.pin = pin;
 
-        this.info = info;
         return info;
       })
-      .catch((e) => {
-        throw new Error(e);
+      .catch((error) => {
+        if (error.message.includes('404')) {
+          throw new Error('Game not found');
+        } else {
+          throw error;
+        }
       });
   }
-
 
   /**
    * Open a socket using the game info provided by the check function
@@ -82,13 +79,13 @@ export default class Session {
     const socket = new cometd.CometD();
     const challenge = Helpers.solve(info.challenge);
     const session = Helpers.shiftBits(info.token, challenge);
-    const validated = /([A-Z,0-9])\w+/g.exec(session);
-    if (validated && validated[0].length !== 96) {
+    const containsInvalidChar = /[^A-Z,^a-z,^0-9]/g.test(session);
+    if (containsInvalidChar) {
       return this.check(info.pin).then((secondInfo) => this.connect(secondInfo));
     }
 
     socket.configure({
-      url: `https://kahoot.it/cometd/${info.pin}/${validated[0]}`,
+      url: `https://kahoot.it/cometd/${info.pin}/${session}`,
     });
     socket.websocketEnabled = true;
     const handshake = new Promise((resolve) => socket.handshake(resolve));
