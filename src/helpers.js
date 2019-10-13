@@ -37,13 +37,13 @@ export default class Helpers {
    * @memberof Helpers
    */
   static solve(challenge) {
-    const patch = /(?<=if\()(.*)(this)(.+?(?=\())/g;
+    const patch = /(if\()(.*)(this)(.+?(?=\())/g;
     // eslint-disable-next-line no-unused-vars
     const no = () => false;
     const _ = {};
     _.replace = replace;
 
-    const patched = challenge.replace(patch, 'no');
+    const patched = challenge.replace(patch, 'if(no');
 
     // eslint-disable-next-line no-eval
     return eval(patched);
