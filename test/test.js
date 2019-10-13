@@ -8,6 +8,7 @@ import { Session, Adapters } from '../src';
 describe('Kahoot', () => {
   const session = new Session(pin, proxy);
   let socket;
+  let player;
 
   describe('Session', () => {
     describe('#check', () => {
@@ -35,14 +36,25 @@ describe('Kahoot', () => {
   describe('Player', () => {
     describe('#join', () => {
       it('Should be able to join with the created socket', () => {
-        const player = new Adapters.Player(socket);
+        player = new Adapters.Player(socket);
         expect(socket.playerBound).to.equal(player);
 
         return player.join(Math.random().toString()).then(() => {
           expect(player.cid).to.not.equal('');
-          socket.disconnect();
         });
       });
+
+      it('(optional) Should be able to add team members', () => {
+        const members = 'idiidk'.split('');
+
+        return player.team(members);
+      });
+
+      it('Should be able to disconnect', () => new Promise((resolve) => {
+        setTimeout(() => {
+          player.leave().then(resolve);
+        }, 1000);
+      }));
     });
   });
 });
