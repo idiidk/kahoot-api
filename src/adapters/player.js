@@ -165,6 +165,52 @@ export default class Player extends Adapter {
     }).then(() => { this.name = name; }).then(this.initListeners());
   }
 
+  /**
+   * Add members to current team, join sets team name in team mode
+   *
+   * @param {Array<String>} [members=[]] - Names of team members
+   * @returns {Promise}
+   * @memberof Player
+   */
+  team(members = []) {
+    return this.send('/service/controller', {
+      content: JSON.stringify(members),
+      id: Events.joinTeamMembers,
+      type: 'message',
+    });
+  }
+
+  /**
+   * Answer a question
+   *
+   * @param {Number} choice - 0 - 3
+   * @returns {Promise}
+   * @memberof Player
+   */
+  answer(choice) {
+    const content = { choice, questionIndex: 0, meta: { lag: 50 } };
+
+    return this.send('/service/controller', {
+      content: JSON.stringify(content),
+      id: Events.gameBlockAnswer,
+      type: 'message',
+    });
+  }
+
+  /**
+   * Leave the game and disconnect socket
+   */
+  leave() {
+    this.stopBruteForce();
+    this.socket.playerBound = false;
+    this.send('/service/controller', {
+      cid: this.cid,
+      type: 'left',
+    });
+    const disconnect = new Promise((resolve) => this.socket.disconnect(resolve));
+    return disconnect;
+  }
+
   initListeners() {
     this.on('player', (message) => {
       const { data } = message;
@@ -187,31 +233,5 @@ export default class Player extends Adapter {
         }
       }
     });
-  }
-
-  /**
-   * Answer a question
-   *
-   * @param {Number} choice - 0 - 3
-   * @returns {Promise}
-   * @memberof Player
-   */
-  answer(choice) {
-    const content = { choice, questionIndex: 0, meta: { lag: 50 } };
-
-    return this.send('/service/controller', {
-      content: JSON.stringify(content),
-      id: 45,
-      type: 'message',
-    });
-  }
-
-  /**
-   * Leave the game and disconnect socket
-   */
-  leave() {
-    this.stopBruteForce();
-    this.socket.playerBound = false;
-    this.socket.disconnect();
   }
 }
