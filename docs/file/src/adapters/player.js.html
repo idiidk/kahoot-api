@@ -207,6 +207,52 @@ export default class Player extends Adapter {
     }).then(() =&gt; { this.name = name; }).then(this.initListeners());
   }
 
+  /**
+   * Add members to current team, join sets team name in team mode
+   *
+   * @param {Array&lt;String&gt;} [members=[]] - Names of team members
+   * @returns {Promise}
+   * @memberof Player
+   */
+  team(members = []) {
+    return this.send(&apos;/service/controller&apos;, {
+      content: JSON.stringify(members),
+      id: Events.joinTeamMembers,
+      type: &apos;message&apos;,
+    });
+  }
+
+  /**
+   * Answer a question
+   *
+   * @param {Number} choice - 0 - 3
+   * @returns {Promise}
+   * @memberof Player
+   */
+  answer(choice) {
+    const content = { choice, questionIndex: 0, meta: { lag: 50 } };
+
+    return this.send(&apos;/service/controller&apos;, {
+      content: JSON.stringify(content),
+      id: Events.gameBlockAnswer,
+      type: &apos;message&apos;,
+    });
+  }
+
+  /**
+   * Leave the game and disconnect socket
+   */
+  leave() {
+    this.stopBruteForce();
+    this.socket.playerBound = false;
+    this.send(&apos;/service/controller&apos;, {
+      cid: this.cid,
+      type: &apos;left&apos;,
+    });
+    const disconnect = new Promise((resolve) =&gt; this.socket.disconnect(resolve));
+    return disconnect;
+  }
+
   initListeners() {
     this.on(&apos;player&apos;, (message) =&gt; {
       const { data } = message;
@@ -229,32 +275,6 @@ export default class Player extends Adapter {
         }
       }
     });
-  }
-
-  /**
-   * Answer a question
-   *
-   * @param {Number} choice - 0 - 3
-   * @returns {Promise}
-   * @memberof Player
-   */
-  answer(choice) {
-    const content = { choice, questionIndex: 0, meta: { lag: 50 } };
-
-    return this.send(&apos;/service/controller&apos;, {
-      content: JSON.stringify(content),
-      id: 45,
-      type: &apos;message&apos;,
-    });
-  }
-
-  /**
-   * Leave the game and disconnect socket
-   */
-  leave() {
-    this.stopBruteForce();
-    this.socket.playerBound = false;
-    this.socket.disconnect();
   }
 }
 </code></pre>

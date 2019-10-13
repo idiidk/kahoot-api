@@ -43,49 +43,61 @@ window.esdocSearchIndex = [
   ],
   [
     "",
-    "test-file/test/test.js.html#lineNumber35",
+    "test-file/test/test.js.html#lineNumber36",
     "Kahoot Player",
     "test"
   ],
   [
     "",
-    "test-file/test/test.js.html#lineNumber36",
+    "test-file/test/test.js.html#lineNumber37",
     "Kahoot Player #join",
     "test"
   ],
   [
     "",
-    "test-file/test/test.js.html#lineNumber37",
+    "test-file/test/test.js.html#lineNumber47",
+    "Kahoot Player #join (optional) Should be able to add team members",
+    "test"
+  ],
+  [
+    "",
+    "test-file/test/test.js.html#lineNumber53",
+    "Kahoot Player #join Should be able to disconnect",
+    "test"
+  ],
+  [
+    "",
+    "test-file/test/test.js.html#lineNumber38",
     "Kahoot Player #join Should be able to join with the created socket",
     "test"
   ],
   [
     "",
-    "test-file/test/test.js.html#lineNumber12",
+    "test-file/test/test.js.html#lineNumber13",
     "Kahoot Session",
     "test"
   ],
   [
     "",
-    "test-file/test/test.js.html#lineNumber13",
+    "test-file/test/test.js.html#lineNumber14",
     "Kahoot Session #check",
     "test"
   ],
   [
     "",
-    "test-file/test/test.js.html#lineNumber14",
+    "test-file/test/test.js.html#lineNumber15",
     "Kahoot Session #check Should be able to retrieve game info",
     "test"
   ],
   [
     "",
-    "test-file/test/test.js.html#lineNumber20",
+    "test-file/test/test.js.html#lineNumber21",
     "Kahoot Session #connect",
     "test"
   ],
   [
     "",
-    "test-file/test/test.js.html#lineNumber21",
+    "test-file/test/test.js.html#lineNumber22",
     "Kahoot Session #connect Should be able to solve the challenge and connect",
     "test"
   ],
@@ -465,6 +477,12 @@ window.esdocSearchIndex = [
     "src/adapters/player.js~player#stopbruteforce",
     "class/src/adapters/player.js~Player.html#instance-method-stopBruteForce",
     "src/adapters/player.js~Player#stopBruteForce",
+    "method"
+  ],
+  [
+    "src/adapters/player.js~player#team",
+    "class/src/adapters/player.js~Player.html#instance-method-team",
+    "src/adapters/player.js~Player#team",
     "method"
   ],
   [
