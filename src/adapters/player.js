@@ -1,3 +1,4 @@
+import Quiz from '../quiz';
 import Adapter from './adapter';
 import Events from '../events';
 
@@ -23,6 +24,8 @@ export default class Player extends Adapter {
 
     this.cid = '';
     this.name = '';
+    this.quiz = new Quiz();
+    this.pointsData = {};
     this.loggedIn = false;
     this.timeouts = [];
 
@@ -228,6 +231,24 @@ export default class Player extends Adapter {
           break;
         }
 
+        default: {
+          break;
+        }
+      }
+    });
+
+    this.on('message', (message) => {
+      switch (message.id) {
+        case Events.startQuiz: {
+          const { quizName } = message.content;
+          this.quiz.name = quizName;
+          break;
+        }
+        case Events.getReady: {
+          const { questionIndex } = message.content;
+          this.quiz.questionIndex = questionIndex;
+          break;
+        }
         default: {
           break;
         }
