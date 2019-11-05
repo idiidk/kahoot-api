@@ -191,7 +191,9 @@ export default class Player extends Adapter {
    * @memberof Player
    */
   answer(choice) {
-    const content = { choice, questionIndex: 0, meta: { lag: 50 } };
+    const content = {
+      choice, questionIndex: 0, type: 'quiz', meta: { lag: 50 },
+    };
 
     return this.send('/service/controller', {
       content: JSON.stringify(content),
