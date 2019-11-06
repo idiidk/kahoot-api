@@ -1,8 +1,8 @@
 import http from '../http';
 
 export default class WebApi {
-  constructor(endpoint = 'https://create.kahoot.it/rest', proxy) {
-    this.endpoint = endpoint;
+  constructor(proxy, protocol = 'https://') {
+    this.endpoint = `${protocol}create.kahoot.it/rest`;
     this.proxy = proxy;
 
     this.accessToken = null;
