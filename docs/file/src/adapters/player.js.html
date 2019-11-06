@@ -30,6 +30,7 @@
   <ul>
     
   <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/helpers.js~Helpers.html">Helpers</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/quiz.js~Quiz.html">Quiz</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/session.js~Session.html">Session</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-Adapters">Adapters</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#adapters">adapters</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/adapters/adapter.js~Adapter.html">Adapter</a></span></span></li>
@@ -40,7 +41,8 @@
 </nav>
 
 <div class="content" data-ice="content"><h1 data-ice="title">src/adapters/player.js</h1>
-<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import Adapter from &apos;./adapter&apos;;
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import Quiz from &apos;../quiz&apos;;
+import Adapter from &apos;./adapter&apos;;
 import Events from &apos;../events&apos;;
 
 /**
@@ -65,6 +67,8 @@ export default class Player extends Adapter {
 
     this.cid = &apos;&apos;;
     this.name = &apos;&apos;;
+    this.quiz = new Quiz();
+    this.pointsData = {};
     this.loggedIn = false;
     this.timeouts = [];
 
@@ -230,7 +234,9 @@ export default class Player extends Adapter {
    * @memberof Player
    */
   answer(choice) {
-    const content = { choice, questionIndex: 0, meta: { lag: 50 } };
+    const content = {
+      choice, questionIndex: 0, type: &apos;quiz&apos;, meta: { lag: 50 },
+    };
 
     return this.send(&apos;/service/controller&apos;, {
       content: JSON.stringify(content),
@@ -270,6 +276,24 @@ export default class Player extends Adapter {
           break;
         }
 
+        default: {
+          break;
+        }
+      }
+    });
+
+    this.on(&apos;message&apos;, (message) =&gt; {
+      switch (message.id) {
+        case Events.startQuiz: {
+          const { quizName } = message.content;
+          this.quiz.name = quizName;
+          break;
+        }
+        case Events.getReady: {
+          const { questionIndex } = message.content;
+          this.quiz.questionIndex = questionIndex;
+          break;
+        }
         default: {
           break;
         }

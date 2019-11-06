@@ -2,8 +2,8 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <base data-ice="baseUrl" href="../../../">
-  <title data-ice="title">Adapter | kahoot-api</title>
+  <base data-ice="baseUrl" href="../../">
+  <title data-ice="title">Quiz | kahoot-api</title>
   <link type="text/css" rel="stylesheet" href="css/style.css">
   <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
   <script src="script/prettify/prettify.js"></script>
@@ -41,24 +41,24 @@
 </nav>
 
 <div class="content" data-ice="content"><div class="header-notice">
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import Adapter from &apos;<span><a href="file/src/adapters/adapter.js.html#lineNumber10">kahoot-api/src/adapters/adapter.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import Quiz from &apos;<span><a href="file/src/quiz.js.html#lineNumber1">kahoot-api/src/quiz.js</a></span>&apos;</code></pre></div>
   <span data-ice="access">public</span>
   <span data-ice="kind">class</span>
   
   
   
-  <span data-ice="source">| <span><a href="file/src/adapters/adapter.js.html#lineNumber10">source</a></span></span>
+  <span data-ice="source">| <span><a href="file/src/quiz.js.html#lineNumber1">source</a></span></span>
 </div>
 
 <div class="self-detail detail">
-  <h1 data-ice="name">Adapter</h1>
+  <h1 data-ice="name">Quiz</h1>
 
   
 
   
   
-  <div class="flat-list" data-ice="extendsChain"><h4>Extends:</h4><div><span>Emitter</span> &#x2192; Adapter</div></div>
-  <div class="flat-list" data-ice="directSubclass"><h4>Direct Subclass:</h4><div><span><a href="class/src/adapters/player.js~Player.html">Player</a></span></div></div>
+  
+  
   
   
   
@@ -67,8 +67,7 @@
 
   
   
-  <div class="description" data-ice="description"><p>Class used as a base for all adapters</p>
-</div>
+  
   
 
   
@@ -100,14 +99,13 @@
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/adapters/adapter.js~Adapter.html#instance-constructor-constructor">constructor</a></span></span><span class="code" data-ice="signature">(socket: <span>CometD</span>)</span>
+          <span class="code" data-ice="name"><span><a href="class/src/quiz.js~Quiz.html#instance-constructor-constructor">constructor</a></span></span><span class="code" data-ice="signature">()</span>
         </p>
       </div>
       <div>
         
         
-        <div data-ice="description"><p>Creates an instance of Adapter.</p>
-</div>
+        
       </div>
     </td>
     <td>
@@ -136,7 +134,7 @@
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/adapters/adapter.js~Adapter.html#instance-member-socket">socket</a></span></span><span class="code" data-ice="signature">: <span>*</span></span>
+          <span class="code" data-ice="name"><span><a href="class/src/quiz.js~Quiz.html#instance-member-name">name</a></span></span><span class="code" data-ice="signature">: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></span>
         </p>
       </div>
       <div>
@@ -150,14 +148,7 @@
       
     </td>
   </tr>
-</tbody>
-</table>
-</div>
-<div data-ice="methodSummary"><h2>Method Summary</h2><table class="summary" data-ice="summary">
-  <thead><tr><td data-ice="title" colspan="3">Public Methods</td></tr></thead>
-  <tbody>
-  
-  <tr data-ice="target">
+<tr data-ice="target">
     <td>
       <span class="access" data-ice="access">public</span>
       
@@ -171,14 +162,13 @@
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/adapters/adapter.js~Adapter.html#instance-method-send">send</a></span></span><span class="code" data-ice="signature">(channel: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></span>, data: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></span></span>
+          <span class="code" data-ice="name"><span><a href="class/src/quiz.js~Quiz.html#instance-member-questionIndex">questionIndex</a></span></span><span class="code" data-ice="signature">: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></span>
         </p>
       </div>
       <div>
         
         
-        <div data-ice="description"><p>Send data over the socket</p>
-</div>
+        
       </div>
     </td>
     <td>
@@ -189,6 +179,7 @@
 </tbody>
 </table>
 </div>
+
 
 
 
@@ -204,74 +195,11 @@
     
     
     
-    <span class="code" data-ice="name">constructor</span><span class="code" data-ice="signature">(socket: <span>CometD</span>)</span>
+    <span class="code" data-ice="name">constructor</span><span class="code" data-ice="signature">()</span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/adapters/adapter.js.html#lineNumber17">source</a></span></span>
-    </span>
-  </h3>
-
-  
-  
-  
-  <div data-ice="description"><p>Creates an instance of Adapter.</p>
-</div>
-
-  
-
-  <div data-ice="properties"><div data-ice="properties">
-  <h4 data-ice="title">Params:</h4>
-  <table class="params">
-    <thead>
-    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
-    </thead>
-    <tbody>
-    
-    <tr data-ice="property" data-depth="0">
-      <td data-ice="name" class="code" data-depth="0">socket</td>
-      <td data-ice="type" class="code"><span>CometD</span></td>
-      <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
-    </tr>
-</tbody>
-  </table>
-</div>
-</div>
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-  
-</div>
-</div>
-<div data-ice="memberDetails"><h2 data-ice="title">Public Members</h2>
-
-<div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="instance-member-socket">
-    <span class="access" data-ice="access">public</span>
-    
-    
-    
-    
-    
-    <span class="code" data-ice="name">socket</span><span class="code" data-ice="signature">: <span>*</span></span>
-    <span class="right-info">
-      
-      
-      <span data-ice="source"><span><a href="file/src/adapters/adapter.js.html#lineNumber20">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/quiz.js.html#lineNumber2">source</a></span></span>
     </span>
   </h3>
 
@@ -303,72 +231,78 @@
   
 </div>
 </div>
-<div data-ice="methodDetails"><h2 data-ice="title">Public Methods</h2>
+<div data-ice="memberDetails"><h2 data-ice="title">Public Members</h2>
 
 <div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="instance-method-send">
+  <h3 data-ice="anchor" id="instance-member-name">
     <span class="access" data-ice="access">public</span>
     
     
     
     
     
-    <span class="code" data-ice="name">send</span><span class="code" data-ice="signature">(channel: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></span>, data: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></span></span>
+    <span class="code" data-ice="name">name</span><span class="code" data-ice="signature">: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/adapters/adapter.js.html#lineNumber34">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/quiz.js.html#lineNumber3">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  <div data-ice="description"><p>Send data over the socket</p>
+  
+
+  
+
+  <div data-ice="properties">
 </div>
 
   
 
-  <div data-ice="properties"><div data-ice="properties">
-  <h4 data-ice="title">Params:</h4>
-  <table class="params">
-    <thead>
-    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
-    </thead>
-    <tbody>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-member-questionIndex">
+    <span class="access" data-ice="access">public</span>
     
-    <tr data-ice="property" data-depth="0">
-      <td data-ice="name" class="code" data-depth="0">channel</td>
-      <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></span></td>
-      <td data-ice="appendix"></td>
-      <td data-ice="description"><p>CometD channel</p>
-</td>
-    </tr>
-<tr data-ice="property" data-depth="0">
-      <td data-ice="name" class="code" data-depth="0">data</td>
-      <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span></td>
-      <td data-ice="appendix"><ul><li>optional</li>
-<li>default: {}</li></ul></td>
-      <td data-ice="description"></td>
-    </tr>
-</tbody>
-  </table>
-</div>
+    
+    
+    
+    
+    <span class="code" data-ice="name">questionIndex</span><span class="code" data-ice="signature">: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/src/quiz.js.html#lineNumber4">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  
+
+  
+
+  <div data-ice="properties">
 </div>
 
-  <div class="return-params" data-ice="returnParams">
-    <h4>Return:</h4>
-    <table>
-      <tbody>
-        <tr>
-          <td class="return-type code" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></span></td>
-          
-        </tr>
-      </tbody>
-    </table>
-    <div data-ice="returnProperties">
-</div>
-  </div>
+  
 
   
 
@@ -386,6 +320,7 @@
   
 </div>
 </div>
+
 </div>
 
 <footer class="footer">

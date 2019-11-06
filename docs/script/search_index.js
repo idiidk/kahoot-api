@@ -24,6 +24,12 @@ window.esdocSearchIndex = [
     "class"
   ],
   [
+    "kahoot-api/src/quiz.js~quiz",
+    "class/src/quiz.js~Quiz.html",
+    "<span>Quiz</span> <span class=\"search-result-import-path\">kahoot-api/src/quiz.js</span>",
+    "class"
+  ],
+  [
     "kahoot-api/src/session.js~session",
     "class/src/session.js~Session.html",
     "<span>Session</span> <span class=\"search-result-import-path\">kahoot-api/src/session.js</span>",
@@ -468,6 +474,18 @@ window.esdocSearchIndex = [
     "member"
   ],
   [
+    "src/adapters/player.js~player#pointsdata",
+    "class/src/adapters/player.js~Player.html#instance-member-pointsData",
+    "src/adapters/player.js~Player#pointsData",
+    "member"
+  ],
+  [
+    "src/adapters/player.js~player#quiz",
+    "class/src/adapters/player.js~Player.html#instance-member-quiz",
+    "src/adapters/player.js~Player#quiz",
+    "member"
+  ],
+  [
     "src/adapters/player.js~player#socket",
     "class/src/adapters/player.js~Player.html#instance-member-socket",
     "src/adapters/player.js~Player#socket",
@@ -552,6 +570,30 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
+    "src/quiz.js",
+    "file/src/quiz.js.html",
+    "src/quiz.js",
+    "file"
+  ],
+  [
+    "src/quiz.js~quiz#constructor",
+    "class/src/quiz.js~Quiz.html#instance-constructor-constructor",
+    "src/quiz.js~Quiz#constructor",
+    "method"
+  ],
+  [
+    "src/quiz.js~quiz#name",
+    "class/src/quiz.js~Quiz.html#instance-member-name",
+    "src/quiz.js~Quiz#name",
+    "member"
+  ],
+  [
+    "src/quiz.js~quiz#questionindex",
+    "class/src/quiz.js~Quiz.html#instance-member-questionIndex",
+    "src/quiz.js~Quiz#questionIndex",
+    "member"
+  ],
+  [
     "src/session.js",
     "file/src/session.js.html",
     "src/session.js",
@@ -585,6 +627,12 @@ window.esdocSearchIndex = [
     "src/session.js~session#pin",
     "class/src/session.js~Session.html#instance-member-pin",
     "src/session.js~Session#pin",
+    "member"
+  ],
+  [
+    "src/session.js~session#protocol",
+    "class/src/session.js~Session.html#instance-member-protocol",
+    "src/session.js~Session#protocol",
     "member"
   ],
   [

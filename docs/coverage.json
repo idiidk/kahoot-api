@@ -1,6 +1,6 @@
 {
-  "coverage": "60.46%",
-  "expectCount": 43,
+  "coverage": "52%",
+  "expectCount": 50,
   "actualCount": 26,
   "files": {
     "src/adapters/adapter.js": {
@@ -11,15 +11,17 @@
       ]
     },
     "src/adapters/player.js": {
-      "expectCount": 15,
+      "expectCount": 17,
       "actualCount": 9,
       "undocumentLines": [
-        24,
         25,
         26,
         27,
+        28,
         29,
-        214
+        30,
+        32,
+        219
       ]
     },
     "src/helpers.js": {
@@ -34,14 +36,25 @@
         9
       ]
     },
+    "src/quiz.js": {
+      "expectCount": 4,
+      "actualCount": 0,
+      "undocumentLines": [
+        1,
+        2,
+        3,
+        4
+      ]
+    },
     "src/session.js": {
-      "expectCount": 9,
+      "expectCount": 10,
       "actualCount": 5,
       "undocumentLines": [
         11,
         28,
         29,
-        30
+        30,
+        31
       ]
     },
     "src/web/api.js": {

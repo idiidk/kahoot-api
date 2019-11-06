@@ -30,6 +30,7 @@
   <ul>
     
   <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/helpers.js~Helpers.html">Helpers</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/quiz.js~Quiz.html">Quiz</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/session.js~Session.html">Session</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-Adapters">Adapters</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#adapters">adapters</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/adapters/adapter.js~Adapter.html">Adapter</a></span></span></li>
@@ -66,12 +67,11 @@ export default class Session {
    * @param {String} [proxy] - Optional cors proxy server url
    * @memberof Session
    */
-  constructor(pin, proxy) {
+  constructor(pin, proxy, protocol = &apos;https://&apos;) {
     this.pin = pin;
     this.proxy = proxy;
-    this.web = new WebApi();
-
-    this.web.proxy = proxy;
+    this.protocol = protocol;
+    this.web = new WebApi(proxy, protocol);
   }
 
   /**
@@ -93,7 +93,7 @@ export default class Session {
    */
   async check(pin) {
     return http
-      .get(`${this.proxy}https://kahoot.it/reserve/session/${pin}/?${Helpers.time()}`)
+      .get(`${this.proxy}${this.protocol}kahoot.it/reserve/session/${pin}/?${Helpers.time()}`)
       .then((response) =&gt; {
         const info = response.data;
         info.token = response.headers[&apos;x-kahoot-session-token&apos;];
