@@ -1,15 +1,15 @@
 # Kahoot API
 
-An API for the kahoot.it quiz platform. WIP, will support all live game functions.
+An API for the kahoot.it quiz platform. Currently being developed alongside omegaboot.com
 
 ## Installation
 
 Install with npm or yarn
 
 ```bash
-yarn add kahoot-api
+yarn add @omegaboot/kahoot-api
 # or
-npm install kahoot-api
+npm install @omegaboot/kahoot-api
 ```
 
 ## Usage

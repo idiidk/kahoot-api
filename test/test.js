@@ -1,12 +1,12 @@
 /* eslint-env node, mocha */
 import { expect } from 'chai';
-import { pin, proxy, protocol } from './config';
+import { pin, proxy } from './config';
 import { Session, Adapters } from '../src';
 
 // Change pin first in pin.js
 
 describe('Kahoot', () => {
-  const session = new Session(pin, proxy, protocol);
+  const session = new Session(pin, proxy);
   let socket;
   let player;
 

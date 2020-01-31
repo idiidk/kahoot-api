@@ -1,4 +1,23 @@
-import { replace } from 'lodash';
+/* eslint-disable no-unused-vars */
+
+/**
+ * Patched polyfill for lodash replace
+ *
+ * @param {String} message
+ * @param {RegExp} regex - Unused
+ * @param {Function} replacer
+ */
+function loReplace(message, _, replacer) {
+  const chars = message.split('');
+  const final = [];
+
+  for (let i = 0; i < chars.length; i += 1) {
+    const char = chars[i];
+    final.push(replacer(char, i));
+  }
+
+  return final.join('');
+}
 
 /**
  * Contains functions commonly used in login
@@ -38,10 +57,8 @@ export default class Helpers {
    */
   static solve(challenge) {
     const patch = /(if\()(.*)(this)(.+?(?=\())/g;
-    // eslint-disable-next-line no-unused-vars
     const no = () => false;
-    const _ = {};
-    _.replace = replace;
+    const _ = { replace: loReplace };
 
     const patched = challenge.replace(patch, 'if(no');
 

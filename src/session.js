@@ -24,11 +24,10 @@ export default class Session {
    * @param {String} [proxy] - Optional cors proxy server url
    * @memberof Session
    */
-  constructor(pin, proxy, protocol = 'https://') {
+  constructor(pin, proxy) {
     this.pin = pin;
     this.proxy = proxy;
-    this.protocol = protocol;
-    this.web = new WebApi(proxy, protocol);
+    this.web = new WebApi(proxy);
   }
 
   /**
@@ -50,7 +49,7 @@ export default class Session {
    */
   async check(pin) {
     return http
-      .get(`${this.proxy}${this.protocol}kahoot.it/reserve/session/${pin}/?${Helpers.time()}`)
+      .get(`${this.proxy}https://kahoot.it/reserve/session/${pin}/?${Helpers.time()}`)
       .then((response) => {
         const info = response.data;
         info.token = response.headers['x-kahoot-session-token'];
