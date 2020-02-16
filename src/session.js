@@ -49,7 +49,7 @@ export default class Session {
    */
   async check(pin) {
     return http
-      .get(`${this.proxy}https://kahoot.it/reserve/session/${pin}/?${Helpers.time()}`)
+      .get(`${this.proxy}kahoot.it/reserve/session/${pin}/?${Helpers.time()}`)
       .then((response) => {
         const info = response.data;
         info.token = response.headers['x-kahoot-session-token'];
