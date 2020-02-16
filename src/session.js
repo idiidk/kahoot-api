@@ -83,7 +83,7 @@ export default class Session {
     }
 
     socket.configure({
-      url: `https://kahoot.it/cometd/${info.pin}/${session}`,
+      url: `https://proxy.omegaboot.com/cometd/${info.pin}/${session}`,
     });
     socket.websocketEnabled = true;
     const handshake = new Promise((resolve) => socket.handshake(resolve));
