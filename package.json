@@ -6,7 +6,7 @@
   "scripts": {
     "build": "babel ./src --out-dir ./dist --source-maps --copy-files",
     "test": "mocha --bail --no-timeouts --require @babel/register",
-    "docs": "esdoc",
+    "docs": "jsdoc -r src/ -d docs",
     "prepublishOnly": "npm run build",
     "version": "npm run docs"
   },
@@ -22,16 +22,15 @@
     "@babel/register": "^7.6.0",
     "babel-preset-minify": "^0.5.1",
     "chai": "^4.2.0",
-    "esdoc": "^1.1.0",
-    "esdoc-standard-plugin": "^1.0.0",
     "eslint": "^6.2.2",
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-plugin-import": "^2.17.2",
+    "jsdoc": "^3.6.10",
     "mocha": "^6.1.4"
   },
   "dependencies": {
     "@babel/runtime": "^7.6.0",
-    "axios": "^0.21.2",
+    "axios": "^0.21.4",
     "cometd": "^4.0.3",
     "cometd-nodejs-client": "^1.0.2",
     "core-js": "^3.2.1",

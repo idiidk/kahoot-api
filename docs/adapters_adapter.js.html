@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Home</title>
+    <title>JSDoc: Source: adapters/adapter.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,32 +17,64 @@
 
 <div id="main">
 
-    <h1 class="page-title">Home</h1>
+    <h1 class="page-title">Source: adapters/adapter.js</h1>
 
     
 
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import Emitter from 'tiny-emitter';
 
+/**
+ * Class used as a base for all adapters
+ *
+ * @export
+ * @class Adapter
+ * @extends {Emitter}
+ */
+export default class Adapter extends Emitter {
+  /**
+   * Creates an instance of Adapter.
+   *
+   * @param {CometD} socket
+   * @memberof Adapter
+   */
+  constructor(socket) {
+    super();
 
-    <h3> </h3>
+    this.socket = socket;
+    this.socket.subscribe('/service/controller', (m) => this.emit('controller', m));
+    this.socket.subscribe('/service/player', (m) => this.emit('player', m));
+    this.socket.subscribe('/service/status', (m) => this.emit('status', m));
+  }
 
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
+  /**
+   * Send data over the socket
+   *
+   * @param {String} channel - CometD channel
+   * @param {Object} [data={}]
+   * @returns {Promise}
+   * @memberof Adapter
+   */
+  send(channel, data = {}) {
+    const final = data;
+    return new Promise((resolve) => {
+      if (!this.socket.isDisconnected()) {
+        final.host = 'kahoot.it';
+        final.gameid = this.socket.info.pin;
+        this.socket.publish(channel, final, resolve);
+      } else {
+        resolve();
+      }
+    });
+  }
+}
+</code></pre>
+        </article>
+    </section>
 
 
 
