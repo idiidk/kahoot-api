@@ -30,7 +30,7 @@ session.openSocket() //Connect
   });
 ```
 
-For usage please refer to the [documentation](https://idiidk.app/kahoot-api)
+For usage please refer to the [documentation](https://idiidk.dev/kahoot-api)
 
 ## Contributing
 
