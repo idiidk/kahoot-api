@@ -1,6 +1,6 @@
 # Kahoot API
 
-An API for the kahoot.it quiz platform. WIP, will support all live game functions.
+An API for the kahoot.it quiz platform. This release is intended for educational purposes only. The API is pretty outdated and I won't be supporting it any longer. It's still a good source for anyone looking to unravel the inner workings of Kahoot.
 
 ## Installation
 
